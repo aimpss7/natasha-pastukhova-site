@@ -327,6 +327,73 @@ function projectImages(project) {
 const projectsGrid = document.getElementById('cards-start');
 
 if (projectsGrid) {
+    function heroCandidates(projects) {
+        const preferred = [
+            'mayak',
+            'dushi-ne-chayu-yaroslavl',
+            'moroshka',
+            'wooden-idols',
+            'moon-cycle',
+            'sea-stones'
+        ];
+        const visible = (projects || []).filter(project => !project.hidden && (project.cover || (project.images && project.images.length)));
+        return preferred
+            .map(id => visible.find(project => project.id === id))
+            .filter(Boolean)
+            .concat(visible.filter(project => !preferred.includes(project.id)))
+            .slice(0, 6);
+    }
+
+    function renderHeroWorks(projects) {
+        const heroImage = document.querySelector('[data-hero-image]');
+        const heroLink = document.querySelector('[data-hero-link]');
+        const heroCaption = document.querySelector('[data-hero-caption]');
+        const heroWorks = document.querySelector('[data-hero-works]');
+        if (!heroImage || !heroWorks) return;
+
+        const items = heroCandidates(projects);
+        if (!items.length) return;
+
+        function show(project, index) {
+            const title = project.name || project.title || '';
+            const src = fixPath(project.cover || projectImages(project)[0] || '');
+            const url = projectUrl(project);
+            const meta = [project.year, project.location, project.category].filter(Boolean).join(' · ');
+
+            if (src) heroImage.src = src;
+            heroImage.alt = title;
+            if (heroCaption) heroCaption.textContent = meta;
+            if (heroLink) {
+                heroLink.href = url || '#cards-start';
+                heroLink.setAttribute('aria-label', url ? `Открыть проект ${title}` : `Показать проект ${title} в галерее`);
+            }
+            heroWorks.querySelectorAll('.hero-work').forEach((button, buttonIndex) => {
+                button.classList.toggle('active', buttonIndex === index);
+                button.setAttribute('aria-pressed', String(buttonIndex === index));
+            });
+        }
+
+        heroWorks.innerHTML = items.map((project, index) => {
+            const title = escapeHtml(project.name || project.title || '');
+            const meta = escapeHtml([project.year, project.location].filter(Boolean).join(' · '));
+            return `
+                <button type="button" class="hero-work${index === 0 ? ' active' : ''}" aria-pressed="${index === 0 ? 'true' : 'false'}" data-hero-work="${index}">
+                    <span>${String(index + 1).padStart(2, '0')}</span>
+                    <strong>${title}</strong>
+                    <em>${meta}</em>
+                </button>`;
+        }).join('');
+
+        heroWorks.querySelectorAll('.hero-work').forEach((button, index) => {
+            const activate = () => show(items[index], index);
+            button.addEventListener('click', activate);
+            button.addEventListener('focus', activate);
+            button.addEventListener('pointerenter', activate);
+        });
+
+        show(items[0], 0);
+    }
+
     function getPublicDescription(project) {
         const desc = project.desc || project.description || '';
         if (/черновая карточка|v0|needs-real-photo/i.test(desc)) return '';
@@ -468,6 +535,7 @@ if (projectsGrid) {
     }
 
     loadProjectsData().then(projects => {
+        renderHeroWorks(projects);
         renderProjects(projects);
         initFilters(projects);
     });
