@@ -49,6 +49,9 @@ body {
     top: 0; left: 0; right: 0;
     z-index: 500;
     pointer-events: none;
+    background: rgba(252, 251, 247, 0.72);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 }
 
 .header-logo, .header-menu, .header-lang { pointer-events: auto; }
@@ -727,7 +730,7 @@ body {
 
 /* ========== FILTERS (index + projects) ========== */
 .project-filters {
-    padding: 0 30px 18px;
+    padding: 0 40px 24px;
     background: #FCFBF7;
     position: relative;
     z-index: 50;
@@ -736,7 +739,7 @@ body {
 .filters {
     display: flex;
     justify-content: flex-start;
-    gap: 8px;
+    gap: 8px 26px;
     flex-wrap: wrap;
     position: relative;
     z-index: 10;
@@ -745,16 +748,23 @@ body {
 .filter-btn {
     display: inline-flex;
     align-items: center;
-    min-height: 32px;
-    padding: 6px 2px 5px;
+    gap: 5px;
+    min-height: 34px;
+    padding: 3px 0 6px;
     border: 0;
-    border-bottom: 1px solid transparent;
+    border-bottom: 2px solid transparent;
     border-radius: 0;
     background: transparent;
-    font-size: 14px;
+    font-size: 20px;
     line-height: 1;
     transition: border-color 0.18s ease, color 0.18s ease;
     color: #000;
+}
+
+.filter-btn span {
+    color: #999;
+    font-size: 0.58em;
+    font-variant-numeric: tabular-nums;
 }
 
 .filter-btn.active {
@@ -767,6 +777,11 @@ body {
 .filter-btn:active {
     transform: none;
     border-color: #000;
+}
+
+.filter-btn:focus-visible {
+    outline: 1px solid #000;
+    outline-offset: 5px;
 }
 
 /* ========== CARDS (index + project) ========== */
@@ -1413,12 +1428,22 @@ td {
     }
 
     .project-filters {
-        padding: 0 25px 14px;
+        padding: 0 25px 18px;
+        overflow: visible;
+    }
+
+    .filters {
+        flex-wrap: wrap;
+        gap: 4px 18px;
+        width: auto;
+        min-width: 100%;
     }
 
     .filter-btn {
-        padding: 6px 0 5px;
-        font-size: 13px;
+        min-height: 30px;
+        padding: 2px 0 5px;
+        font-size: 16px;
+        white-space: nowrap;
     }
 
     .projects-hero { padding: 100px 20px 40px; }

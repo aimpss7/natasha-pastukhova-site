@@ -388,24 +388,29 @@ if (projectsGrid) {
         const filterContainer = document.querySelector('.project-filters .filters');
         if (!filterContainer) return;
 
+        const visibleProjects = (allProjects || []).filter(project => !project.hidden);
         const buttons = filterContainer.querySelectorAll('.filter-btn');
+        const categoryMap = {
+            all: null,
+            murals: ['Мурал'],
+            objects: ['Инсталляция'],
+            paintings: ['Роспись']
+        };
+
+        buttons.forEach(btn => {
+            const key = btn.dataset.filter || 'all';
+            const categoryFilter = categoryMap[key];
+            const count = categoryFilter ? visibleProjects.filter(p => categoryFilter.includes(p.category)).length : visibleProjects.length;
+            btn.innerHTML = `${btn.textContent.trim()} <span>${count}</span>`;
+        });
+
         buttons.forEach(btn => {
             btn.addEventListener('click', () => {
                 buttons.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
 
-                const filterText = btn.textContent.trim();
-                const categoryMap = {
-                    'Murals': ['Мурал'],
-                    'Sculptures': ['Инсталляция'],
-                    'Муралы': ['Мурал'],
-                    'Объекты': ['Инсталляция'],
-                    'Росписи': ['Роспись'],
-                    'Объекты и росписи': ['Инсталляция', 'Роспись']
-                };
-                const categoryFilter = categoryMap[filterText];
-
-                const filteredProjects = categoryFilter ? allProjects.filter(p => categoryFilter.includes(p.category)) : allProjects;
+                const categoryFilter = categoryMap[btn.dataset.filter || 'all'];
+                const filteredProjects = categoryFilter ? visibleProjects.filter(p => categoryFilter.includes(p.category)) : visibleProjects;
                 renderProjects(filteredProjects);
             });
         });
