@@ -70,6 +70,32 @@ async function updateEkbWeather() {
 updateEkbWeather();
 setInterval(updateEkbWeather, 24 * 60 * 60 * 1000);
 
+// ========== SHARED: COMPACT HEADER ==========
+const siteHeader = document.querySelector('.header');
+if (siteHeader) {
+    let headerCompact = false;
+    let headerTicking = false;
+
+    function updateHeaderState() {
+        const shouldCompact = window.scrollY > 32;
+        if (shouldCompact === headerCompact) return;
+        headerCompact = shouldCompact;
+        siteHeader.classList.toggle('is-compact', shouldCompact);
+    }
+
+    function requestHeaderState() {
+        if (headerTicking) return;
+        headerTicking = true;
+        window.requestAnimationFrame(() => {
+            updateHeaderState();
+            headerTicking = false;
+        });
+    }
+
+    updateHeaderState();
+    window.addEventListener('scroll', requestHeaderState, { passive: true });
+}
+
 // ========== PROJECT: LIGHTBOX MODULE ==========
 const Lightbox = (function() {
     const lightboxEl = document.getElementById('lightbox');
@@ -285,7 +311,7 @@ const FALLBACK_PROJECTS = [
 
 async function loadProjectsData() {
     try {
-        const response = await fetch('assets/data/projects.json?v=site-v1-4', { cache: 'no-store' });
+        const response = await fetch('assets/data/projects.json?v=site-v1-6', { cache: 'no-store' });
         if (!response.ok) throw new Error('Network error');
         return await response.json();
     } catch (e) {
@@ -349,7 +375,7 @@ if (projectsGrid) {
         const heroLink = document.querySelector('[data-hero-link]');
         const heroCaption = document.querySelector('[data-hero-caption]');
         const heroWorks = document.querySelector('[data-hero-works]');
-        if (!heroImage || !heroWorks) return;
+        if (!heroImage) return;
 
         const items = heroCandidates(projects);
         if (!items.length) return;
@@ -357,41 +383,37 @@ if (projectsGrid) {
         function show(project, index) {
             const title = project.name || project.title || '';
             const src = fixPath(project.cover || projectImages(project)[0] || '');
-            const url = projectUrl(project);
             const meta = [project.year, project.location, project.category].filter(Boolean).join(' · ');
+            const cardAnchor = project.id ? `#work-${project.id}` : '#cards-start';
 
             if (src) heroImage.src = src;
             heroImage.alt = title;
-            if (heroCaption) heroCaption.textContent = meta;
+            if (heroCaption) heroCaption.textContent = [title, meta].filter(Boolean).join(' · ');
             if (heroLink) {
-                heroLink.href = url || '#cards-start';
-                heroLink.setAttribute('aria-label', url ? `Открыть проект ${title}` : `Показать проект ${title} в галерее`);
+                heroLink.href = cardAnchor;
+                heroLink.setAttribute('aria-label', `Перейти к карточке проекта ${title}`);
             }
-            heroWorks.querySelectorAll('.hero-work').forEach((button, buttonIndex) => {
-                button.classList.toggle('active', buttonIndex === index);
-                button.setAttribute('aria-pressed', String(buttonIndex === index));
-            });
+            if (heroWorks) {
+                heroWorks.querySelectorAll('.hero-work').forEach((button, buttonIndex) => {
+                    button.classList.toggle('active', buttonIndex === index);
+                    button.setAttribute('aria-pressed', String(buttonIndex === index));
+                });
+            }
         }
 
-        heroWorks.innerHTML = items.map((project, index) => {
-            const title = escapeHtml(project.name || project.title || '');
-            const meta = escapeHtml([project.year, project.location].filter(Boolean).join(' · '));
-            return `
-                <button type="button" class="hero-work${index === 0 ? ' active' : ''}" aria-pressed="${index === 0 ? 'true' : 'false'}" data-hero-work="${index}">
-                    <span>${String(index + 1).padStart(2, '0')}</span>
-                    <strong>${title}</strong>
-                    <em>${meta}</em>
-                </button>`;
-        }).join('');
-
-        heroWorks.querySelectorAll('.hero-work').forEach((button, index) => {
-            const activate = () => show(items[index], index);
-            button.addEventListener('click', activate);
-            button.addEventListener('focus', activate);
-            button.addEventListener('pointerenter', activate);
-        });
+        if (heroWorks) {
+            heroWorks.innerHTML = '';
+        }
 
         show(items[0], 0);
+
+        if (items.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            let current = 0;
+            window.setInterval(() => {
+                current = (current + 1) % items.length;
+                show(items[current], current);
+            }, 6000);
+        }
     }
 
     function getPublicDescription(project) {
@@ -413,18 +435,18 @@ if (projectsGrid) {
         const layoutPattern = [
             'layout-half',
             'layout-half',
-            'layout-full',
+            'layout-large',
             'layout-third',
             'layout-third',
             'layout-third',
-            'layout-full',
-            'layout-half',
-            'layout-half',
             'layout-third',
-            'layout-third',
+            'layout-large',
             'layout-third',
             'layout-half',
-            'layout-half'
+            'layout-half',
+            'layout-third',
+            'layout-third',
+            'layout-third'
         ];
 
         html += '<div class="projects-layout">';
@@ -444,9 +466,11 @@ if (projectsGrid) {
             const isStory = p.story && storyImages.length > 1;
             const cardClass = `card ${layoutClass}${url || isStory ? '' : ' card-disabled'}${isStory ? ' story-card' : ''}`;
 
+            const anchorId = p.id ? ` id="work-${escapeHtml(p.id)}"` : '';
+
             if (isStory) {
                 html += `
-            <article class="${cardClass}" data-project-id="${p.id}">
+            <article class="${cardClass}"${anchorId} data-project-id="${p.id}">
                 <div class="story-media" style="--base-rotation: ${rot}deg;">
                     ${url ? `<a class="story-photo-link" href="${url}" aria-label="Открыть проект ${title}">` : ''}
                         <img src="${storyImages[0]}" alt="${title}">
@@ -476,8 +500,8 @@ if (projectsGrid) {
                 ${desc ? `<p class="card-desc">${desc}</p>` : ''}`;
 
             html += url ? `
-            <a href="${url}" class="${cardClass}">${cardInner}</a>` : `
-            <div class="${cardClass}" aria-disabled="true">${cardInner}</div>`;
+            <a href="${url}" class="${cardClass}"${anchorId}>${cardInner}</a>` : `
+            <div class="${cardClass}"${anchorId} aria-disabled="true">${cardInner}</div>`;
         });
         html += '</div>';
 
