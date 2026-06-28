@@ -176,12 +176,33 @@ body {
     grid-column: span 4;
 }
 
+.projects-layout .layout-half {
+    grid-column: span 3;
+}
+
+.projects-layout .layout-third {
+    grid-column: span 2;
+}
+
+.projects-layout .layout-full {
+    grid-column: 1 / -1;
+}
+
 .projects-layout .layout-wide .card-img {
     aspect-ratio: 4/3;
 }
 
-.projects-layout .layout-large .card-img {
+.projects-layout .layout-large .card-img,
+.projects-layout .layout-full .card-img {
     aspect-ratio: 16/10;
+}
+
+.projects-layout .layout-half .card-img {
+    aspect-ratio: 4/3;
+}
+
+.projects-layout .layout-third .card-img {
+    aspect-ratio: 3/4;
 }
 
 /* ========== SHOP PREVIEW ========== */
@@ -480,11 +501,17 @@ body {
     }
 
     .projects-layout .layout-wide,
-    .projects-layout .layout-large {
+    .projects-layout .layout-large,
+    .projects-layout .layout-full {
         grid-column: span 4;
     }
 
     .projects-layout .layout-large:not(.story-card) {
+        grid-column: span 2;
+    }
+
+    .projects-layout .layout-half,
+    .projects-layout .layout-third {
         grid-column: span 2;
     }
 
@@ -498,7 +525,8 @@ body {
     }
 
     .projects-layout .layout-wide .card-img,
-    .projects-layout .layout-large .card-img {
+    .projects-layout .layout-large .card-img,
+    .projects-layout .layout-full .card-img {
         aspect-ratio: 4/3;
     }
 

@@ -227,18 +227,20 @@ if (projectsGrid) {
 
         let html = '';
         const layoutPattern = [
-            'layout-standard',
-            'layout-standard',
-            'layout-large',
-            'layout-standard',
-            'layout-wide',
-            'layout-standard',
-            'layout-standard',
-            'layout-large',
-            'layout-standard',
-            'layout-standard',
-            'layout-wide',
-            'layout-standard'
+            'layout-half',
+            'layout-half',
+            'layout-full',
+            'layout-third',
+            'layout-third',
+            'layout-third',
+            'layout-full',
+            'layout-half',
+            'layout-half',
+            'layout-third',
+            'layout-third',
+            'layout-third',
+            'layout-half',
+            'layout-half'
         ];
 
         html += '<div class="projects-layout">';
@@ -251,7 +253,7 @@ if (projectsGrid) {
             const url   = fixPath(p.url);
             const desc  = getPublicDescription(p);
             const meta  = [p.year, p.location, p.category].filter(Boolean).join(' · ');
-            const layoutClass = p.layoutSize ? `layout-${p.layoutSize}` : layoutPattern[index % layoutPattern.length];
+            const layoutClass = layoutPattern[index % layoutPattern.length];
             const storyImages = (p.storyImages || p.images || []).map(fixPath).filter(Boolean);
             const isStory = p.story && storyImages.length > 1;
             const cardClass = `card ${layoutClass}${url || isStory ? '' : ' card-disabled'}${isStory ? ' story-card' : ''}`;
