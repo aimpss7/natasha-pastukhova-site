@@ -335,7 +335,7 @@ function escapeHtml(value) {
 }
 
 function hasProjectDetailPage(project) {
-    return Boolean(project && !project.hidden && (project.pageReady || project.url));
+    return Boolean(project && !project.hidden && project.id);
 }
 
 function projectUrl(project) {
@@ -542,26 +542,29 @@ if (projectsGrid) {
         const visibleProjects = (allProjects || []).filter(project => !project.hidden);
         const buttons = filterContainer.querySelectorAll('.filter-btn');
         const categoryMap = {
-            all: null,
             murals: ['Мурал'],
             'objects-paintings': ['Инсталляция', 'Роспись']
         };
 
-        buttons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                buttons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
+        function applyFilter(btn) {
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
-                const categoryFilter = categoryMap[btn.dataset.filter || 'all'];
-                const filteredProjects = categoryFilter ? visibleProjects.filter(p => categoryFilter.includes(p.category)) : visibleProjects;
-                renderProjects(filteredProjects, { showCategoryInMeta: !categoryFilter });
-            });
+            const categoryFilter = categoryMap[btn.dataset.filter || 'murals'];
+            const filteredProjects = categoryFilter ? visibleProjects.filter(p => categoryFilter.includes(p.category)) : visibleProjects;
+            renderProjects(filteredProjects, { showCategoryInMeta: !categoryFilter });
+        }
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => applyFilter(btn));
         });
+
+        const initialButton = filterContainer.querySelector('.filter-btn.active') || buttons[0];
+        if (initialButton) applyFilter(initialButton);
     }
 
     loadProjectsData().then(projects => {
         renderHeroWorks(projects);
-        renderProjects(projects);
         initFilters(projects);
     });
 }
