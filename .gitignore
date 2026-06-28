@@ -22,6 +22,10 @@ build/
 .cache/
 
 # Local reference captures
+materials/references/
+materials/references/**
+Материалы/Референсы/
+Материалы/Референсы/**
 сайты других/
 сайты других/**
 сайты других/
@@ -30,10 +34,14 @@ build/
 *других/**
 
 # Heavy originals and local-only media staging
+materials/source-photos/
+materials/source-photos/**
+Материалы/Фото исходники/
+Материалы/Фото исходники/**
 Фотографии проектов/
 originals/
 _originals/
 raw/
 _raw/
 
-# Keep optimized website assets tracked under сайт_база/assets/
+# Keep optimized website assets tracked under site/assets/

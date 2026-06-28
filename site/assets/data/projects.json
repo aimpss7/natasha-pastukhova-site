@@ -40,7 +40,7 @@
     "cover": "/assets/images/projects/mayak/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
-      "Фотографии проектов/Маяк"
+      "materials/source-photos/Маяк"
     ],
     "rotation": 0.04
   },
@@ -56,10 +56,10 @@
     "cover": "/assets/images/projects/dushi-ne-chayu-yaroslavl/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
-      "Фотографии проектов/Самокат_Ярославль"
+      "materials/source-photos/Самокат_Ярославль"
     ],
     "videos": [
-      "Фотографии проектов/Самокат_Ярославль/Ярославль v2.mov"
+      "materials/source-photos/Самокат_Ярославль/Ярославль v2.mov"
     ],
     "rotation": 0.11
   },
@@ -75,10 +75,10 @@
     "cover": "/assets/images/projects/dushi-ne-chayu-ivanovo/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
-      "Фотографии проектов/Самокат_Иваново"
+      "materials/source-photos/Самокат_Иваново"
     ],
     "videos": [
-      "Фотографии проектов/Самокат_Иваново/Иваново v5.mov"
+      "materials/source-photos/Самокат_Иваново/Иваново v5.mov"
     ],
     "rotation": -0.05
   },
@@ -94,10 +94,10 @@
     "cover": "/assets/images/projects/dushi-ne-chayu-vologda/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
-      "Фотографии проектов/Самокат_Вологда"
+      "materials/source-photos/Самокат_Вологда"
     ],
     "videos": [
-      "Фотографии проектов/Самокат_Вологда/Вологда v4.mov"
+      "materials/source-photos/Самокат_Вологда/Вологда v4.mov"
     ],
     "rotation": 0.08
   },
@@ -125,7 +125,7 @@
     "cover": "/assets/images/projects/wooden-idols/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
-      "Фотографии проектов/ЧО_идолы"
+      "materials/source-photos/ЧО_идолы"
     ],
     "rotation": 0.07
   },
@@ -141,7 +141,7 @@
     "cover": "/assets/images/projects/moon-cycle/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
-      "Фотографии проектов/Фазы луны, Певек 22"
+      "materials/source-photos/Фазы луны, Певек 22"
     ],
     "rotation": -0.13
   },
@@ -157,7 +157,7 @@
     "cover": "/assets/images/projects/moroshka/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
-      "Фотографии проектов/Морошка_Анадырь 22"
+      "materials/source-photos/Морошка_Анадырь 22"
     ],
     "rotation": 0.05
   },
@@ -173,7 +173,7 @@
     "cover": "/assets/images/projects/sea-stones/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
-      "Фотографии проектов/Морские камушки_Анадырь 22"
+      "materials/source-photos/Морские камушки_Анадырь 22"
     ],
     "rotation": -0.06
   },
@@ -213,10 +213,10 @@
     "cover": "/assets/images/projects/july/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
-      "Фотографии проектов/ИЮЛЬ_Стенограффия 21г Екатеринбург"
+      "materials/source-photos/ИЮЛЬ_Стенограффия 21г Екатеринбург"
     ],
     "videos": [
-      "Фотографии проектов/ИЮЛЬ_Стенограффия 21г Екатеринбург/Троллейбус.mp4"
+      "materials/source-photos/ИЮЛЬ_Стенограффия 21г Екатеринбург/Троллейбус.mp4"
     ],
     "rotation": 0.12
   },
@@ -244,7 +244,7 @@
     "cover": "/assets/images/projects/neighbors/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
-      "Фотографии проектов/Соседи"
+      "materials/source-photos/Соседи"
     ],
     "rotation": 0.06
   }
