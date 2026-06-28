@@ -393,16 +393,8 @@ if (projectsGrid) {
         const categoryMap = {
             all: null,
             murals: ['Мурал'],
-            objects: ['Инсталляция'],
-            paintings: ['Роспись']
+            'objects-paintings': ['Инсталляция', 'Роспись']
         };
-
-        buttons.forEach(btn => {
-            const key = btn.dataset.filter || 'all';
-            const categoryFilter = categoryMap[key];
-            const count = categoryFilter ? visibleProjects.filter(p => categoryFilter.includes(p.category)).length : visibleProjects.length;
-            btn.innerHTML = `${btn.textContent.trim()} <span>${count}</span>`;
-        });
 
         buttons.forEach(btn => {
             btn.addEventListener('click', () => {
