@@ -322,7 +322,7 @@ if (projectsGrid) {
     }
 
     function initFilters(allProjects) {
-        const filterContainer = document.querySelector('.hero .filters');
+        const filterContainer = document.querySelector('.project-filters .filters');
         if (!filterContainer) return;
 
         const buttons = filterContainer.querySelectorAll('.filter-btn');
