@@ -1,11 +1,3 @@
-// ========== SHARED: LANGUAGE TOGGLE ==========
-function toggleLanguage() {
-    const langToggle = document.querySelector('.lang-toggle');
-    if (langToggle) {
-        langToggle.textContent = langToggle.textContent === 'RU' ? 'EN' : 'RU';
-    }
-}
-
 // ========== SHARED: EKATERINBURG TIME ==========
 function updateEkbTime() {
     const timeElement = document.getElementById('ekb-time');
@@ -211,7 +203,7 @@ initProjectSlider({
 const FALLBACK_PROJECTS = [
     {
         id: "dushi-ne-chayu-yaroslavl",
-        name: "Души не чаю",
+        name: "Души не чаю - Ярославль",
         year: 2023,
         category: "Мурал",
         cover: "assets/images/projects/dushi-ne-chayu-yaroslavl/cover.jpg",
@@ -233,7 +225,7 @@ const FALLBACK_PROJECTS = [
 
 async function loadProjectsData() {
     try {
-        const response = await fetch('assets/data/projects.json');
+        const response = await fetch('assets/data/projects.json?v=site-v1-3', { cache: 'no-store' });
         if (!response.ok) throw new Error('Network error');
         return await response.json();
     } catch (e) {
