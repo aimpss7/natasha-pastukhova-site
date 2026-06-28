@@ -277,8 +277,9 @@ if (projectsGrid) {
         return desc;
     }
 
-    function renderProjects(projects) {
+    function renderProjects(projects, options = {}) {
         projects = (projects || []).filter(project => !project.hidden);
+        const showCategoryInMeta = options.showCategoryInMeta !== false;
 
         if (!projects || !projects.length) {
             projectsGrid.innerHTML = '<p style="padding:40px;color:#666;">Проекты не найдены.</p>';
@@ -312,7 +313,9 @@ if (projectsGrid) {
             const img   = fixPath(p.cover || p.image || '');
             const url   = projectUrl(p);
             const desc  = getPublicDescription(p);
-            const meta  = [p.year, p.location, p.category].filter(Boolean).join(' · ');
+            const metaParts = [p.year, p.location];
+            if (showCategoryInMeta) metaParts.push(p.category);
+            const meta  = metaParts.filter(Boolean).join(' · ');
             const layoutClass = layoutPattern[index % layoutPattern.length];
             const storyImages = projectImages(p);
             const isStory = p.story && storyImages.length > 1;
@@ -403,7 +406,7 @@ if (projectsGrid) {
 
                 const categoryFilter = categoryMap[btn.dataset.filter || 'all'];
                 const filteredProjects = categoryFilter ? visibleProjects.filter(p => categoryFilter.includes(p.category)) : visibleProjects;
-                renderProjects(filteredProjects);
+                renderProjects(filteredProjects, { showCategoryInMeta: !categoryFilter });
             });
         });
     }
