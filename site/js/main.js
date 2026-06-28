@@ -391,11 +391,6 @@ if (projectsGrid) {
             return;
         }
 
-        if (document.body.classList.contains('home-index-page')) {
-            renderProjectIndex(projects);
-            return;
-        }
-
         let html = '';
         const layoutPattern = [
             'layout-standard',
@@ -466,40 +461,6 @@ if (projectsGrid) {
         initStoryCards(projects);
     }
 
-    function renderProjectIndex(projects) {
-        const html = projects.map((p, index) => {
-            const title = p.name || p.title || '';
-            const url = fixPath(p.url);
-            const desc = p.desc || p.description || '';
-            const storyImages = (p.storyImages || p.images || []).map(fixPath).filter(Boolean);
-            const img = storyImages[0] || fixPath(p.cover || p.image || '');
-            const metaItems = [p.location, p.category].filter(Boolean);
-            const meta = metaItems.join(' · ');
-            const status = p.status && p.status !== 'published' ? `<span class="project-index-status">${p.status}</span>` : '';
-            const series = storyImages.length > 1 ? `<span class="project-index-series">серия ${storyImages.length}</span>` : '';
-            const tag = url ? 'a' : 'article';
-            const href = url ? ` href="${url}"` : ' aria-disabled="true"';
-
-            return `
-                <${tag}${href} class="project-index-row${url ? '' : ' project-index-row-disabled'}">
-                    <span class="project-index-number">${String(index + 1).padStart(2, '0')}</span>
-                    <span class="project-index-year">${p.year || ''}</span>
-                    <span class="project-index-title">${title}</span>
-                    <span class="project-index-meta">
-                        ${meta ? `<span>${meta}</span>` : ''}
-                        ${series}
-                        ${status}
-                    </span>
-                    ${desc ? `<span class="project-index-desc">${desc}</span>` : '<span class="project-index-desc"></span>'}
-                    <span class="project-index-image">
-                        <img src="${img}" alt="${title}">
-                    </span>
-                </${tag}>`;
-        }).join('');
-
-        projectsGrid.innerHTML = `<div class="project-index" aria-label="Проекты">${html}</div>`;
-    }
-
     function initStoryCards(projects) {
         const byId = new Map(projects.map(project => [project.id, project]));
 
@@ -536,12 +497,7 @@ if (projectsGrid) {
                 btn.classList.add('active');
 
                 const filterText = btn.textContent.trim();
-                const categoryMap = {
-                    'Murals': 'Мурал',
-                    'Sculptures': 'Инсталляция',
-                    'Муралы': 'Мурал',
-                    'Объекты': 'Инсталляция'
-                };
+                const categoryMap = { 'Murals': 'Мурал', 'Sculptures': 'Инсталляция' };
                 const categoryFilter = categoryMap[filterText];
 
                 const filteredProjects = categoryFilter ? allProjects.filter(p => p.category === categoryFilter) : allProjects;
