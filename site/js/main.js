@@ -82,6 +82,7 @@ const Lightbox = (function() {
     const closeEl = document.getElementById('lb-close');
     let sources = [];
     let currentIndex = 0;
+    let previousFocus = null;
 
     function render() {
         if (!imgEl || !counterEl) return;
@@ -90,15 +91,20 @@ const Lightbox = (function() {
     }
 
     function open(index = 0) {
+        previousFocus = document.activeElement;
         currentIndex = index;
         render();
         lightboxEl.classList.add('open');
         document.body.style.overflow = 'hidden';
+        if (closeEl) closeEl.focus();
     }
 
     function close() {
         lightboxEl.classList.remove('open');
         document.body.style.overflow = '';
+        if (previousFocus && typeof previousFocus.focus === 'function') {
+            previousFocus.focus();
+        }
     }
 
     function shift(dir) {
@@ -140,6 +146,17 @@ const Lightbox = (function() {
         if (e.key === 'ArrowRight') shift(1);
         if (e.key === 'ArrowLeft') shift(-1);
         if (e.key === 'Escape') close();
+        if (e.key === 'Tab') {
+            const focusable = [closeEl, prevEl, nextEl].filter(Boolean);
+            const currentFocusIndex = focusable.indexOf(document.activeElement);
+            if (focusable.length && currentFocusIndex !== -1) {
+                e.preventDefault();
+                const nextFocusIndex = e.shiftKey
+                    ? (currentFocusIndex - 1 + focusable.length) % focusable.length
+                    : (currentFocusIndex + 1) % focusable.length;
+                focusable[nextFocusIndex].focus();
+            }
+        }
     });
 
     // Предоставляем публичные методы для управления лайтбоксом
