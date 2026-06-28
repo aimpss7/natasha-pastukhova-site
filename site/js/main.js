@@ -385,13 +385,14 @@ if (projectsGrid) {
             const src = fixPath(project.cover || projectImages(project)[0] || '');
             const meta = [project.year, project.location, project.category].filter(Boolean).join(' · ');
             const cardAnchor = project.id ? `#work-${project.id}` : '#cards-start';
+            const detailUrl = projectUrl(project);
 
             if (src) heroImage.src = src;
             heroImage.alt = title;
             if (heroCaption) heroCaption.textContent = [title, meta].filter(Boolean).join(' · ');
             if (heroLink) {
-                heroLink.href = cardAnchor;
-                heroLink.setAttribute('aria-label', `Перейти к карточке проекта ${title}`);
+                heroLink.href = detailUrl || cardAnchor;
+                heroLink.setAttribute('aria-label', detailUrl ? `Открыть проект ${title}` : `Перейти к карточке проекта ${title}`);
             }
             if (heroWorks) {
                 heroWorks.querySelectorAll('.hero-work').forEach((button, buttonIndex) => {
