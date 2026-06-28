@@ -61,178 +61,6 @@ async function updateEkbWeather() {
 updateEkbWeather();
 setInterval(updateEkbWeather, 24 * 60 * 60 * 1000);
 
-// ========== INDEX: FLOATING IMAGES PHYSICS ==========
-const heroSection = document.querySelector('.hero');
-
-if (heroSection) {
-    function isMobile() {
-        return window.innerWidth <= 768;
-    }
-
-    const balls = [];
-    const ballElements = document.querySelectorAll('.floating-img');
-
-    function updateBoundaries() {
-        return {
-            width: heroSection.offsetWidth,
-            height: heroSection.offsetHeight
-        };
-    }
-
-    ballElements.forEach((elem) => {
-        const computedStyle = window.getComputedStyle(elem);
-        const x = parseFloat(computedStyle.left);
-        const y = parseFloat(computedStyle.top);
-
-        balls.push({
-            element: elem,
-            x: x,
-            y: y,
-            vx: 0,
-            vy: 0,
-            rotation: 0,
-            angularVelocity: 0,
-            radius: 200,
-            mass: 3
-        });
-    });
-
-    let mouseX = 0;
-    let mouseY = 0;
-    const cursorRadius = 20;
-    const pushForce = 4;
-
-    document.addEventListener('mousemove', (e) => {
-        if (isMobile()) return;
-
-        const heroRect = heroSection.getBoundingClientRect();
-        mouseX = e.clientX - heroRect.left;
-        mouseY = e.clientY - heroRect.top;
-    });
-
-    function animate() {
-        if (isMobile()) return;
-
-        const boundaries = updateBoundaries();
-
-        balls.forEach(ball => {
-            const dx = mouseX - (ball.x + ball.radius);
-            const dy = mouseY - (ball.y + ball.radius);
-            const distance = Math.sqrt(dx * dx + dy * dy);
-
-            if (distance < ball.radius + cursorRadius) {
-                const angle = Math.atan2(dy, dx);
-                const force = pushForce;
-                ball.vx -= Math.cos(angle) * force;
-                ball.vy -= Math.sin(angle) * force;
-
-                ball.angularVelocity += (Math.random() - 0.5) * 3;
-            }
-        });
-
-        balls.forEach(ball => {
-            ball.x += ball.vx;
-            ball.y += ball.vy;
-
-            if (ball.x < 0) {
-                ball.x = 0;
-                ball.vx *= -0.9;
-                ball.angularVelocity += ball.vx * 0.05;
-            }
-            if (ball.x > boundaries.width - ball.radius * 2) {
-                ball.x = boundaries.width - ball.radius * 2;
-                ball.vx *= -0.9;
-                ball.angularVelocity += ball.vx * 0.05;
-            }
-            if (ball.y < 0) {
-                ball.y = 0;
-                ball.vy *= -0.9;
-                ball.angularVelocity += ball.vy * 0.05;
-            }
-            if (ball.y > boundaries.height - ball.radius * 2) {
-                ball.y = boundaries.height - ball.radius * 2;
-                ball.vy *= -0.9;
-                ball.angularVelocity += ball.vy * 0.05;
-            }
-
-            ball.rotation += ball.angularVelocity;
-
-            ball.vx *= 0.96;
-            ball.vy *= 0.96;
-            ball.angularVelocity *= 0.95;
-
-            if (Math.abs(ball.vx) < 0.05) ball.vx = 0;
-            if (Math.abs(ball.vy) < 0.05) ball.vy = 0;
-            if (Math.abs(ball.angularVelocity) < 0.1) ball.angularVelocity = 0;
-
-            ball.element.style.left = ball.x + 'px';
-            ball.element.style.top = ball.y + 'px';
-            ball.element.style.transform = `rotate(${ball.rotation}deg)`;
-        });
-
-        for (let i = 0; i < balls.length; i++) {
-            for (let j = i + 1; j < balls.length; j++) {
-                const ball1 = balls[i];
-                const ball2 = balls[j];
-
-                const dx = (ball2.x + ball2.radius) - (ball1.x + ball1.radius);
-                const dy = (ball2.y + ball2.radius) - (ball1.y + ball1.radius);
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                const minDist = ball1.radius + ball2.radius;
-
-                if (distance < minDist) {
-                    const angle = Math.atan2(dy, dx);
-                    const sin = Math.sin(angle);
-                    const cos = Math.cos(angle);
-
-                    const vx1 = ball1.vx * cos + ball1.vy * sin;
-                    const vy1 = ball1.vy * cos - ball1.vx * sin;
-                    const vx2 = ball2.vx * cos + ball2.vy * sin;
-                    const vy2 = ball2.vy * cos - ball2.vx * sin;
-
-                    const vx1Final = vx2;
-                    const vx2Final = vx1;
-
-                    ball1.vx = vx1Final * cos - vy1 * sin;
-                    ball1.vy = vy1 * cos + vx1Final * sin;
-                    ball2.vx = vx2Final * cos - vy2 * sin;
-                    ball2.vy = vy2 * cos + vx2Final * sin;
-
-                    const impactForce = Math.sqrt(vx1Final * vx1Final + vy1 * vy1);
-                    ball1.angularVelocity += impactForce * 0.2 * (Math.random() - 0.5);
-                    ball2.angularVelocity -= impactForce * 0.2 * (Math.random() - 0.5);
-
-                    const overlap = minDist - distance;
-                    const moveX = overlap * cos / 2;
-                    const moveY = overlap * sin / 2;
-                    ball1.x -= moveX;
-                    ball1.y -= moveY;
-                    ball2.x += moveX;
-                    ball2.y += moveY;
-                }
-            }
-        }
-
-        requestAnimationFrame(animate);
-    }
-
-    if (!isMobile()) {
-        animate();
-    }
-
-    window.addEventListener('resize', () => {
-        if (isMobile()) return;
-
-        const boundaries = updateBoundaries();
-        balls.forEach(ball => {
-            if (ball.x > boundaries.width - ball.radius * 2) ball.x = boundaries.width - ball.radius * 2;
-            if (ball.y > boundaries.height - ball.radius * 2) ball.y = boundaries.height - ball.radius * 2;
-            if (ball.x < 0) ball.x = 0;
-            if (ball.y < 0) ball.y = 0;
-        });
-    });
-}
-
 // ========== PROJECT: LIGHTBOX MODULE ==========
 const Lightbox = (function() {
     const lightboxEl = document.getElementById('lightbox');
@@ -361,7 +189,7 @@ if (projectsGrid) {
             cover: "assets/images/projects/mayak/cover.jpg",
             url: "",
             location: "Екатеринбург",
-            desc: "Роспись маяка в Екатеринбурге. Черновая карточка v0.",
+            desc: "Роспись маяка в Екатеринбурге.",
             rotation: 0.04
         }
     ];
@@ -381,6 +209,12 @@ if (projectsGrid) {
     function fixPath(p) {
         if (!p) return p;
         return (location.protocol === 'file:') ? p.replace(/^\//, '') : p;
+    }
+
+    function getPublicDescription(project) {
+        const desc = project.desc || project.description || '';
+        if (/черновая карточка|v0|needs-real-photo/i.test(desc)) return '';
+        return desc;
     }
 
     function renderProjects(projects) {
@@ -408,14 +242,15 @@ if (projectsGrid) {
         ];
 
         html += '<div class="projects-layout">';
+
         projects.forEach((p, index) => {
-            const rot   = (p.rotation || (Math.random() - 0.5) * 0.5).toFixed(4);
+            const sourceRotation = typeof p.rotation === 'number' ? p.rotation : (Math.random() - 0.5) * 0.12;
+            const rot = Math.max(-0.06, Math.min(0.06, sourceRotation)).toFixed(4);
             const title = p.name || p.title || '';
             const img   = fixPath(p.cover || p.image || '');
             const url   = fixPath(p.url);
-            const desc  = p.desc || p.description || '';
+            const desc  = getPublicDescription(p);
             const meta  = [p.year, p.location, p.category].filter(Boolean).join(' · ');
-            const status = p.status && p.status !== 'published' ? `<span class="card-status">· ${p.status}</span>` : '';
             const layoutClass = p.layoutSize ? `layout-${p.layoutSize}` : layoutPattern[index % layoutPattern.length];
             const storyImages = (p.storyImages || p.images || []).map(fixPath).filter(Boolean);
             const isStory = p.story && storyImages.length > 1;
@@ -435,7 +270,7 @@ if (projectsGrid) {
                 </div>
                 <div class="story-copy">
                     <h3>${title}</h3>
-                    <div class="card-meta">${meta}${status}</div>
+                    <div class="card-meta">${meta}</div>
                     ${desc ? `<p class="card-desc">${desc}</p>` : ''}
                     ${url ? `<a class="story-open" href="${url}" aria-label="Открыть проект ${title}" title="Открыть проект"></a>` : ''}
                 </div>
@@ -448,7 +283,7 @@ if (projectsGrid) {
                     <img src="${img}" alt="${title}">
                 </div>
                 <h3>${title}</h3>
-                <div class="card-meta">${meta}${status}</div>
+                <div class="card-meta">${meta}</div>
                 ${desc ? `<p class="card-desc">${desc}</p>` : ''}`;
 
             html += url ? `
@@ -497,10 +332,16 @@ if (projectsGrid) {
                 btn.classList.add('active');
 
                 const filterText = btn.textContent.trim();
-                const categoryMap = { 'Murals': 'Мурал', 'Sculptures': 'Инсталляция' };
+                const categoryMap = {
+                    'Murals': ['Мурал'],
+                    'Sculptures': ['Инсталляция'],
+                    'Муралы': ['Мурал'],
+                    'Объекты': ['Инсталляция'],
+                    'Объекты и росписи': ['Инсталляция', 'Роспись']
+                };
                 const categoryFilter = categoryMap[filterText];
 
-                const filteredProjects = categoryFilter ? allProjects.filter(p => p.category === categoryFilter) : allProjects;
+                const filteredProjects = categoryFilter ? allProjects.filter(p => categoryFilter.includes(p.category)) : allProjects;
                 renderProjects(filteredProjects);
             });
         });
