@@ -1185,6 +1185,22 @@ body {
 /* ========== ABOUT: CV ========== */
 .cv-section { margin-bottom: 80px; }
 
+.about-label {
+    margin-bottom: 14px;
+    color: #666;
+    font-size: 14px;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.about-title {
+    margin: 0 0 22px;
+    font-size: 48px;
+    font-weight: normal;
+    line-height: 1.02;
+    letter-spacing: 0;
+}
+
 .cv-bio {
     font-size: 24px;
     line-height: 1.53;
@@ -1205,18 +1221,17 @@ body {
     min-height: 36px;
     padding: 8px 14px;
     border: 1px solid #000;
-    border-radius: 999px;
+    border-radius: 0;
     color: #000;
     text-decoration: none;
     font-size: 14px;
     line-height: 1;
-    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease;
 }
 
 .about-actions a:hover {
     background: #000;
     color: #FCFBF7;
-    transform: rotate(-1deg);
 }
 
 .content-wrapper {
@@ -1262,11 +1277,6 @@ body {
     margin: 0 0 15px 0;
     text-transform: uppercase;
     color: #666;
-}
-
-.subsection-title::before {
-    content: '♥ ';
-    margin-right: 8px;
 }
 
 .subsection-title:not(:first-child) { margin-top: 30px; }
@@ -1358,14 +1368,24 @@ td {
     #lb-next { right: 8px; }
 
     .cv-section { margin-bottom: 60px; }
+    .about-label { font-size: 12px; margin-bottom: 10px; }
+    .about-title { font-size: 34px; margin-bottom: 16px; }
     .cv-bio { font-size: 18px; }
     .about-actions { margin-top: 22px; }
     .about-actions a { font-size: 13px; min-height: 34px; padding: 8px 12px; }
 
-    .content-wrapper { gap: 30px; }
+    .content-wrapper {
+        flex-direction: column;
+        gap: 22px;
+    }
 
-    .menu-sidebar { width: 120px; }
-    .menu-item { font-size: 16px; padding: 4px 0; margin-bottom: 6px; }
+    .menu-sidebar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 14px;
+        width: 100%;
+    }
+    .menu-item { font-size: 16px; padding: 0; margin-bottom: 0; }
     .menu-item:first-child { padding-top: 0; }
     .menu-item sup { font-size: 10px; }
 
