@@ -218,6 +218,68 @@ body {
     text-underline-offset: 4px;
 }
 
+.shop-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 28px 20px;
+    margin-top: 42px;
+}
+
+.shop-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+}
+
+.shop-item-image {
+    aspect-ratio: 4 / 5;
+    padding: 24px 22px 34px;
+    background: #EDE9DF;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shop-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 10px solid #FCFBF7;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.shop-item-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    color: #666;
+    font-size: 12px;
+    line-height: 1.25;
+    text-transform: uppercase;
+}
+
+.shop-item h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 1.15;
+}
+
+.shop-item p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.35;
+}
+
+.shop-item > a {
+    margin-top: auto;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
 /* ========== PROJECT: PAGE LAYOUT ========== */
 .project-top {
     display: grid;
@@ -398,6 +460,35 @@ body {
 
     .shop-preview p {
         font-size: 16px;
+    }
+
+    .shop-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px 14px;
+        margin-top: 34px;
+    }
+
+    .shop-item-image {
+        padding: 16px 14px 24px;
+    }
+
+    .shop-item-image img {
+        border-width: 7px;
+    }
+
+    .shop-item-meta {
+        flex-direction: column;
+        gap: 2px;
+        font-size: 11px;
+    }
+
+    .shop-item h3 {
+        font-size: 16px;
+    }
+
+    .shop-item p,
+    .shop-item > a {
+        font-size: 13px;
     }
 
     .project-top { grid-template-columns: 1fr; }
