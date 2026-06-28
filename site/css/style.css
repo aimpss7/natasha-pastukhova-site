@@ -702,27 +702,71 @@ button,
 
 /* ========== HERO (index) ========== */
 .hero {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: end;
+    gap: 32px;
     text-align: left;
-    min-height: 68vh;
-    padding: 190px 40px 92px;
+    min-height: 72vh;
+    padding: 176px 40px 78px;
     background: transparent;
     position: relative;
     overflow: hidden;
 }
 
 .hero h1 {
-    font-size: 96px;
+    font-size: 118px;
     font-weight: normal;
-    line-height: 0.98;
-    margin: 0;
+    line-height: 0.9;
+    margin: 0 0 22px;
     letter-spacing: 0;
-    max-width: 980px;
+    max-width: 1120px;
     color: #000;
     position: relative;
     z-index: 20;
     text-wrap: balance;
+}
+
+.hero-kicker {
+    margin-bottom: 18px;
+    color: #666;
+    font-size: 24px;
+    line-height: 1;
+}
+
+.hero-summary {
+    max-width: 620px;
+    color: #333;
+    font-size: 22px;
+    line-height: 1.35;
+}
+
+.hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    margin-top: 26px;
+}
+
+.hero-links a {
+    color: #000;
+    font-size: 16px;
+    line-height: 1.2;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+}
+
+.hero-signal {
+    justify-self: end;
+    padding-bottom: 5px;
+    color: #666;
+    font-size: 16px;
+    line-height: 1.35;
+    text-align: right;
+}
+
+.hero-signal span {
+    display: block;
 }
 
 /* ========== PROJECTS PAGE HERO ========== */
@@ -1389,10 +1433,37 @@ td {
 
     .hero h1 {
         font-size: 54px;
-        line-height: 0.98;
+        line-height: 0.92;
         max-width: 100%;
-        margin: 0;
+        margin: 0 0 16px;
         letter-spacing: 0;
+    }
+
+    .hero-kicker {
+        margin-bottom: 12px;
+        font-size: 18px;
+    }
+
+    .hero-summary {
+        max-width: 330px;
+        font-size: 17px;
+        line-height: 1.35;
+    }
+
+    .hero-links {
+        gap: 8px 16px;
+        margin-top: 18px;
+    }
+
+    .hero-links a {
+        font-size: 14px;
+    }
+
+    .hero-signal {
+        margin-top: 28px;
+        font-size: 13px;
+        line-height: 1.4;
+        text-align: left;
     }
 
     .project-filters {
@@ -1643,7 +1714,11 @@ button,
     }
 
     .hero h1 {
-        font-size: 48px;
+        font-size: 46px;
+    }
+
+    .hero-summary {
+        font-size: 16px;
     }
 
     .filter-btn {

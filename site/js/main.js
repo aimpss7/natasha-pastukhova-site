@@ -1,14 +1,18 @@
 // ========== SHARED: EKATERINBURG TIME ==========
 function updateEkbTime() {
-    const timeElement = document.getElementById('ekb-time');
-    if (timeElement) {
-        timeElement.textContent = new Date().toLocaleTimeString('ru-RU', {
-            timeZone: 'Asia/Yekaterinburg',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit'
-        });
-    }
+    const timeElements = document.querySelectorAll('#ekb-time, [data-ekb-time]');
+    if (!timeElements.length) return;
+
+    const ekbTime = new Date().toLocaleTimeString('ru-RU', {
+        timeZone: 'Asia/Yekaterinburg',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    });
+
+    timeElements.forEach(element => {
+        element.textContent = ekbTime;
+    });
 }
 
 updateEkbTime();
@@ -16,8 +20,8 @@ setInterval(updateEkbTime, 1000);
 
 // ========== SHARED: EKATERINBURG WEATHER ==========
 async function updateEkbWeather() {
-    const weatherElement = document.getElementById('weather-temp');
-    if (!weatherElement) return;
+    const weatherElements = document.querySelectorAll('#weather-temp, [data-weather-temp]');
+    if (!weatherElements.length) return;
 
     const cacheKey = 'ekbWeatherData';
     const cacheDuration = 24 * 60 * 60 * 1000; // 24 часа
@@ -25,7 +29,10 @@ async function updateEkbWeather() {
     try {
         const cachedData = JSON.parse(localStorage.getItem(cacheKey));
         if (cachedData && (Date.now() - cachedData.timestamp < cacheDuration)) {
-            weatherElement.textContent = `${Math.round(cachedData.data.current_weather.temperature)}°C`;
+            const cachedTemp = `${Math.round(cachedData.data.current_weather.temperature)}°C`;
+            weatherElements.forEach(element => {
+                element.textContent = cachedTemp;
+            });
             return; // Используем данные из кэша
         }
     } catch (e) {
@@ -39,8 +46,10 @@ async function updateEkbWeather() {
             throw new Error(`Сетевой ответ не был успешным: ${response.statusText}`);
         }
         const data = await response.json();
-        
-        weatherElement.textContent = `${Math.round(data.current_weather.temperature)}°C`;
+        const temp = `${Math.round(data.current_weather.temperature)}°C`;
+        weatherElements.forEach(element => {
+            element.textContent = temp;
+        });
 
         // Кэшируем новые данные
         localStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), data: data }));
