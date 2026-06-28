@@ -1,0 +1,251 @@
+[
+  {
+    "id": "all-my-friends",
+    "name": "Все мои друзья",
+    "year": 2024,
+    "category": "Мурал",
+    "status": "published",
+    "url": "/projects/project-1/",
+    "location": "Екатеринбург",
+    "desc": "Мурал создан в рамках фестиваля «Стенограффия» в Екатеринбурге. Работа изображает разных животных, объединённых темой соседства и близости — тех, кого мы встречаем в городе и за его пределами. Орнаментальные паттерны и геометрия создают единое пространство, в котором каждый находит своё место.",
+    "cover": "/assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6775-ph.jpg",
+    "credits": [
+      "2024<br>Екатеринбург, Россия<br>Мурал<br>Аэрозоль и акрил<br>18 × 12 м",
+      "Фестиваль «Стенограффия»<br>Куратор Лия Чечик",
+      "Фото: Иван Смирнов<br>При поддержке<br>администрации города"
+    ],
+    "images": [
+      "/assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6775-ph.jpg",
+      "/assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6803-ph.jpg",
+      "/assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6804-ph.jpg",
+      "/assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6805-ph.jpg",
+      "/assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6809-ph.jpg",
+      "/assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6828-ph.jpg",
+      "/assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6845-ph.jpg",
+      "/assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6863-ph.jpg",
+      "/assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6877-ph.jpg",
+      "/assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6902-ph.jpg"
+    ],
+    "rotation": -0.2192
+  },
+  {
+    "id": "mayak",
+    "name": "Маяк",
+    "year": 2024,
+    "category": "Мурал",
+    "status": "v0",
+    "url": "",
+    "location": "Екатеринбург",
+    "desc": "Проект в Екатеринбурге. Черновая карточка для v0, детали формата и описания требуют уточнения.",
+    "cover": "/assets/images/projects/mayak/cover.jpg",
+    "imageStatus": "web-cover-ready",
+    "sourceFolders": [
+      "Фотографии проектов/Маяк"
+    ],
+    "rotation": 0.04
+  },
+  {
+    "id": "dushi-ne-chayu-yaroslavl",
+    "name": "Души не чаю - Ярославль",
+    "year": 2023,
+    "category": "Мурал",
+    "status": "v0",
+    "url": "",
+    "location": "Ярославль",
+    "desc": "Мурал для проекта «Души не чаю» бренда Самокат и бюро Новь в Ярославле. Черновая карточка для v0.",
+    "cover": "/assets/images/projects/dushi-ne-chayu-yaroslavl/cover.jpg",
+    "imageStatus": "web-cover-ready",
+    "sourceFolders": [
+      "Фотографии проектов/Самокат_Ярославль"
+    ],
+    "videos": [
+      "Фотографии проектов/Самокат_Ярославль/Ярославль v2.mov"
+    ],
+    "rotation": 0.11
+  },
+  {
+    "id": "dushi-ne-chayu-ivanovo",
+    "name": "Души не чаю - Иваново",
+    "year": 2023,
+    "category": "Мурал",
+    "status": "v0",
+    "url": "",
+    "location": "Иваново",
+    "desc": "Мурал для проекта «Души не чаю» бренда Самокат и бюро Новь в Иваново. Черновая карточка для v0.",
+    "cover": "/assets/images/projects/dushi-ne-chayu-ivanovo/cover.jpg",
+    "imageStatus": "web-cover-ready",
+    "sourceFolders": [
+      "Фотографии проектов/Самокат_Иваново"
+    ],
+    "videos": [
+      "Фотографии проектов/Самокат_Иваново/Иваново v5.mov"
+    ],
+    "rotation": -0.05
+  },
+  {
+    "id": "dushi-ne-chayu-vologda",
+    "name": "Души не чаю - Вологда",
+    "year": 2023,
+    "category": "Мурал",
+    "status": "v0",
+    "url": "",
+    "location": "Вологда",
+    "desc": "Мурал для проекта «Души не чаю» бренда Самокат и бюро Новь в Вологде. Черновая карточка для v0.",
+    "cover": "/assets/images/projects/dushi-ne-chayu-vologda/cover.jpg",
+    "imageStatus": "web-cover-ready",
+    "sourceFolders": [
+      "Фотографии проектов/Самокат_Вологда"
+    ],
+    "videos": [
+      "Фотографии проектов/Самокат_Вологда/Вологда v4.mov"
+    ],
+    "rotation": 0.08
+  },
+  {
+    "id": "kot-pchela-i-drakon",
+    "name": "Кот пчела и дракон",
+    "year": 2023,
+    "category": "Мурал",
+    "status": "v0",
+    "url": "",
+    "location": "Санкт-Петербург",
+    "desc": "Коммерческая коллаборация для Билайн и Севкабель Порт. Черновая карточка для v0.",
+    "cover": "/2а.png",
+    "rotation": -0.08
+  },
+  {
+    "id": "wooden-idols",
+    "name": "Деревянные идолы",
+    "year": 2022,
+    "category": "Инсталляция",
+    "status": "v0",
+    "url": "",
+    "location": "Екатеринбург",
+    "desc": "Скульптура/объект для фестиваля паблик-арта ЧО. Черновая карточка для v0.",
+    "cover": "/assets/images/projects/wooden-idols/cover.jpg",
+    "imageStatus": "web-cover-ready",
+    "sourceFolders": [
+      "Фотографии проектов/ЧО_идолы"
+    ],
+    "rotation": 0.07
+  },
+  {
+    "id": "moon-cycle",
+    "name": "Цикл Луны",
+    "year": 2022,
+    "category": "Мурал",
+    "status": "v0",
+    "url": "",
+    "location": "Певек",
+    "desc": "Муральный триптих на Чукотке. Черновая карточка для v0.",
+    "cover": "/assets/images/projects/moon-cycle/cover.jpg",
+    "imageStatus": "web-cover-ready",
+    "sourceFolders": [
+      "Фотографии проектов/Фазы луны, Певек 22"
+    ],
+    "rotation": -0.13
+  },
+  {
+    "id": "moroshka",
+    "name": "Морошка",
+    "year": 2022,
+    "category": "Мурал",
+    "status": "v0",
+    "url": "",
+    "location": "Анадырь",
+    "desc": "Мурал в Анадыре. Черновая карточка для v0.",
+    "cover": "/assets/images/projects/moroshka/cover.jpg",
+    "imageStatus": "web-cover-ready",
+    "sourceFolders": [
+      "Фотографии проектов/Морошка_Анадырь 22"
+    ],
+    "rotation": 0.05
+  },
+  {
+    "id": "sea-stones",
+    "name": "Морские камушки",
+    "year": 2022,
+    "category": "Мурал",
+    "status": "v0",
+    "url": "",
+    "location": "Анадырь",
+    "desc": "Мурал в Анадыре. Черновая карточка для v0.",
+    "cover": "/assets/images/projects/sea-stones/cover.jpg",
+    "imageStatus": "web-cover-ready",
+    "sourceFolders": [
+      "Фотографии проектов/Морские камушки_Анадырь 22"
+    ],
+    "rotation": -0.06
+  },
+  {
+    "id": "meeting",
+    "name": "Встреча",
+    "year": 2022,
+    "category": "Мурал",
+    "status": "v0",
+    "url": "",
+    "location": "Альметьевск",
+    "desc": "Мурал в Альметьевске. Черновая карточка для v0.",
+    "cover": "/7а.png",
+    "rotation": 0.09
+  },
+  {
+    "id": "deer-of-the-universe",
+    "name": "Олень мироздания",
+    "year": 2021,
+    "category": "Мурал",
+    "status": "v0",
+    "url": "",
+    "location": "Анадырь",
+    "desc": "Мурал на Чукотке. Черновая карточка для v0.",
+    "cover": "/1.png",
+    "rotation": -0.04
+  },
+  {
+    "id": "july",
+    "name": "Июль",
+    "year": 2021,
+    "category": "Роспись",
+    "status": "v0",
+    "url": "",
+    "location": "Екатеринбург",
+    "desc": "Роспись троллейбуса для фестиваля «Стенограффия». Черновая карточка для v0.",
+    "cover": "/assets/images/projects/july/cover.jpg",
+    "imageStatus": "web-cover-ready",
+    "sourceFolders": [
+      "Фотографии проектов/ИЮЛЬ_Стенограффия 21г Екатеринбург"
+    ],
+    "videos": [
+      "Фотографии проектов/ИЮЛЬ_Стенограффия 21г Екатеринбург/Троллейбус.mp4"
+    ],
+    "rotation": 0.12
+  },
+  {
+    "id": "hunter",
+    "name": "Охотница",
+    "year": 2021,
+    "category": "Мурал",
+    "status": "v0",
+    "url": "",
+    "location": "Екатеринбург",
+    "desc": "Минимурал для Паблик-маркета в Ельцин Центре. Черновая карточка для v0.",
+    "cover": "/3.png",
+    "rotation": -0.1
+  },
+  {
+    "id": "neighbors",
+    "name": "Соседи",
+    "year": 2020,
+    "category": "Мурал",
+    "status": "v0",
+    "url": "",
+    "location": "Екатеринбург",
+    "desc": "Фасад для фестиваля «Стенограффия XI». Черновая карточка для v0.",
+    "cover": "/assets/images/projects/neighbors/cover.jpg",
+    "imageStatus": "web-cover-ready",
+    "sourceFolders": [
+      "Фотографии проектов/Соседи"
+    ],
+    "rotation": 0.06
+  }
+]

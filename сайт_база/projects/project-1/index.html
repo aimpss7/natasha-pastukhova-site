@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наталья Пастухова — Все мои друзья</title>
+    <!--
+        base href="../../" → все относительные пути разрешаются от корня сайта.
+        Это эквивалент абсолютных путей (/css/style.css) и работает как по file://,
+        так и на любом веб-сервере.
+    -->
+    <base href="../../">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <a href="index.html" class="header-logo">
+            Наташа Пастухова<span class="heart">♥</span>
+        </a>
+        <div class="header-menu">
+            <a href="about.html">О Наташе</a>
+            <a href="index.html#shop">Магазин</a>
+        </div>
+        <div class="header-lang">
+            <span class="lang-toggle" onclick="toggleLanguage()">RU</span>
+        </div>
+    </div>
+
+    <!-- ВЕРХНЯЯ СЕКЦИЯ: СЛАЙДЕР + ИНФОРМАЦИЯ -->
+    <div class="project-top">
+
+        <!-- ЛЕВАЯ КОЛОНКА: слайдер (прилипает) -->
+        <div class="project-image-col">
+            <div class="slider" id="slider">
+                <div class="slider-track" id="slider-track">
+                    <div class="slider-slide"><img src="assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6775-ph.jpg" alt="Все мои друзья — 1"></div>
+                    <div class="slider-slide"><img src="assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6803-ph.jpg" alt="Все мои друзья — 2"></div>
+                    <div class="slider-slide"><img src="assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6804-ph.jpg" alt="Все мои друзья — 3"></div>
+                    <div class="slider-slide"><img src="assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6805-ph.jpg" alt="Все мои друзья — 4"></div>
+                    <div class="slider-slide"><img src="assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6809-ph.jpg" alt="Все мои друзья — 5"></div>
+                    <div class="slider-slide"><img src="assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6828-ph.jpg" alt="Все мои друзья — 6"></div>
+                    <div class="slider-slide"><img src="assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6845-ph.jpg" alt="Все мои друзья — 7"></div>
+                    <div class="slider-slide"><img src="assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6863-ph.jpg" alt="Все мои друзья — 8"></div>
+                    <div class="slider-slide"><img src="assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6877-ph.jpg" alt="Все мои друзья — 9"></div>
+                    <div class="slider-slide"><img src="assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6902-ph.jpg" alt="Все мои друзья — 10"></div>
+                </div>
+
+                <!-- Стрелки -->
+                <button class="slider-btn slider-prev" id="slider-prev" aria-label="Предыдущее фото">←</button>
+                <button class="slider-btn slider-next" id="slider-next" aria-label="Следующее фото">→</button>
+
+                <!-- Счётчик -->
+                <div class="slider-counter" id="slider-counter">1 / 10</div>
+
+                <!-- Точки-индикаторы (генерируются через JS) -->
+                <div class="slider-dots" id="slider-dots"></div>
+            </div>
+        </div>
+
+        <!-- ПРАВАЯ КОЛОНКА: текст -->
+        <div class="project-info-col">
+            <h1 class="project-title">Все мои друзья</h1>
+
+            <div class="project-body">
+                <!-- ОПИСАНИЕ -->
+                <p class="project-description">
+                    Мурал создан в рамках фестиваля «Стенограффия» в Екатеринбурге. Работа изображает разных животных, объединённых темой соседства и близости — тех, кого мы встречаем в городе и за его пределами. Орнаментальные паттерны и геометрия создают единое пространство, в котором каждый находит своё место.
+                </p>
+
+                <!-- КРЕДИТЫ -->
+                <div class="project-credits">
+                    <p>
+                        2024<br>
+                        Екатеринбург, Россия<br>
+                        Мурал<br>
+                        Аэрозоль и акрил<br>
+                        18 × 12 м
+                    </p>
+                    <p>
+                        Фестиваль «Стенограффия»<br>
+                        Куратор Лия Чечик
+                    </p>
+                    <p>
+                        Фото: Иван Смирнов<br>
+                        При поддержке<br>
+                        администрации города
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- СЛЕДУЮЩИЕ РАБОТЫ -->
+    <div class="next-projects">
+        <div class="next-label">Другие работы</div>
+        <div class="next-grid">
+            <a href="projects/project-2/" class="card">
+                <div class="card-img" style="--base-rotation: -0.8deg;">
+                    <img src="assets/images/project-2.svg" alt="Следующий проект">
+                </div>
+                <h3>Проект 2</h3>
+            </a>
+            <div class="card">
+                <div class="card-img" style="--base-rotation: 0.5deg;">
+                    <img src="5а.png" alt="Кошка в высокой траве">
+                </div>
+                <h3>Кошка в высокой траве</h3>
+            </div>
+            <div class="card">
+                <div class="card-img" style="--base-rotation: -0.4deg;">
+                    <img src="6а.png" alt="Олень мироздания">
+                </div>
+                <h3>Олень мироздания</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-col">Наташа Пастухова<br>2026</div>
+            <div class="footer-col">Public-art, murals, objects</div>
+            <div class="footer-col"><a href="mailto:hipastukhova@gmail.com">hipastukhova@gmail.com</a></div>
+            <div class="footer-col">
+                <a href="https://www.behance.net/hellopepe" target="_blank">Биханс</a>
+                <a href="https://www.instagram.com/hellopepe" target="_blank">Инстаграм</a>
+            </div>
+            <div class="footer-col"><a href="about.html">О Наташе</a></div>
+            <div class="footer-col">
+                <div>Екатеринбург</div>
+                <div class="ekb-time" id="ekb-time">00:00:00</div>
+                <div class="ekb-weather" id="weather-temp">--°C</div>
+            </div>
+        </div>
+    </div>
+
+    <script defer src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наталья Пастухова</title>
+    <style>
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text y="28" font-size="28">♥</text></svg>') 16 16, auto;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #e8e8e8;
+            color: #000;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* ========== HEADER FIXED ========== */
+        .header {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            column-gap: 30px;
+            align-items: center;
+            padding: 30px 40px;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        .header-logo, .header-menu, .header-lang { pointer-events: auto; }
+
+        /* ЛОГОТИП - ЕДИНЫЙ БЛОК С ОДНИМ BLUR */
+        .header-logo {
+            font-size: 24px;
+            font-weight: normal;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #000;
+            position: relative;
+            z-index: 2;
+            display: inline-block;
+            white-space: nowrap;
+            justify-self: start;
+        }
+
+        .header-logo::before {
+            content: '';
+            position: absolute;
+            top: -8px; left: -12px; right: -12px; bottom: -8px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        .header-logo .heart {
+            margin-left: 8px;
+        }
+
+        /* BLUR ДЛЯ ОСТАЛЬНЫХ ЭЛЕМЕНТОВ */
+        .header-menu a, .lang-toggle {
+            position: relative;
+            z-index: 2;
+            display: inline-block;
+        }
+
+        .header-menu a::before, .lang-toggle::before {
+            content: '';
+            position: absolute;
+            top: -8px; left: -12px; right: -12px; bottom: -8px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        .header-menu {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-menu a {
+            text-decoration: none;
+            color: #000;
+            text-transform: uppercase;
+            font-size: 24px;
+        }
+
+        .header-menu a:hover {
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 4px;
+        }
+
+        .header-lang { justify-self: end; }
+        .lang-toggle {
+            user-select: none;
+            text-transform: uppercase;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* ========== MAIN CONTENT ========== */
+        .main-content {
+            flex: 1;
+            margin-top: 120px;
+            padding: 0 40px;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            padding: 40px;
+            margin-top: 60px;
+            width: 100%;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 30px;
+        }
+
+        .footer-col {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .footer-col a {
+            color: #000;
+            text-decoration: none;
+            display: block;
+        }
+
+        .footer-col a:hover {
+            text-decoration: underline;
+        }
+
+        .ekb-time {
+            font-weight: normal;
+            margin-top: 5px;
+        }
+
+        .ekb-weather {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* ========== TABLET/SMALL SCREEN - когда текст начинает тесниться ========== */
+        @media (max-width: 900px) {
+            /* Если текст начинает переноситься - сразу показываем только сердечко */
+            .header-logo {
+                font-size: 0;
+            }
+
+            .header-logo .heart {
+                font-size: 28px;
+                margin-left: 0;
+            }
+        }
+
+        /* ========== MOBILE ========== */
+        @media (max-width: 768px) {
+            /* ХЕДЕР В ОДНУ ЛИНИЮ */
+            .header {
+                padding: 20px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                gap: 15px;
+                position: fixed;
+                pointer-events: auto;
+                background: #e8e8e8;
+            }
+
+            /* ЛОГОТИП: скрываем текст, оставляем только сердечко */
+            .header-logo {
+                font-size: 0;
+            }
+
+            .header-logo .heart {
+                font-size: 28px;
+                margin-left: 0;
+            }
+
+            /* МЕНЮ компактное */
+            .header-menu {
+                gap: 15px;
+            }
+
+            .header-menu a {
+                font-size: 18px;
+            }
+
+            .lang-toggle {
+                font-size: 18px;
+            }
+
+            /* ФУТЕР В 2 КОЛОНКИ */
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            /* БЛОК "СУПЕР-ПУПЕР ХУДОЖНИЦА" НА ВСЮ ШИРИНУ СВЕРХУ */
+            .footer-col:nth-child(2) {
+                order: -1;
+                grid-column: span 2;
+                margin-bottom: 20px;
+            }
+
+            .main-content {
+                margin-top: 80px;
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <a href="main.html" class="header-logo">
+            Наташа Пастухова<span class="heart">♥</span>
+        </a>
+        <div class="header-menu">
+            <a href="about.html">О Наташе</a>
+            <a href="#shop">Магазин</a>
+        </div>
+        <div class="header-lang">
+            <span class="lang-toggle" onclick="toggleLanguage()">RU</span>
+        </div>
+    </div>
+
+    <!-- CONTENT PLACEHOLDER -->
+    <div class="main-content">
+        <h1>Content goes here...</h1>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-col">Наташа Пастухова<br>2026</div>
+            <div class="footer-col">Наташа Пастухова - супер-пупер художница</div>
+            <div class="footer-col"><a href="mailto:Natasha@pochta.ru">Natasha@pochta.ru</a></div>
+            <div class="footer-col">
+                <a href="https://www.behance.net/hellopepe" target="_blank">Биханс</a>
+                <a href="https://www.instagram.com/hellopepe" target="_blank">Инстаграм</a>
+            </div>
+            <div class="footer-col"><a href="about.html">О Наташе</a></div>
+            <div class="footer-col">
+                <div>Екатеринбург</div>
+                <div class="ekb-time" id="ekb-time">00:00:00</div>
+                <div class="ekb-weather">−4°, идёт снег</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleLanguage() {
+            const t = document.querySelector('.lang-toggle');
+            t.textContent = t.textContent === 'RU' ? 'EN' : 'RU';
+        }
+
+        function updateEkbTime() {
+            const e = document.getElementById('ekb-time');
+            if(e) {
+                e.textContent = new Date().toLocaleTimeString('ru-RU', {
+                    timeZone: 'Asia/Yekaterinburg',
+                    hour: '2-digit', minute: '2-digit', second: '2-digit'
+                });
+            }
+        }
+        setInterval(updateEkbTime, 1000);
+        updateEkbTime();
+    </script>
+</body>
+</html>

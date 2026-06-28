@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наталья Пастухова</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <a href="index.html" class="header-logo">
+            Наташа Пастухова<span class="heart">♥</span>
+        </a>
+        <div class="header-menu">
+            <a href="about.html">О Наташе</a>
+            <a href="index.html#shop">Магазин</a>
+        </div>
+        <div class="header-lang">
+            <span class="lang-toggle" onclick="toggleLanguage()">RU</span>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div class="container">
+            <!-- TWO COLUMN LAYOUT 50/50 -->
+            <div class="two-column-layout">
+                <!-- LEFT: PHOTO 16:9 В ОВАЛЕ -->
+                <div class="photo-column">
+                    <div class="photo-container">
+                        <img src="ava_1.jpg" alt="Наталья Пастухова">
+                    </div>
+                </div>
+
+                <!-- RIGHT: CONTENT -->
+                <div class="content-column">
+                    <!-- CV SECTION -->
+                    <div class="cv-section">
+                        <div class="cv-bio">
+                            Наталья Пастухова (р. 1985, Свердловск) — художница, работающая в области стрит-арта и монументальной графики. Получила диплом по промышленному дизайну в УралГАХА и степень бакалавра дизайна в университете Хаддерсфилда. В работах преобладают животные, орнаменты и геометрия.
+                        </div>
+                    </div>
+
+                    <!-- CONTENT WITH SIDEBAR -->
+                    <div class="content-wrapper">
+                        <!-- MENU SIDEBAR -->
+                        <div class="menu-sidebar">
+                            <div class="menu-item active" onclick="showSection(1)">Муралы <sup>⁴⁵</sup></div>
+                            <div class="menu-item" onclick="showSection(2)">Инсталляции <sup>⁴</sup></div>
+                            <div class="menu-item" onclick="showSection(3)">Выставки <sup>¹²</sup></div>
+                            <div class="menu-item" onclick="showSection(4)">Коллаборации <sup>⁶</sup></div>
+                            <div class="menu-item" onclick="showSection(5)">Кураторство <sup>³</sup></div>
+                            <div class="menu-item" onclick="showSection(6)">Мастер-классы <sup>¹⁷</sup></div>
+                        </div>
+
+                        <!-- SECTIONS -->
+                        <div class="sections-container">
+                            <!-- SECTION 1: МУРАЛЫ -->
+                            <div class="section active" id="section-1">
+                                <div class="subsection-title">Фестивали</div>
+                                <table>
+                                    <tr><td class="col-year">2024</td><td class="col-content"><span class="work-title">«Все мои друзья»</span><span class="work-location">Екатеринбург</span><span class="work-details">«Стенограффия»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                    <tr><td class="col-year">2022</td><td class="col-content"><span class="work-title">«Деревянные идолы»</span><span class="work-location">Екатеринбург</span><span class="work-details">инсталляция, паблик-арт «ЧО»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                    <tr><td class="col-year">2021</td><td class="col-content"><span class="work-title">Троллейбус «Июль»</span><span class="work-location">Екатеринбург</span><span class="work-details">«Стенограффия»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                    <tr><td class="col-year">2020</td><td class="col-content"><span class="work-title">«Соседи»</span><span class="work-location">Екатеринбург</span><span class="work-details">«Стенограффия XI»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                    <tr><td class="col-year">2019</td><td class="col-content"><span class="work-title">«Кошка в высокой траве»</span><span class="work-location">Екатеринбург</span><span class="work-details">«Стенограффия X»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                    <tr><td class="col-year">2017</td><td class="col-content"><span class="work-title">«Перекрестки»</span><span class="work-location">Пермь</span><span class="work-details">«Длинные истории Перми»</span></td><td class="col-location">Пермь</td></tr>
+                                    <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Доместикация лис»</span><span class="work-location">Новосибирск</span><span class="work-details">«Графит науки»</span></td><td class="col-location">Новосибирск</td></tr>
+                                    <tr><td class="col-year">2016</td><td class="col-content"><span class="work-title">«Привет, ты кто»</span><span class="work-location">Ноябрьск</span><span class="work-details">«Стенограффия»</span></td><td class="col-location">Ноябрьск</td></tr>
+                                    <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Голуби»</span><span class="work-location">Екатеринбург</span><span class="work-details">«Стенограффия»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                    <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«На дне бассейна»</span><span class="work-location">Тампере</span><span class="work-details">Российско-Финский культурный форум</span></td><td class="col-location">Тампере</td></tr>
+                                    <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Самоцветы»</span><span class="work-location">Якутск</span><span class="work-details">IV Якутская биеннале современного искусства</span></td><td class="col-location">Якутск</td></tr>
+                                    <tr><td class="col-year">2015</td><td class="col-content"><span class="work-title">«Птица счастья»</span><span class="work-location">Мыс Каменный</span><span class="work-details">«Стенограффия»</span></td><td class="col-location">Мыс Каменный</td></tr>
+                                    <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Русалка»</span><span class="work-location">Екатеринбург</span><span class="work-details">«Результарт»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                    <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Миграция»</span><span class="work-location">Самара</span><span class="work-details">«Жемчужина на Волге»</span></td><td class="col-location">Самара</td></tr>
+                                    <tr><td class="col-year">2014</td><td class="col-content"><span class="work-title">«Стая»</span><span class="work-location">Екатеринбург</span><span class="work-details">паблик-арт «Решительные действия»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                    <tr><td class="col-year">2013</td><td class="col-content"><span class="work-title">«Хорошая собака»</span><span class="work-location">Баку</span><span class="work-details">«Participate»</span></td><td class="col-location">Баку</td></tr>
+                                    <tr><td class="col-year">2011</td><td class="col-content"><span class="work-title">«Хорошая собака»</span><span class="work-location">Пермь</span><span class="work-details">«Длинные истории Перми. Скорость цвета»</span></td><td class="col-location">Пермь</td></tr>
+                                    <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Малахитовый медведь»</span><span class="work-location">Пермь</span><span class="work-details">«Длинные истории Перми. Скорость цвета»</span></td><td class="col-location">Пермь</td></tr>
+                                    <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Хорошая собака»</span><span class="work-location">Пермь</span><span class="work-details">выставка «Черты», «Живая Пермь»</span></td><td class="col-location">Пермь</td></tr>
+                                    <tr><td class="col-year">2010</td><td class="col-content"><span class="work-title">«Хорошая собака»</span><span class="work-location">Москва</span><span class="work-details">II Московская международная биеннале молодого искусства «Стой! Кто идет?»</span></td><td class="col-location">Москва</td></tr>
+                                    <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Семечки закончились»</span><span class="work-location">Екатеринбург</span><span class="work-details">«Длинные истории Екатеринбурга 8. Черно-белое пространство»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                    <tr><td class="col-year">2009</td><td class="col-content"><span class="work-title">«Хорошая собака»</span><span class="work-location">Екатеринбург</span><span class="work-details">«Длинные истории Екатеринбурга 6»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                    <tr><td class="col-year">2008</td><td class="col-content"><span class="work-title">«Хорошая собака»</span><span class="work-location">Бишкек</span><span class="work-details">Международный симпозиум по искусству в общественных пространствах</span></td><td class="col-location">Бишкек</td></tr>
+                                    <tr><td class="col-year">2007</td><td class="col-content"><span class="work-title">«46»</span><span class="work-location">Екатеринбург</span><span class="work-details">«Длинные истории Екатеринбурга 5»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                    <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Глэмрок»</span><span class="work-location">Екатеринбург</span><span class="work-details">«На волне»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                    <tr><td class="col-year">2006</td><td class="col-content"><span class="work-title">«4 годовщины»</span><span class="work-location">Екатеринбург</span><span class="work-details">«Длинные истории Екатеринбурга 4»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                    <tr><td class="col-year">2004</td><td class="col-content"><span class="work-title">«Communal»</span><span class="work-location">Екатеринбург</span><span class="work-details">«Длинные истории Екатеринбурга 2»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                    <tr><td class="col-year">2003</td><td class="col-content"><span class="work-title">«Захват 4 овощебазы»</span><span class="work-location">Екатеринбург</span><span class="work-details">«Длинные истории Екатеринбурга»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                </table>
+
+                                <div class="subsection-title">Проекты</div>
+                                <table>
+                                    <tr><td class="col-year">2022</td><td class="col-content"><span class="work-title">«Морошка»</span><span class="work-location">Анадырь</span></td><td class="col-location">Анадырь</td></tr>
+                                    <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Морские камушки»</span><span class="work-location">Анадырь</span></td><td class="col-location">Анадырь</td></tr>
+                                    <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Цикл Луны»</span><span class="work-location">Певек</span><span class="work-details">триптих</span></td><td class="col-location">Певек</td></tr>
+                                    <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Встреча»</span><span class="work-location">Альметьевск</span></td><td class="col-location">Альметьевск</td></tr>
+                                    <tr><td class="col-year">2021</td><td class="col-content"><span class="work-title">«Поцелуй»</span><span class="work-location">Анадырь</span></td><td class="col-location">Анадырь</td></tr>
+                                    <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Морской ковер»</span><span class="work-location">Анадырь</span></td><td class="col-location">Анадырь</td></tr>
+                                    <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Малая Медведица»</span><span class="work-location">Анадырь</span></td><td class="col-location">Анадырь</td></tr>
+                                    <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Олень мироздания»</span><span class="work-location">Анадырь</span></td><td class="col-location">Анадырь</td></tr>
+                                    <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Розочка»</span><span class="work-location">Сатка</span></td><td class="col-location">Сатка</td></tr>
+                                    <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Охотница»</span><span class="work-location">Екатеринбург</span><span class="work-details">Паблик-маркет, Ельцин Центр</span></td><td class="col-location">Екатеринбург</td></tr>
+                                    <tr><td class="col-year">2020</td><td class="col-content"><span class="work-title">«Котопес»</span><span class="work-location">Тель-Авив</span><span class="work-details">коллаборация hellopepe+aifo</span></td><td class="col-location">Тель-Авив</td></tr>
+                                    <tr><td class="col-year">2019</td><td class="col-content"><span class="work-title">Фасад молочного магазина при заводе</span><span class="work-location">Коломна</span><span class="work-details">без названия</span></td><td class="col-location">Коломна</td></tr>
+                                    <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Кругосветка»</span><span class="work-location">Ясный</span></td><td class="col-location">Ясный</td></tr>
+                                    <tr><td class="col-year">2018</td><td class="col-content"><span class="work-title">«Үстерү»</span><span class="work-location">Альметьевск</span><span class="work-details">проект «Сказки о золотых яблоках»</span></td><td class="col-location">Альметьевск</td></tr>
+                                    <tr><td class="col-year">2017</td><td class="col-content"><span class="work-title">Фасад девятиэтажки</span><span class="work-location">Новотроицк</span><span class="work-details">без названия</span></td><td class="col-location">Новотроицк</td></tr>
+                                    <tr><td class="col-year">2011</td><td class="col-content"><span class="work-title">«Сказочный лес»</span><span class="work-location">Москва</span><span class="work-details">проект «The wall»</span></td><td class="col-location">Москва</td></tr>
+                                    <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Заповедник»</span><span class="work-location">Кудымкар</span></td><td class="col-location">Кудымкар</td></tr>
+                                </table>
+                            </div>
+
+                            <!-- Остальные секции сокращены -->
+                            <div class="section" id="section-2">
+                                <table>
+                                    <tr><td class="col-year">2022</td><td class="col-content"><span class="work-title">«Деревянные идолы»</span><span class="work-location">Екатеринбург</span><span class="work-details">инсталляция, паблик-арт «ЧО»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                    <tr><td class="col-year">2021</td><td class="col-content"><span class="work-title">Троллейбус «Июль»</span><span class="work-location">Екатеринбург</span><span class="work-details">«Стенограффия»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                    <tr><td class="col-year"></td><td class="col-content"><span class="work-title">Домик на детской площадке</span><span class="work-location">Екатеринбург</span><span class="work-details">Ельцин Центр</span></td><td class="col-location">Екатеринбург</td></tr>
+                                    <tr><td class="col-year">2020</td><td class="col-content"><span class="work-title">Универсиада-2023</span><span class="work-location">Екатеринбург</span></td><td class="col-location">Екатеринбург</td></tr>
+                                </table>
+                            </div>
+
+                            <div class="section" id="section-3">
+                                <div class="subsection-title">Персональные выставки</div>
+                                <table>
+                                    <tr><td class="col-year">2020</td><td class="col-content"><span class="work-title">«Город зорких»</span><span class="work-location">Екатеринбург</span><span class="work-details">Бар Негодяи</span></td><td class="col-location">Екатеринбург</td></tr>
+                                </table>
+
+                                <div class="subsection-title">Групповые выставки</div>
+                                <table>
+                                    <tr><td class="col-year">2024</td><td class="col-content"><span class="work-title">«Маяковский. Трибьют»</span><span class="work-location">Санкт-Петербург</span><span class="work-details">Центр искусства и музыки Библиотеки имени Маяковского</span></td><td class="col-location">Санкт-Петербург</td></tr>
+                                    <tr><td class="col-year">2021</td><td class="col-content"><span class="work-title">«Новая живопись Екатеринбург»</span><span class="work-location">Екатеринбург</span><span class="work-details">Арт-галерея Ельцин Центр</span></td><td class="col-location">Екатеринбург</td></tr>
+                                    <tr><td class="col-year">2016</td><td class="col-content"><span class="work-title">«Враг»</span><span class="work-location">Екатеринбург</span><span class="work-details">Галерея Свитер</span></td><td class="col-location">Екатеринбург</td></tr>
+                                </table>
+                            </div>
+
+                            <div class="section" id="section-4">
+                                <table>
+                                    <tr><td class="col-year">2025</td><td class="col-content"><span class="work-title">«Хорошие истории»</span><span class="work-location">Екатеринбург</span><span class="work-details">Avito</span></td><td class="col-location">Екатеринбург</td></tr>
+                                    <tr><td class="col-year">2023</td><td class="col-content"><span class="work-title">«Кот, пчела и дракон»</span><span class="work-location">Санкт-Петербург</span><span class="work-details">Билайн и Севкабель Порт</span></td><td class="col-location">Санкт-Петербург</td></tr>
+                                </table>
+                            </div>
+
+                            <div class="section" id="section-5">
+                                <table>
+                                    <tr><td class="col-year">2024</td><td class="col-content"><span class="work-title">Кураторский проект «Месторождения»</span><span class="work-location">Краснокаменск</span></td><td class="col-location">Краснокаменск</td></tr>
+                                    <tr><td class="col-year">2023</td><td class="col-content"><span class="work-title">Проектная мастерская мурла</span><span class="work-location">Екатеринбург</span><span class="work-details">паблик-арт программа ЧО и интернат слабослышащих</span></td><td class="col-location">Екатеринбург</td></tr>
+                                </table>
+                            </div>
+
+                            <div class="section" id="section-6">
+                                <table>
+                                    <tr><td class="col-year">2024</td><td class="col-content"><span class="work-title">Лаборатория «Фантастический Сад»</span><span class="work-location">Екатеринбург</span><span class="work-details">Инклюзивная художественная студия, Ельцин Центр</span></td><td class="col-location">Екатеринбург</td></tr>
+                                    <tr><td class="col-year">2021</td><td class="col-content"><span class="work-title">«Академия фантастических существ»</span><span class="work-location">Сатка</span><span class="work-details">пространство Арт-Сатка</span></td><td class="col-location">Сатка</td></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER С ЕКАТЕРИНБУРГОМ -->
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-col">Наташа Пастухова<br>2026</div>
+            <div class="footer-col">Public-art, murals, objects</div>
+            <div class="footer-col"><a href="mailto:hipastukhova@gmail.com">hipastukhova@gmail.com</a></div>
+            <div class="footer-col">
+                <a href="https://www.behance.net/hellopepe" target="_blank">Биханс</a>
+                <a href="https://www.instagram.com/hellopepe" target="_blank">Инстаграм</a>
+            </div>
+            <div class="footer-col"><a href="about.html">О Наташе</a></div>
+            <div class="footer-col">
+                <div>Екатеринбург</div>
+                <div class="ekb-time" id="ekb-time">00:00:00</div>
+                <div class="ekb-weather" id="weather-temp">--°C</div>
+            </div>
+        </div>
+    </div>
+
+    <script defer src="js/main.js"></script>
+</body>
+</html>

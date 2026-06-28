@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natalia Pastukhova</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="header">
+        <a href="index.html" class="header-logo">
+            Наташа Пастухова<span class="heart">♥</span>
+        </a>
+        <div class="header-menu">
+            <a href="about.html">О Наташе</a>
+            <a href="#shop">Магазин</a>
+        </div>
+        <div class="header-lang">
+            <span class="lang-toggle" onclick="toggleLanguage()">RU</span>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="hero-images">
+            <div class="floating-img floating-img-1"><img src="1.png" alt=""></div>
+            <div class="floating-img floating-img-2"><img src="2.png" alt=""></div>
+            <div class="floating-img floating-img-3"><img src="3.png" alt=""></div>
+            <div class="floating-img floating-img-4"><img src="4.png" alt=""></div>
+            <div class="floating-img floating-img-5"><img src="5.png" alt=""></div>
+        </div>
+
+        <p class="hero-subtitle">Public-art artist from Ural</p>
+
+        <h1>
+            NATALIA PASTUKHOVA<br>
+            WORKS WITH PUBLIC<br>
+            ART, MURALS AND<br>
+            SCULPTURE.
+        </h1>
+
+        <div class="filters">
+            <button class="filter-btn active">All</button>
+            <button class="filter-btn">Murals</button>
+            <button class="filter-btn">Sculptures</button>
+        </div>
+    </section>
+
+    <div class="container" id="cards-start">
+        <!-- Карточки проектов будут отрендерены здесь через JS -->
+    </div>
+
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-col">Наташа Пастухова<br>2026</div>
+            <div class="footer-col">Public-art, murals, objects</div>
+            <div class="footer-col"><a href="mailto:hipastukhova@gmail.com">hipastukhova@gmail.com</a></div>
+            <div class="footer-col">
+                <a href="https://www.behance.net/hellopepe" target="_blank">Биханс</a>
+                <a href="https://www.instagram.com/hellopepe" target="_blank">Инстаграм</a>
+            </div>
+            <div class="footer-col"><a href="about.html">О Наташе</a></div>
+            <div class="footer-col">
+                <div>Екатеринбург</div>
+                <div class="ekb-time" id="ekb-time">00:00:00</div>
+                <div class="ekb-weather" id="weather-temp">--°C</div>
+            </div>
+        </div>
+    </div>
+
+    <script defer src="js/main.js"></script>
+
+</body>
+</html>

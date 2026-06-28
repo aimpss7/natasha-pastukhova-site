@@ -1,0 +1,39 @@
+# System files
+.DS_Store
+**/.DS_Store
+Thumbs.db
+
+# Editor and local config
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs and temporary files
+*.log
+tmp/
+temp/
+.tmp/
+
+# Dependencies and build outputs
+node_modules/
+dist/
+build/
+.cache/
+
+# Local reference captures
+сайты других/
+сайты других/**
+сайты других/
+сайты других/**
+*других/
+*других/**
+
+# Heavy originals and local-only media staging
+Фотографии проектов/
+originals/
+_originals/
+raw/
+_raw/
+
+# Keep optimized website assets tracked under сайт_база/assets/

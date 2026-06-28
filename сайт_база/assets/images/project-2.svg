@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800">
+  <rect width="600" height="800" fill="#EDE9DF"/>
+  <rect x="60" y="60" width="480" height="680" fill="#E3DDD3" rx="8"/>
+  <text x="300" y="370" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#888" font-weight="normal">Соседи</text>
+  <text x="300" y="405" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#aaa">2020 · Мурал · Екатеринбург</text>
+  <text x="300" y="450" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="#bbb">♥</text>
+</svg>
