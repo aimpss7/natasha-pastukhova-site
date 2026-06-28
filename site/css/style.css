@@ -389,8 +389,8 @@ body {
 
 .project-body {
     display: grid;
-    grid-template-columns: 1fr 190px;
-    gap: 50px;
+    grid-template-columns: minmax(0, 1fr) 150px;
+    gap: 28px;
     align-items: start;
 }
 
@@ -722,20 +722,21 @@ body {
 }
 
 .filter-btn {
-    padding: 8px 12px;
-    border: 1px solid #b8b8b8;
+    padding: 6px 0 5px;
+    border: 0;
+    border-bottom: 1px solid transparent;
     border-radius: 0;
     background: transparent;
     font-size: 14px;
     line-height: 1;
-    transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+    transition: border-color 0.18s ease, color 0.18s ease;
     color: #000;
 }
 
 .filter-btn.active {
-    background: #000;
+    background: transparent;
     border-color: #000;
-    color: #FCFBF7;
+    color: #000;
 }
 
 .filter-btn:hover,
@@ -1212,8 +1213,8 @@ body {
 }
 
 .cv-bio {
-    font-size: 24px;
-    line-height: 1.53;
+    font-size: 22px;
+    line-height: 1.48;
     color: #333;
     max-width: 100%;
 }
@@ -1228,9 +1229,10 @@ body {
 .about-actions a {
     display: inline-flex;
     align-items: center;
-    min-height: 36px;
-    padding: 8px 14px;
-    border: 1px solid #000;
+    min-height: 0;
+    padding: 0 0 3px;
+    border: 0;
+    border-bottom: 1px solid currentColor;
     border-radius: 0;
     color: #000;
     text-decoration: none;
@@ -1240,8 +1242,8 @@ body {
 }
 
 .about-actions a:hover {
-    background: #000;
-    color: #FCFBF7;
+    background: transparent;
+    color: #666;
 }
 
 .content-wrapper {
@@ -1267,9 +1269,11 @@ body {
 .menu-item:first-child { padding-top: 0; }
 .menu-item.active { color: #000; }
 
-.menu-item sup {
-    font-size: 14px;
-    vertical-align: super;
+.menu-item span {
+    margin-left: 5px;
+    color: #999;
+    font-size: 0.58em;
+    font-variant-numeric: tabular-nums;
 }
 
 .sections-container {
@@ -1346,6 +1350,7 @@ td {
     .hero {
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
         min-height: 0;
         padding: 112px 20px 42px;
         position: relative;
@@ -1364,7 +1369,7 @@ td {
     }
 
     .filter-btn {
-        padding: 7px 10px;
+        padding: 6px 0 5px;
         font-size: 13px;
     }
 
@@ -1382,7 +1387,7 @@ td {
     .about-title { font-size: 34px; margin-bottom: 16px; }
     .cv-bio { font-size: 18px; }
     .about-actions { margin-top: 22px; }
-    .about-actions a { font-size: 13px; min-height: 34px; padding: 8px 12px; }
+    .about-actions a { font-size: 13px; min-height: 0; padding: 0 0 3px; }
 
     .content-wrapper {
         flex-direction: column;
@@ -1397,7 +1402,7 @@ td {
     }
     .menu-item { font-size: 16px; padding: 0; margin-bottom: 0; }
     .menu-item:first-child { padding-top: 0; }
-    .menu-item sup { font-size: 10px; }
+    .menu-item span { font-size: 0.65em; }
 
     .subsection-title { font-size: 12px; margin: 0 0 10px 0; }
     .subsection-title:not(:first-child) { margin-top: 20px; }
@@ -1412,7 +1417,6 @@ td {
     .work-details { font-size: 14px; margin-top: 2px; }
 
     .col-location { display: none; }
-}
 }
 
 /* =============================================
@@ -1533,6 +1537,24 @@ td {
 }
 
 @media (max-width: 430px) {
+    .header {
+        padding: 16px 14px;
+        gap: 8px;
+    }
+
+    .header-logo::after {
+        font-size: 13px;
+    }
+
+    .header-menu {
+        gap: 9px;
+    }
+
+    .header-menu a,
+    .lang-toggle {
+        font-size: 13px;
+    }
+
     .hero h1 {
         font-size: 48px;
     }

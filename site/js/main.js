@@ -113,56 +113,99 @@ const Lightbox = (function() {
     return { open, setSources };
 })();
 
-// ========== PROJECT: CAROUSEL ==========
-const track = document.getElementById('carousel-track');
+// ========== PROJECT: SLIDER ==========
+function initProjectSlider(config) {
+    const track = document.getElementById(config.trackId);
+    if (!track) return;
 
-if (track) {
-    const slides = track.querySelectorAll('.carousel-slide');
-    const counter = document.getElementById('car-counter');
+    const slides = track.querySelectorAll(config.slideSelector);
+    const counter = document.getElementById(config.counterId);
+    const prev = document.getElementById(config.prevId);
+    const next = document.getElementById(config.nextId);
+    const dotsContainer = document.getElementById(config.dotsId);
+    const container = document.getElementById(config.containerId);
     const total = slides.length;
-    let carIndex = 0;
+    let currentIndex = 0;
 
-    function carGo(idx) {
-        carIndex = (idx + total) % total;
-        track.style.transform = `translateX(-${carIndex * 100}%)`;
-        counter.textContent = (carIndex + 1) + ' / ' + total;
+    if (!total) return;
+
+    const dots = dotsContainer ? Array.from({ length: total }, (_, index) => {
+        const dot = document.createElement('button');
+        dot.className = `slider-dot${index === 0 ? ' active' : ''}`;
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Фото ${index + 1}`);
+        dot.addEventListener('click', e => {
+            e.stopPropagation();
+            go(index);
+        });
+        dotsContainer.appendChild(dot);
+        return dot;
+    }) : [];
+
+    function go(index) {
+        currentIndex = (index + total) % total;
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        if (counter) counter.textContent = `${currentIndex + 1} / ${total}`;
+        dots.forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === currentIndex));
     }
 
     let touchStartX = 0;
     track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
     track.addEventListener('touchend', e => {
         const dx = e.changedTouches[0].clientX - touchStartX;
-        if (Math.abs(dx) > 40) carGo(dx < 0 ? carIndex + 1 : carIndex - 1);
+        if (Math.abs(dx) > 40) go(dx < 0 ? currentIndex + 1 : currentIndex - 1);
     }, { passive: true });
 
-    // Инициализация лайтбокса для карусели
-    const carouselImageSrcs = Array.from(slides).map(s => s.querySelector('img').src);
-    if (Lightbox.setSources) {
-        Lightbox.setSources(carouselImageSrcs);
+    const imageSrcs = Array.from(slides).map(slide => slide.querySelector('img')?.src).filter(Boolean);
+    if (Lightbox.setSources) Lightbox.setSources(imageSrcs);
+
+    if (prev) {
+        prev.addEventListener('click', e => {
+            e.stopPropagation();
+            go(currentIndex - 1);
+        });
     }
 
-    document.getElementById('car-prev').addEventListener('click', e => {
-        e.stopPropagation();
-        carGo(carIndex - 1);
-    });
+    if (next) {
+        next.addEventListener('click', e => {
+            e.stopPropagation();
+            go(currentIndex + 1);
+        });
+    }
 
-    document.getElementById('car-next').addEventListener('click', e => {
-        e.stopPropagation();
-        carGo(carIndex + 1);
-    });
+    if (container) {
+        container.addEventListener('click', () => {
+            if (Lightbox.open) Lightbox.open(currentIndex);
+        });
+    }
 
-    document.getElementById('carousel').addEventListener('click', () => {
-        if (Lightbox.open) Lightbox.open(carIndex);
-    });
-
-    // Навигация по карусели с клавиатуры, когда лайтбокс закрыт
     document.addEventListener('keydown', e => {
-        if (!document.getElementById('lightbox').classList.contains('open')) {
-            if (e.key === 'ArrowRight') carGo(carIndex + 1);
-            if (e.key === 'ArrowLeft') carGo(carIndex - 1);
-        }
+        const lightboxEl = document.getElementById('lightbox');
+        if (lightboxEl && lightboxEl.classList.contains('open')) return;
+        if (e.key === 'ArrowRight') go(currentIndex + 1);
+        if (e.key === 'ArrowLeft') go(currentIndex - 1);
     });
 }
+
+initProjectSlider({
+    containerId: 'slider',
+    trackId: 'slider-track',
+    slideSelector: '.slider-slide',
+    counterId: 'slider-counter',
+    prevId: 'slider-prev',
+    nextId: 'slider-next',
+    dotsId: 'slider-dots'
+});
+
+initProjectSlider({
+    containerId: 'carousel',
+    trackId: 'carousel-track',
+    slideSelector: '.carousel-slide',
+    counterId: 'car-counter',
+    prevId: 'car-prev',
+    nextId: 'car-next',
+    dotsId: ''
+});
 
 // ========== INDEX: DYNAMIC PROJECTS GRID ==========
 const projectsGrid = document.getElementById('cards-start');
@@ -172,7 +215,7 @@ if (projectsGrid) {
     const FALLBACK_PROJECTS = [
         {
             id: "dushi-ne-chayu-yaroslavl",
-            name: "Души не чаю - Ярославль",
+            name: "Души не чаю",
             year: 2023,
             category: "Мурал",
             cover: "assets/images/projects/dushi-ne-chayu-yaroslavl/cover.jpg",
