@@ -702,6 +702,148 @@ body {
     opacity: 0.82;
 }
 
+.story-card {
+    gap: 14px;
+}
+
+.story-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #EDE9DF;
+    transform: rotate(var(--base-rotation, 0deg));
+    transition: transform 0.35s ease;
+}
+
+.story-media:hover {
+    transform: rotate(calc(var(--base-rotation, 0deg) - 0.5deg)) scale(1.005);
+}
+
+.story-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.story-progress {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    display: flex;
+    gap: 4px;
+    z-index: 2;
+}
+
+.story-progress span {
+    flex: 1;
+    height: 2px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.45);
+}
+
+.story-progress span.active {
+    background: #fff;
+}
+
+.story-btn {
+    position: absolute;
+    top: 50%;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.45);
+    color: #000;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.story-btn:hover {
+    background: rgba(255, 255, 255, 0.75);
+    transform: translateY(-50%) scale(1.04);
+}
+
+.story-prev { left: 12px; }
+.story-next { right: 12px; }
+
+.story-counter {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.55);
+    color: #000;
+    font-size: 12px;
+    line-height: 1;
+    z-index: 2;
+}
+
+.story-copy {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 4px 20px;
+    align-items: start;
+}
+
+.story-copy h3,
+.story-copy .card-meta,
+.story-copy .card-desc {
+    grid-column: 1;
+}
+
+.story-link {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: start;
+    color: #000;
+    font-size: 14px;
+    line-height: 1.2;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .story-card {
+        gap: 10px;
+    }
+
+    .story-media {
+        aspect-ratio: 4/3;
+        border-radius: 9px;
+    }
+
+    .story-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 15px;
+    }
+
+    .story-copy {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .story-link {
+        grid-column: 1;
+        grid-row: auto;
+        margin-top: 4px;
+        font-size: 13px;
+    }
+}
+
 /* ========== CAROUSEL (project) ========== */
 .carousel {
     position: relative;

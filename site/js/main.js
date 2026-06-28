@@ -415,7 +415,32 @@ if (projectsGrid) {
             const meta  = [p.year, p.location, p.category].filter(Boolean).join(' · ');
             const status = p.status && p.status !== 'published' ? `<span class="card-status">· ${p.status}</span>` : '';
             const layoutClass = p.layoutSize ? `layout-${p.layoutSize}` : layoutPattern[index % layoutPattern.length];
-            const cardClass = `card ${layoutClass}${url ? '' : ' card-disabled'}`;
+            const storyImages = (p.storyImages || p.images || []).map(fixPath).filter(Boolean);
+            const isStory = p.story && storyImages.length > 1;
+            const cardClass = `card ${layoutClass}${url || isStory ? '' : ' card-disabled'}${isStory ? ' story-card' : ''}`;
+
+            if (isStory) {
+                html += `
+            <article class="${cardClass}" data-project-id="${p.id}">
+                <div class="story-media" style="--base-rotation: ${rot}deg;">
+                    <img src="${storyImages[0]}" alt="${title}">
+                    <div class="story-progress">
+                        ${storyImages.map((_, dotIndex) => `<span class="${dotIndex === 0 ? 'active' : ''}"></span>`).join('')}
+                    </div>
+                    <button class="story-btn story-prev" type="button" aria-label="Предыдущее фото">←</button>
+                    <button class="story-btn story-next" type="button" aria-label="Следующее фото">→</button>
+                    <div class="story-counter">1 / ${storyImages.length}</div>
+                </div>
+                <div class="story-copy">
+                    <h3>${title}</h3>
+                    <div class="card-meta">${meta}${status}</div>
+                    ${desc ? `<p class="card-desc">${desc}</p>` : ''}
+                    ${url ? `<a class="story-link" href="${url}">Открыть проект</a>` : ''}
+                </div>
+            </article>`;
+                return;
+            }
+
             const cardInner = `
                 <div class="card-img" style="--base-rotation: ${rot}deg;">
                     <img src="${img}" alt="${title}">
@@ -431,6 +456,32 @@ if (projectsGrid) {
         html += '</div>';
 
         projectsGrid.innerHTML = html;
+        initStoryCards(projects);
+    }
+
+    function initStoryCards(projects) {
+        const byId = new Map(projects.map(project => [project.id, project]));
+
+        projectsGrid.querySelectorAll('.story-card').forEach(card => {
+            const project = byId.get(card.dataset.projectId);
+            const images = ((project && (project.storyImages || project.images)) || []).map(fixPath).filter(Boolean);
+            if (images.length < 2) return;
+
+            let current = 0;
+            const img = card.querySelector('.story-media img');
+            const counter = card.querySelector('.story-counter');
+            const dots = card.querySelectorAll('.story-progress span');
+
+            function show(next) {
+                current = (next + images.length) % images.length;
+                img.src = images[current];
+                counter.textContent = `${current + 1} / ${images.length}`;
+                dots.forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === current));
+            }
+
+            card.querySelector('.story-prev').addEventListener('click', () => show(current - 1));
+            card.querySelector('.story-next').addEventListener('click', () => show(current + 1));
+        });
     }
 
     function initFilters(allProjects) {
