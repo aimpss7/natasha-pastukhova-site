@@ -12,6 +12,10 @@
 }
 
 /* ========== BODY ========== */
+html {
+    overflow-x: hidden;
+}
+
 body {
     font-family: Arial, sans-serif;
     background: #FCFBF7;

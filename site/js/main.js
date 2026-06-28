@@ -343,7 +343,7 @@ if (projectsGrid) {
     // Встроенные данные на случай, если fetch не сработает (например, при открытии file://)
     const FALLBACK_PROJECTS = [
         {
-            id: "project-1",
+            id: "all-my-friends",
             name: "Все мои друзья",
             year: 2024,
             category: "Мурал",
@@ -354,15 +354,15 @@ if (projectsGrid) {
             rotation: -0.2192
         },
         {
-            id: "project-2",
-            name: "Название проекта 2",
-            year: 2020,
+            id: "mayak",
+            name: "Маяк",
+            year: 2024,
             category: "Мурал",
-            cover: "assets/images/project-2.svg",
-            url: "projects/project-2/",
-            location: "Город",
-            desc: "Описание проекта 2.",
-            rotation: 0.0958
+            cover: "assets/images/projects/mayak/cover.jpg",
+            url: "",
+            location: "Екатеринбург",
+            desc: "Роспись маяка в Екатеринбурге. Черновая карточка v0.",
+            rotation: 0.04
         }
     ];
 
