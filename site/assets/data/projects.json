@@ -36,13 +36,14 @@
     "status": "v0",
     "url": "",
     "location": "Екатеринбург",
-    "desc": "Проект в Екатеринбурге. Черновая карточка для v0, детали формата и описания требуют уточнения.",
+    "desc": "Роспись маяка в Екатеринбурге. Вертикальный объект работает как городской ориентир: яркие красно-голубые формы и простые фигуры хорошо читаются с дистанции и меняют ощущение места в разное время года.",
     "cover": "/assets/images/projects/mayak/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
       "materials/source-photos/Маяк"
     ],
-    "rotation": 0.04
+    "rotation": 0.04,
+    "descriptionStatus": "draft-from-images"
   },
   {
     "id": "dushi-ne-chayu-yaroslavl",
@@ -52,7 +53,7 @@
     "status": "v0",
     "url": "",
     "location": "Ярославль",
-    "desc": "Мурал для проекта «Души не чаю» бренда Самокат и бюро Новь в Ярославле. Черновая карточка для v0.",
+    "desc": "Мурал для проекта «Души не чаю» в Ярославле. Работа разворачивается вдоль городской поверхности как протяженная цветная сцена: крупные персонажи, бытовые детали и декоративные формы собирают фасад в цельный визуальный рассказ.",
     "cover": "/assets/images/projects/dushi-ne-chayu-yaroslavl/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
@@ -61,7 +62,8 @@
     "videos": [
       "materials/source-photos/Самокат_Ярославль/Ярославль v2.mov"
     ],
-    "rotation": 0.11
+    "rotation": 0.11,
+    "descriptionStatus": "draft-from-images"
   },
   {
     "id": "dushi-ne-chayu-ivanovo",
@@ -71,7 +73,7 @@
     "status": "v0",
     "url": "",
     "location": "Иваново",
-    "desc": "Мурал для проекта «Души не чаю» бренда Самокат и бюро Новь в Иваново. Черновая карточка для v0.",
+    "desc": "Мурал для проекта «Души не чаю» в Иваново. Длинная горизонтальная композиция работает с ритмом фасада: окна, цветовые блоки, растительные мотивы и мягкие фигуры связывают архитектуру с повседневным городским движением.",
     "cover": "/assets/images/projects/dushi-ne-chayu-ivanovo/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
@@ -80,7 +82,8 @@
     "videos": [
       "materials/source-photos/Самокат_Иваново/Иваново v5.mov"
     ],
-    "rotation": -0.05
+    "rotation": -0.05,
+    "descriptionStatus": "draft-from-images"
   },
   {
     "id": "dushi-ne-chayu-vologda",
@@ -90,7 +93,7 @@
     "status": "v0",
     "url": "",
     "location": "Вологда",
-    "desc": "Мурал для проекта «Души не чаю» бренда Самокат и бюро Новь в Вологде. Черновая карточка для v0.",
+    "desc": "Мурал для проекта «Души не чаю» в Вологде. Роспись вытянута вдоль городской стены и собирает узнаваемые бытовые образы в яркую декоративную ленту, которую можно считывать и издалека, и при движении вдоль объекта.",
     "cover": "/assets/images/projects/dushi-ne-chayu-vologda/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
@@ -99,7 +102,8 @@
     "videos": [
       "materials/source-photos/Самокат_Вологда/Вологда v4.mov"
     ],
-    "rotation": 0.08
+    "rotation": 0.08,
+    "descriptionStatus": "draft-from-images"
   },
   {
     "id": "kot-pchela-i-drakon",
@@ -121,13 +125,14 @@
     "status": "v0",
     "url": "",
     "location": "Екатеринбург",
-    "desc": "Скульптура/объект для фестиваля паблик-арта ЧО. Черновая карточка для v0.",
+    "desc": "Серия деревянных объектов для фестиваля паблик-арта ЧО. Скульптуры сохраняют след ручной работы и выглядят как группа вертикальных персонажей, встроенных в природный ландшафт и меняющих масштаб прогулочного пространства.",
     "cover": "/assets/images/projects/wooden-idols/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
       "materials/source-photos/ЧО_идолы"
     ],
-    "rotation": 0.07
+    "rotation": 0.07,
+    "descriptionStatus": "draft-from-images"
   },
   {
     "id": "moon-cycle",
@@ -137,13 +142,14 @@
     "status": "v0",
     "url": "",
     "location": "Певек",
-    "desc": "Муральный триптих на Чукотке. Черновая карточка для v0.",
+    "desc": "Муральный триптих в Певеке. Три фасада объединены мотивами ночного неба, животных и циклического движения; работа связывает северный городской пейзаж с ярким орнаментальным рассказом.",
     "cover": "/assets/images/projects/moon-cycle/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
       "materials/source-photos/Фазы луны, Певек 22"
     ],
-    "rotation": -0.13
+    "rotation": -0.13,
+    "descriptionStatus": "draft-from-images"
   },
   {
     "id": "moroshka",
@@ -153,13 +159,14 @@
     "status": "v0",
     "url": "",
     "location": "Анадырь",
-    "desc": "Мурал в Анадыре. Черновая карточка для v0.",
+    "desc": "Мурал в Анадыре. Композиция построена на северных растительных мотивах: крупные ягоды, мягкие цветовые пятна и слоистые формы превращают фасад в спокойный, но заметный городской знак.",
     "cover": "/assets/images/projects/moroshka/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
       "materials/source-photos/Морошка_Анадырь 22"
     ],
-    "rotation": 0.05
+    "rotation": 0.05,
+    "descriptionStatus": "draft-from-images"
   },
   {
     "id": "sea-stones",
@@ -169,13 +176,14 @@
     "status": "v0",
     "url": "",
     "location": "Анадырь",
-    "desc": "Мурал в Анадыре. Черновая карточка для v0.",
+    "desc": "Мурал в Анадыре. Фасад заполняют крупные округлые формы, напоминающие морские камни и живые природные паттерны; работа добавляет в городскую среду яркий, почти тактильный слой.",
     "cover": "/assets/images/projects/sea-stones/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
       "materials/source-photos/Морские камушки_Анадырь 22"
     ],
-    "rotation": -0.06
+    "rotation": -0.06,
+    "descriptionStatus": "draft-from-images"
   },
   {
     "id": "meeting",
@@ -209,7 +217,7 @@
     "status": "v0",
     "url": "",
     "location": "Екатеринбург",
-    "desc": "Роспись троллейбуса для фестиваля «Стенограффия». Черновая карточка для v0.",
+    "desc": "Роспись троллейбуса для фестиваля «Стенограффия». Работа переносит художественный язык Наташи на движущийся городской объект: цветные формы, растения и персонажи становятся частью маршрута и повседневного транспорта.",
     "cover": "/assets/images/projects/july/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
@@ -218,7 +226,8 @@
     "videos": [
       "materials/source-photos/ИЮЛЬ_Стенограффия 21г Екатеринбург/Троллейбус.mp4"
     ],
-    "rotation": 0.12
+    "rotation": 0.12,
+    "descriptionStatus": "draft-from-images"
   },
   {
     "id": "hunter",
@@ -240,12 +249,13 @@
     "status": "v0",
     "url": "",
     "location": "Екатеринбург",
-    "desc": "Фасад для фестиваля «Стенограффия XI». Черновая карточка для v0.",
+    "desc": "Мурал для фестиваля «Стенограффия XI» в Екатеринбурге. Работа занимает торец жилого дома и смотрит во двор как большой цветной персонаж; тема соседства здесь буквально встроена в городскую повседневность.",
     "cover": "/assets/images/projects/neighbors/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
       "materials/source-photos/Соседи"
     ],
-    "rotation": 0.06
+    "rotation": 0.06,
+    "descriptionStatus": "draft-from-images"
   }
 ]

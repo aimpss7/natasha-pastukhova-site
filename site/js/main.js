@@ -411,6 +411,7 @@ if (projectsGrid) {
             const title = p.name || p.title || '';
             const img   = fixPath(p.cover || p.image || '');
             const url   = fixPath(p.url);
+            const desc  = p.desc || p.description || '';
             const meta  = [p.year, p.location, p.category].filter(Boolean).join(' · ');
             const status = p.status && p.status !== 'published' ? `<span class="card-status">· ${p.status}</span>` : '';
             const layoutClass = p.layoutSize ? `layout-${p.layoutSize}` : layoutPattern[index % layoutPattern.length];
@@ -420,7 +421,8 @@ if (projectsGrid) {
                     <img src="${img}" alt="${title}">
                 </div>
                 <h3>${title}</h3>
-                <div class="card-meta">${meta}${status}</div>`;
+                <div class="card-meta">${meta}${status}</div>
+                ${desc ? `<p class="card-desc">${desc}</p>` : ''}`;
 
             html += url ? `
             <a href="${url}" class="${cardClass}">${cardInner}</a>` : `

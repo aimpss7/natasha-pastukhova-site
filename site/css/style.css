@@ -330,6 +330,15 @@ body {
         aspect-ratio: 4/3;
     }
 
+    .projects-layout .card:not(.layout-wide):not(.layout-large) .card-desc {
+        display: none;
+    }
+
+    .card-desc {
+        font-size: 12px;
+        line-height: 1.32;
+    }
+
     .project-top { grid-template-columns: 1fr; }
     .project-image-col {
         position: relative;
@@ -514,6 +523,17 @@ body {
     color: #666;
     font-size: 12px;
     line-height: 1.35;
+}
+
+.card-desc {
+    margin-top: 7px;
+    color: #333;
+    font-size: 13px;
+    line-height: 1.35;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
 }
 
 .card-status {
