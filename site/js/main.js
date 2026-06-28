@@ -427,15 +427,15 @@ if (projectsGrid) {
                     <div class="story-progress">
                         ${storyImages.map((_, dotIndex) => `<span class="${dotIndex === 0 ? 'active' : ''}"></span>`).join('')}
                     </div>
-                    <button class="story-btn story-prev" type="button" aria-label="Предыдущее фото">←</button>
-                    <button class="story-btn story-next" type="button" aria-label="Следующее фото">→</button>
-                    <div class="story-counter">1 / ${storyImages.length}</div>
+                    <button class="story-btn story-prev" type="button" aria-label="Предыдущее фото"><span class="visually-hidden">Предыдущее фото</span></button>
+                    <button class="story-btn story-next" type="button" aria-label="Следующее фото"><span class="visually-hidden">Следующее фото</span></button>
+                    <div class="story-counter visually-hidden" aria-live="polite">1 из ${storyImages.length}</div>
                 </div>
                 <div class="story-copy">
                     <h3>${title}</h3>
                     <div class="card-meta">${meta}${status}</div>
                     ${desc ? `<p class="card-desc">${desc}</p>` : ''}
-                    ${url ? `<a class="story-link" href="${url}">Открыть проект</a>` : ''}
+                    ${url ? `<a class="story-open" href="${url}" aria-label="Открыть проект ${title}" title="Открыть проект"></a>` : ''}
                 </div>
             </article>`;
                 return;
@@ -475,7 +475,7 @@ if (projectsGrid) {
             function show(next) {
                 current = (next + images.length) % images.length;
                 img.src = images[current];
-                counter.textContent = `${current + 1} / ${images.length}`;
+                counter.textContent = `${current + 1} из ${images.length}`;
                 dots.forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === current));
             }
 
