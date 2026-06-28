@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Наташа Пастухова</title>
+    <title>Наташа Пастухова — Проект</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
             Наташа Пастухова<span class="heart" aria-hidden="true">♥</span>
         </a>
         <div class="header-menu">
-            <a href="#cards-start">Работы</a>
+            <a href="index.html#cards-start">Работы</a>
             <a href="about.html">Биография</a>
             <a href="shop.html">Магазин</a>
         </div>
@@ -22,25 +22,13 @@
         </div>
     </div>
 
-    <section class="hero">
-        <h1>
-            Художница<br>
-            паблик-арта<br>
-            с Урала
-        </h1>
-    </section>
+    <main id="project-page" aria-live="polite">
+        <div class="project-loading">Загрузка проекта</div>
+    </main>
 
-    <nav class="project-filters" aria-label="Фильтры работ">
-        <div class="filters">
-            <button class="filter-btn active">Все</button>
-            <button class="filter-btn">Муралы</button>
-            <button class="filter-btn">Объекты</button>
-            <button class="filter-btn">Росписи</button>
-        </div>
-    </nav>
-
-    <div class="container" id="cards-start">
-        <!-- Карточки проектов будут отрендерены здесь через JS -->
+    <div id="lightbox">
+        <img id="lb-img" src="" alt="">
+        <div id="lb-counter">1 / 1</div>
     </div>
 
     <div class="footer">
@@ -64,7 +52,6 @@
         </div>
     </div>
 
-    <script defer src="js/main.js?v=story-card-2"></script>
-
+    <script defer src="js/main.js?v=project-template-1"></script>
 </body>
 </html>

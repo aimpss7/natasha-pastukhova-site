@@ -207,53 +207,70 @@ initProjectSlider({
     dotsId: ''
 });
 
+// ========== SHARED: PROJECT DATA ==========
+const FALLBACK_PROJECTS = [
+    {
+        id: "dushi-ne-chayu-yaroslavl",
+        name: "Души не чаю",
+        year: 2023,
+        category: "Мурал",
+        cover: "assets/images/projects/dushi-ne-chayu-yaroslavl/cover.jpg",
+        location: "Ярославль",
+        desc: "Мурал для проекта «Души не чаю».",
+        rotation: 0.11
+    },
+    {
+        id: "mayak",
+        name: "Маяк",
+        year: 2024,
+        category: "Мурал",
+        cover: "assets/images/projects/mayak/cover.jpg",
+        location: "Екатеринбург",
+        desc: "Роспись маяка в Екатеринбурге.",
+        rotation: 0.04
+    }
+];
+
+async function loadProjectsData() {
+    try {
+        const response = await fetch('assets/data/projects.json');
+        if (!response.ok) throw new Error('Network error');
+        return await response.json();
+    } catch (e) {
+        console.warn("Could not fetch projects.json, using fallback data.", e);
+        return FALLBACK_PROJECTS;
+    }
+}
+
+function fixPath(p) {
+    if (!p) return p;
+    return (location.protocol === 'file:') ? p.replace(/^\//, '') : p;
+}
+
+function escapeHtml(value) {
+    return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function projectUrl(project) {
+    if (!project || !project.id || project.hidden) return '';
+    return fixPath(project.url || `project.html?id=${encodeURIComponent(project.id)}`);
+}
+
+function projectImages(project) {
+    return ((project && (project.images || project.storyImages)) || [project && project.cover])
+        .map(fixPath)
+        .filter(Boolean);
+}
+
 // ========== INDEX: DYNAMIC PROJECTS GRID ==========
 const projectsGrid = document.getElementById('cards-start');
 
 if (projectsGrid) {
-    // Встроенные данные на случай, если fetch не сработает (например, при открытии file://)
-    const FALLBACK_PROJECTS = [
-        {
-            id: "dushi-ne-chayu-yaroslavl",
-            name: "Души не чаю",
-            year: 2023,
-            category: "Мурал",
-            cover: "assets/images/projects/dushi-ne-chayu-yaroslavl/cover.jpg",
-            url: "",
-            location: "Ярославль",
-            desc: "Мурал для проекта «Души не чаю».",
-            rotation: 0.11
-        },
-        {
-            id: "mayak",
-            name: "Маяк",
-            year: 2024,
-            category: "Мурал",
-            cover: "assets/images/projects/mayak/cover.jpg",
-            url: "",
-            location: "Екатеринбург",
-            desc: "Роспись маяка в Екатеринбурге.",
-            rotation: 0.04
-        }
-    ];
-
-    async function loadProjects() {
-        try {
-            const response = await fetch('assets/data/projects.json');
-            if (!response.ok) throw new Error('Network error');
-            return await response.json();
-        } catch (e) {
-            console.warn("Could not fetch projects.json, using fallback data.", e);
-            return FALLBACK_PROJECTS;
-        }
-    }
-
-    // Убираем ведущий / для совместимости с file:// протоколом
-    function fixPath(p) {
-        if (!p) return p;
-        return (location.protocol === 'file:') ? p.replace(/^\//, '') : p;
-    }
-
     function getPublicDescription(project) {
         const desc = project.desc || project.description || '';
         if (/черновая карточка|v0|needs-real-photo/i.test(desc)) return '';
@@ -293,11 +310,11 @@ if (projectsGrid) {
             const rot = Math.max(-0.06, Math.min(0.06, sourceRotation)).toFixed(4);
             const title = p.name || p.title || '';
             const img   = fixPath(p.cover || p.image || '');
-            const url   = fixPath(p.url);
+            const url   = projectUrl(p);
             const desc  = getPublicDescription(p);
             const meta  = [p.year, p.location, p.category].filter(Boolean).join(' · ');
             const layoutClass = layoutPattern[index % layoutPattern.length];
-            const storyImages = (p.storyImages || p.images || []).map(fixPath).filter(Boolean);
+            const storyImages = projectImages(p);
             const isStory = p.story && storyImages.length > 1;
             const cardClass = `card ${layoutClass}${url || isStory ? '' : ' card-disabled'}${isStory ? ' story-card' : ''}`;
 
@@ -305,7 +322,9 @@ if (projectsGrid) {
                 html += `
             <article class="${cardClass}" data-project-id="${p.id}">
                 <div class="story-media" style="--base-rotation: ${rot}deg;">
-                    <img src="${storyImages[0]}" alt="${title}">
+                    ${url ? `<a class="story-photo-link" href="${url}" aria-label="Открыть проект ${title}">` : ''}
+                        <img src="${storyImages[0]}" alt="${title}">
+                    ${url ? '</a>' : ''}
                     <div class="story-progress">
                         ${storyImages.map((_, dotIndex) => `<span class="${dotIndex === 0 ? 'active' : ''}"></span>`).join('')}
                     </div>
@@ -314,10 +333,9 @@ if (projectsGrid) {
                     <div class="story-counter visually-hidden" aria-live="polite">1 из ${storyImages.length}</div>
                 </div>
                 <div class="story-copy">
-                    <h3>${title}</h3>
+                    <h3>${url ? `<a href="${url}">${title}</a>` : title}</h3>
                     <div class="card-meta">${meta}</div>
                     ${desc ? `<p class="card-desc">${desc}</p>` : ''}
-                    ${url ? `<a class="story-open" href="${url}" aria-label="Открыть проект ${title}" title="Открыть проект"></a>` : ''}
                 </div>
             </article>`;
                 return;
@@ -382,6 +400,7 @@ if (projectsGrid) {
                     'Sculptures': ['Инсталляция'],
                     'Муралы': ['Мурал'],
                     'Объекты': ['Инсталляция'],
+                    'Росписи': ['Роспись'],
                     'Объекты и росписи': ['Инсталляция', 'Роспись']
                 };
                 const categoryFilter = categoryMap[filterText];
@@ -392,9 +411,112 @@ if (projectsGrid) {
         });
     }
 
-    loadProjects().then(projects => {
+    loadProjectsData().then(projects => {
         renderProjects(projects);
         initFilters(projects);
+    });
+}
+
+// ========== PROJECT: DATA-DRIVEN PAGE ==========
+const projectPage = document.getElementById('project-page');
+
+if (projectPage) {
+    function renderCredits(project) {
+        if (project.credits && project.credits.length) {
+            return project.credits.map(item => `<p>${item}</p>`).join('');
+        }
+
+        const rows = [
+            project.year,
+            project.location,
+            project.category
+        ].filter(Boolean);
+
+        return rows.length ? `<p>${rows.map(escapeHtml).join('<br>')}</p>` : '';
+    }
+
+    function renderProjectCard(project) {
+        const title = escapeHtml(project.name || project.title || '');
+        const meta = [project.year, project.location, project.category].filter(Boolean).join(' · ');
+        return `
+            <a class="card" href="${projectUrl(project)}">
+                <div class="card-img">
+                    <img src="${fixPath(project.cover || project.image || '')}" alt="${title}">
+                </div>
+                <h3>${title}</h3>
+                <div class="card-meta">${escapeHtml(meta)}</div>
+            </a>`;
+    }
+
+    function renderProject(projects, project) {
+        const images = projectImages(project);
+        const title = escapeHtml(project.name || project.title || 'Проект');
+        const meta = [project.year, project.location, project.category].filter(Boolean).join(' · ');
+        const otherProjects = projects
+            .filter(item => !item.hidden && item.id !== project.id)
+            .slice(0, 4);
+
+        document.title = `Наташа Пастухова — ${title}`;
+
+        projectPage.innerHTML = `
+            <article class="project-top">
+                <div class="project-image-col">
+                    <div class="slider" id="slider">
+                        <div class="slider-track" id="slider-track">
+                            ${images.map((src, index) => `
+                                <div class="slider-slide">
+                                    <img src="${src}" alt="${title} — ${index + 1}">
+                                </div>`).join('')}
+                        </div>
+                        ${images.length > 1 ? `
+                            <button class="slider-btn slider-prev" id="slider-prev" aria-label="Предыдущее фото">←</button>
+                            <button class="slider-btn slider-next" id="slider-next" aria-label="Следующее фото">→</button>
+                            <div class="slider-counter" id="slider-counter">1 / ${images.length}</div>
+                            <div class="slider-dots" id="slider-dots"></div>
+                        ` : ''}
+                    </div>
+                </div>
+
+                <div class="project-info-col">
+                    <a class="project-back" href="index.html#cards-start">← Все работы</a>
+                    <h1 class="project-title">${title}</h1>
+                    <div class="project-body">
+                        <p class="project-description">${escapeHtml(project.desc || project.description || 'Описание проекта будет добавлено позже.')}</p>
+                        <div class="project-credits">
+                            ${renderCredits(project)}
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <section class="next-projects">
+                <div class="next-label">Другие работы</div>
+                <div class="next-grid">${otherProjects.map(renderProjectCard).join('')}</div>
+            </section>`;
+
+        initProjectSlider({
+            containerId: 'slider',
+            trackId: 'slider-track',
+            slideSelector: '.slider-slide',
+            counterId: 'slider-counter',
+            prevId: 'slider-prev',
+            nextId: 'slider-next',
+            dotsId: 'slider-dots'
+        });
+    }
+
+    loadProjectsData().then(projects => {
+        const visibleProjects = projects.filter(project => !project.hidden);
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id') || (visibleProjects[0] && visibleProjects[0].id);
+        const project = visibleProjects.find(item => item.id === id) || visibleProjects[0];
+
+        if (!project) {
+            projectPage.innerHTML = '<div class="project-loading">Проекты не найдены.</div>';
+            return;
+        }
+
+        renderProject(visibleProjects, project);
     });
 }
 
