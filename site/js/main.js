@@ -307,7 +307,7 @@ if (projectsGrid) {
         html += '<div class="projects-layout">';
 
         projects.forEach((p, index) => {
-            const sourceRotation = typeof p.rotation === 'number' ? p.rotation : (Math.random() - 0.5) * 0.12;
+            const sourceRotation = typeof p.rotation === 'number' ? p.rotation : 0;
             const rot = Math.max(-0.06, Math.min(0.06, sourceRotation)).toFixed(4);
             const title = p.name || p.title || '';
             const img   = fixPath(p.cover || p.image || '');

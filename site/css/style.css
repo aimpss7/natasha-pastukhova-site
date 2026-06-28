@@ -959,8 +959,8 @@ body {
 
 .story-copy {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 4px 20px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
     align-items: start;
 }
 
@@ -981,33 +981,6 @@ body {
     text-underline-offset: 3px;
 }
 
-.story-open {
-    grid-column: 2;
-    grid-row: 1 / span 2;
-    align-self: start;
-    justify-self: end;
-    display: inline-flex;
-    width: 24px;
-    height: 24px;
-    align-items: center;
-    justify-content: center;
-    color: #000;
-    font-size: 18px;
-    line-height: 1.2;
-    text-decoration: none;
-    opacity: 0.72;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.story-open::before {
-    content: '↗';
-}
-
-.story-open:hover {
-    opacity: 1;
-    transform: translate(1px, -1px);
-}
-
 @media (max-width: 768px) {
     .story-card {
         gap: 10px;
@@ -1021,18 +994,6 @@ body {
     .story-btn {
         width: 42%;
         opacity: 0.82;
-    }
-
-    .story-copy {
-        grid-template-columns: 1fr;
-        gap: 4px;
-    }
-
-    .story-open {
-        grid-column: 1;
-        grid-row: auto;
-        justify-self: start;
-        margin-top: 4px;
     }
 
     .story-btn {
