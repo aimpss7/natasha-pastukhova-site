@@ -2939,6 +2939,62 @@ body {
     }
 }
 
+/* ========== QA HOTFIX: CONTRAST, ALIGNMENT, HERO SCALE ========== */
+.filters {
+    justify-content: center;
+}
+
+.hero {
+    min-height: clamp(560px, 78vh, 760px);
+}
+
+.hero h1 {
+    max-width: 760px;
+    font-size: clamp(62px, 8.4vw, 116px);
+    line-height: 0.9;
+}
+
+.hero-kicker {
+    font-size: 18px;
+}
+
+.hero-summary {
+    max-width: 430px;
+    font-size: 20px;
+    line-height: 1.25;
+}
+
+.hero-image-caption {
+    font-size: 11px;
+}
+
+.shop-preview .shop-order {
+    background: #111;
+    color: #FCFBF7;
+}
+
+.shop-preview .shop-order:hover,
+.shop-preview .shop-order:focus-visible {
+    background: #333;
+    color: #FCFBF7;
+}
+
+.footer-socials .footer-link + .footer-link::before,
+.footer-local span + span::before {
+    content: '·';
+    margin: 0 8px 0 0;
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: clamp(48px, 14vw, 72px);
+    }
+
+    .filters {
+        justify-content: center;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .header,
     .header-logo,
