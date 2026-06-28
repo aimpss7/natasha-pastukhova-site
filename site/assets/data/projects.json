@@ -36,11 +36,21 @@
     "year": 2024,
     "category": "Мурал",
     "status": "v0",
+    "story": true,
+    "layoutSize": "wide",
     "url": "",
     "location": "Екатеринбург",
     "desc": "Роспись маяка в Екатеринбурге. Вертикальный объект работает как городской ориентир: яркие красно-голубые формы и простые фигуры хорошо читаются с дистанции и меняют ощущение места в разное время года.",
     "cover": "/assets/images/projects/mayak/cover.jpg",
-    "imageStatus": "web-cover-ready",
+    "images": [
+      "/assets/images/projects/mayak/story-01.jpg",
+      "/assets/images/projects/mayak/story-02.jpg",
+      "/assets/images/projects/mayak/story-03.jpg",
+      "/assets/images/projects/mayak/story-04.jpg",
+      "/assets/images/projects/mayak/story-05.jpg",
+      "/assets/images/projects/mayak/story-06.jpg"
+    ],
+    "imageStatus": "web-cover-and-story-ready",
     "sourceFolders": [
       "materials/source-photos/Маяк"
     ],
