@@ -343,15 +343,15 @@ if (projectsGrid) {
     // Встроенные данные на случай, если fetch не сработает (например, при открытии file://)
     const FALLBACK_PROJECTS = [
         {
-            id: "all-my-friends",
-            name: "Все мои друзья",
-            year: 2024,
+            id: "dushi-ne-chayu-yaroslavl",
+            name: "Души не чаю - Ярославль",
+            year: 2023,
             category: "Мурал",
-            cover: "assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6775-ph.jpg",
-            url: "projects/project-1/",
-            location: "Екатеринбург",
-            desc: "Мурал создан в рамках фестиваля «Стенограффия».",
-            rotation: -0.2192
+            cover: "assets/images/projects/dushi-ne-chayu-yaroslavl/cover.jpg",
+            url: "",
+            location: "Ярославль",
+            desc: "Мурал для проекта «Души не чаю».",
+            rotation: 0.11
         },
         {
             id: "mayak",
@@ -384,6 +384,8 @@ if (projectsGrid) {
     }
 
     function renderProjects(projects) {
+        projects = (projects || []).filter(project => !project.hidden);
+
         if (!projects || !projects.length) {
             projectsGrid.innerHTML = '<p style="padding:40px;color:#666;">Проекты не найдены.</p>';
             return;
