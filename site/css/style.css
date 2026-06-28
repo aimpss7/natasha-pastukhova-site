@@ -935,6 +935,335 @@ body {
     }
 }
 
+/* ========== INDEX DIRECTION 03: DENSE TYPOGRAPHIC INDEX ========== */
+body.home-index-page,
+body.home-index-page * {
+    cursor: auto;
+}
+
+body.home-index-page {
+    background: #fff;
+}
+
+body.home-index-page .heart {
+    display: none;
+}
+
+body.home-index-page .header {
+    padding: 20px 30px;
+    border-bottom: 1px solid #000;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    pointer-events: auto;
+}
+
+body.home-index-page .header-logo,
+body.home-index-page .header-menu a,
+body.home-index-page .lang-toggle {
+    font-size: 16px;
+    line-height: 1;
+}
+
+body.home-index-page .header-logo::before,
+body.home-index-page .header-menu a::before,
+body.home-index-page .lang-toggle::before {
+    display: none;
+}
+
+body.home-index-page .hero {
+    min-height: 78vh;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.5fr);
+    gap: 28px 46px;
+    align-items: end;
+    padding: 124px 30px 56px;
+    text-align: left;
+    border-bottom: 1px solid #000;
+    overflow: visible;
+}
+
+body.home-index-page .hero-images {
+    display: none;
+}
+
+body.home-index-page .hero-subtitle {
+    grid-column: 1 / -1;
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.2;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+body.home-index-page .hero h1 {
+    grid-column: 1;
+    margin: 0;
+    max-width: 980px;
+    font-size: clamp(72px, 11vw, 150px);
+    line-height: 0.88;
+    letter-spacing: 0;
+    text-wrap: balance;
+}
+
+body.home-index-page .hero-lead {
+    grid-column: 2;
+    margin: 0;
+    max-width: 520px;
+    font-size: clamp(24px, 3vw, 39px);
+    line-height: 1.04;
+}
+
+body.home-index-page .hero-facts {
+    grid-column: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px 16px;
+    align-self: start;
+    color: #555;
+    font-size: 15px;
+    line-height: 1.2;
+}
+
+body.home-index-page .hero-facts span::before {
+    content: '/';
+    margin-right: 8px;
+    color: #999;
+}
+
+body.home-index-page .filters {
+    grid-column: 2;
+    justify-content: flex-start;
+    align-self: start;
+    gap: 8px;
+}
+
+body.home-index-page .filter-btn {
+    padding: 7px 11px;
+    border: 1px solid #b8b8b8;
+    border-radius: 0;
+    background: transparent;
+    color: #111;
+    font-size: 13px;
+    line-height: 1;
+    transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+body.home-index-page .filter-btn.active {
+    background: #111;
+    border-color: #111;
+    color: #fff;
+}
+
+body.home-index-page .filter-btn:hover,
+body.home-index-page .filter-btn:active {
+    transform: none;
+    border-color: #111;
+}
+
+body.home-index-page .container {
+    padding: 0 30px 52px;
+    background: #fff;
+}
+
+.project-index {
+    border-top: 1px solid #000;
+}
+
+.project-index-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 52px 92px minmax(280px, 1fr) minmax(220px, 0.42fr) minmax(220px, 0.56fr) 180px;
+    gap: 20px;
+    align-items: center;
+    min-height: 122px;
+    padding: 16px 0;
+    border-bottom: 1px solid #000;
+    color: #000;
+    text-decoration: none;
+}
+
+.project-index-row-disabled {
+    cursor: default;
+}
+
+.project-index-number,
+.project-index-year,
+.project-index-meta,
+.project-index-desc {
+    color: #696969;
+    font-size: 14px;
+    line-height: 1.25;
+}
+
+.project-index-title {
+    font-size: clamp(30px, 4vw, 56px);
+    font-weight: normal;
+    line-height: 0.96;
+    letter-spacing: 0;
+}
+
+.project-index-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.project-index-series,
+.project-index-status {
+    color: #9a9a9a;
+}
+
+.project-index-desc {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+.project-index-image {
+    width: 180px;
+    height: 92px;
+    justify-self: end;
+    overflow: hidden;
+    border-radius: 4px;
+    background: #EDE9DF;
+}
+
+.project-index-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.25s ease;
+}
+
+.project-index-row:hover .project-index-image img {
+    transform: scale(1.035);
+}
+
+body.home-index-page .shop-entry {
+    padding: 26px 30px 4px;
+    background: #fff;
+}
+
+body.home-index-page .shop-entry a {
+    max-width: none;
+}
+
+@media (max-width: 1100px) {
+    .project-index-row {
+        grid-template-columns: 44px 78px minmax(260px, 1fr) minmax(190px, 0.5fr) 150px;
+    }
+
+    .project-index-desc {
+        display: none;
+    }
+
+    .project-index-image {
+        width: 150px;
+        height: 78px;
+    }
+}
+
+@media (max-width: 768px) {
+    body.home-index-page .header {
+        padding: 16px 20px;
+    }
+
+    body.home-index-page .header-logo {
+        font-size: 0;
+    }
+
+    body.home-index-page .header-logo::after {
+        content: 'НП';
+        font-size: 15px;
+    }
+
+    body.home-index-page .hero {
+        min-height: 0;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 100px 20px 36px;
+    }
+
+    body.home-index-page .hero h1,
+    body.home-index-page .hero-lead,
+    body.home-index-page .hero-facts,
+    body.home-index-page .filters {
+        grid-column: 1;
+    }
+
+    body.home-index-page .hero h1 {
+        font-size: clamp(48px, 17vw, 76px);
+        line-height: 0.94;
+    }
+
+    body.home-index-page .hero-lead {
+        max-width: 100%;
+        font-size: 22px;
+        line-height: 1.08;
+    }
+
+    body.home-index-page .hero-facts {
+        gap: 7px 12px;
+        font-size: 13px;
+    }
+
+    body.home-index-page .container {
+        padding: 0 20px 36px;
+    }
+
+    .project-index-row {
+        grid-template-columns: 34px minmax(0, 1fr) 92px;
+        gap: 10px 12px;
+        align-items: start;
+        min-height: 112px;
+        padding: 13px 0;
+    }
+
+    .project-index-number {
+        grid-column: 1;
+        grid-row: 1 / span 3;
+    }
+
+    .project-index-year {
+        grid-column: 2;
+        grid-row: 1;
+        font-size: 12px;
+    }
+
+    .project-index-title {
+        grid-column: 2;
+        grid-row: 2;
+        font-size: 24px;
+        line-height: 1;
+    }
+
+    .project-index-meta {
+        grid-column: 2;
+        grid-row: 3;
+        gap: 2px;
+        font-size: 12px;
+    }
+
+    .project-index-image {
+        grid-column: 3;
+        grid-row: 1 / span 3;
+        width: 92px;
+        height: 72px;
+        align-self: start;
+    }
+
+    .project-index-desc {
+        display: none;
+    }
+
+    body.home-index-page .shop-entry {
+        padding: 22px 20px 4px;
+    }
+}
+
 /* ========== CAROUSEL (project) ========== */
 .carousel {
     position: relative;
