@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Наташа Пастухова — Магазин</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=site-v1-8">
 </head>
 <body>
 
@@ -72,25 +72,31 @@
 
     <div class="footer">
         <div class="footer-content">
-            <div class="footer-col">Наташа Пастухова<br>Паблик-арт, Екатеринбург<br>2026</div>
-            <div class="footer-col">
-                <div class="footer-label">Контакт</div>
-                <a href="mailto:hipastukhova@gmail.com">hipastukhova@gmail.com</a>
+            <div class="footer-col footer-brand">
+                <span>Наташа Пастухова</span>
+                <span>Паблик-арт, Екатеринбург</span>
+                <span>2026</span>
             </div>
-            <div class="footer-col">
-                <div class="footer-label">Соцсети</div>
-                <a href="https://www.behance.net/hellopepe" target="_blank" rel="noopener">Behance</a>
-                <a href="https://www.instagram.com/hellopepe" target="_blank" rel="noopener">Инстаграм</a>
+            <div class="footer-col footer-contact">
+                <a class="footer-icon-link" href="mailto:hipastukhova@gmail.com" aria-label="Написать на почту">
+                    <span class="footer-icon" aria-hidden="true">@</span>
+                    <span>hipastukhova@gmail.com</span>
+                </a>
             </div>
-            <div class="footer-col">
-                <div class="footer-label">CV</div>
-                <a href="assets/docs/natalia-pastukhova-cv.pdf" download>Скачать CV</a>
+            <div class="footer-col footer-socials" aria-label="Соцсети">
+                <a class="footer-icon-only" href="https://www.behance.net/hellopepe" target="_blank" rel="noopener" aria-label="Behance"><span aria-hidden="true">Be</span></a>
+                <a class="footer-icon-only" href="https://www.instagram.com/hellopepe" target="_blank" rel="noopener" aria-label="Instagram"><span aria-hidden="true">IG</span></a>
             </div>
-            <div class="footer-col">
-                <div class="footer-label">Екатеринбург</div>
-                <div>Екатеринбург</div>
-                <div class="ekb-time" id="ekb-time">00:00:00</div>
-                <div class="ekb-weather" id="weather-temp"></div>
+            <div class="footer-col footer-cv">
+                <a class="footer-icon-link" href="assets/docs/natalia-pastukhova-cv.pdf" download aria-label="Скачать CV">
+                    <span class="footer-icon" aria-hidden="true">CV</span>
+                    <span>PDF</span>
+                </a>
+            </div>
+            <div class="footer-col footer-local" aria-label="Екатеринбург">
+                <span class="footer-icon" aria-hidden="true">ЕКБ</span>
+                <span class="ekb-time" id="ekb-time">00:00:00</span>
+                <span class="ekb-weather" id="weather-temp"></span>
             </div>
         </div>
     </div>
