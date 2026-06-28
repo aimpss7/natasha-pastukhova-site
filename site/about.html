@@ -52,13 +52,13 @@
                     <!-- CONTENT WITH SIDEBAR -->
                     <div class="content-wrapper">
                         <!-- MENU SIDEBAR -->
-                        <div class="menu-sidebar">
-                            <div class="menu-item active" onclick="showSection(1)">Муралы <span>45</span></div>
-                            <div class="menu-item" onclick="showSection(2)">Инсталляции <span>4</span></div>
-                            <div class="menu-item" onclick="showSection(3)">Выставки <span>12</span></div>
-                            <div class="menu-item" onclick="showSection(4)">Коллаборации <span>6</span></div>
-                            <div class="menu-item" onclick="showSection(5)">Кураторство <span>3</span></div>
-                            <div class="menu-item" onclick="showSection(6)">Мастер-классы <span>17</span></div>
+                        <div class="menu-sidebar" role="tablist" aria-label="Разделы CV">
+                            <button class="menu-item active" type="button" role="tab" aria-selected="true" aria-controls="section-1" onclick="showSection(1)">Муралы <span>42</span></button>
+                            <button class="menu-item" type="button" role="tab" aria-selected="false" aria-controls="section-2" onclick="showSection(2)">Инсталляции <span>5</span></button>
+                            <button class="menu-item" type="button" role="tab" aria-selected="false" aria-controls="section-3" onclick="showSection(3)">Выставки <span>23</span></button>
+                            <button class="menu-item" type="button" role="tab" aria-selected="false" aria-controls="section-4" onclick="showSection(4)">Коллаборации <span>6</span></button>
+                            <button class="menu-item" type="button" role="tab" aria-selected="false" aria-controls="section-5" onclick="showSection(5)">Кураторство <span>3</span></button>
+                            <button class="menu-item" type="button" role="tab" aria-selected="false" aria-controls="section-6" onclick="showSection(6)">Мастер-классы <span>15</span></button>
                         </div>
 
                         <!-- SECTIONS -->
@@ -145,7 +145,6 @@
 
                             <div class="section" id="section-4">
                                 <table>
-                                    <tr><td class="col-year">2025</td><td class="col-content"><span class="work-title">«Хорошие истории»</span><span class="work-location">Екатеринбург</span><span class="work-details">Avito</span></td><td class="col-location">Екатеринбург</td></tr>
                                     <tr><td class="col-year">2023</td><td class="col-content"><span class="work-title">«Кот, пчела и дракон»</span><span class="work-location">Санкт-Петербург</span><span class="work-details">Билайн и Севкабель Порт</span></td><td class="col-location">Санкт-Петербург</td></tr>
                                 </table>
                             </div>
@@ -196,11 +195,11 @@
                 <div class="footer-label">Уральское время</div>
                 <div>Екатеринбург</div>
                 <div class="ekb-time" id="ekb-time">00:00:00</div>
-                <div class="ekb-weather" id="weather-temp">--°C</div>
+                <div class="ekb-weather" id="weather-temp"></div>
             </div>
         </div>
     </div>
 
-    <script defer src="js/main.js?v=site-v1-3"></script>
+    <script defer src="js/main.js?v=site-v1-4"></script>
 </body>
 </html>

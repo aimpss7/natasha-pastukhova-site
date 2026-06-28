@@ -25,14 +25,24 @@ async function updateEkbWeather() {
 
     const cacheKey = 'ekbWeatherData';
     const cacheDuration = 24 * 60 * 60 * 1000; // 24 часа
+    const setWeatherTemp = temp => {
+        weatherElements.forEach(element => {
+            element.textContent = temp;
+            element.hidden = false;
+        });
+    };
+
+    weatherElements.forEach(element => {
+        if (!element.textContent.trim() || element.textContent.trim() === '--°C') {
+            element.hidden = true;
+        }
+    });
 
     try {
         const cachedData = JSON.parse(localStorage.getItem(cacheKey));
         if (cachedData && (Date.now() - cachedData.timestamp < cacheDuration)) {
             const cachedTemp = `${Math.round(cachedData.data.current_weather.temperature)}°C`;
-            weatherElements.forEach(element => {
-                element.textContent = cachedTemp;
-            });
+            setWeatherTemp(cachedTemp);
             return; // Используем данные из кэша
         }
     } catch (e) {
@@ -47,9 +57,7 @@ async function updateEkbWeather() {
         }
         const data = await response.json();
         const temp = `${Math.round(data.current_weather.temperature)}°C`;
-        weatherElements.forEach(element => {
-            element.textContent = temp;
-        });
+        setWeatherTemp(temp);
 
         // Кэшируем новые данные
         localStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), data: data }));
@@ -69,6 +77,9 @@ const Lightbox = (function() {
 
     const imgEl = document.getElementById('lb-img');
     const counterEl = document.getElementById('lb-counter');
+    const prevEl = document.getElementById('lb-prev');
+    const nextEl = document.getElementById('lb-next');
+    const closeEl = document.getElementById('lb-close');
     let sources = [];
     let currentIndex = 0;
 
@@ -102,6 +113,27 @@ const Lightbox = (function() {
     lightboxEl.addEventListener('click', e => {
         if (e.target === lightboxEl) close();
     });
+
+    if (prevEl) {
+        prevEl.addEventListener('click', e => {
+            e.stopPropagation();
+            shift(-1);
+        });
+    }
+
+    if (nextEl) {
+        nextEl.addEventListener('click', e => {
+            e.stopPropagation();
+            shift(1);
+        });
+    }
+
+    if (closeEl) {
+        closeEl.addEventListener('click', e => {
+            e.stopPropagation();
+            close();
+        });
+    }
 
     document.addEventListener('keydown', e => {
         if (!lightboxEl.classList.contains('open')) return;
@@ -212,9 +244,10 @@ initProjectSlider({
 const FALLBACK_PROJECTS = [
     {
         id: "dushi-ne-chayu-yaroslavl",
-        name: "Души не чаю - Ярославль",
+        name: "Души не чаю: Ярославль",
         year: 2023,
         category: "Мурал",
+        pageReady: true,
         cover: "assets/images/projects/dushi-ne-chayu-yaroslavl/cover.jpg",
         location: "Ярославль",
         desc: "Мурал для проекта «Души не чаю».",
@@ -224,17 +257,18 @@ const FALLBACK_PROJECTS = [
         id: "mayak",
         name: "Маяк",
         year: 2024,
-        category: "Мурал",
+        category: "Роспись",
+        pageReady: true,
         cover: "assets/images/projects/mayak/cover.jpg",
         location: "Екатеринбург",
-        desc: "Роспись маяка в Екатеринбурге.",
+        desc: "Роспись объекта в Екатеринбурге.",
         rotation: 0.04
     }
 ];
 
 async function loadProjectsData() {
     try {
-        const response = await fetch('assets/data/projects.json?v=site-v1-3', { cache: 'no-store' });
+        const response = await fetch('assets/data/projects.json?v=site-v1-4', { cache: 'no-store' });
         if (!response.ok) throw new Error('Network error');
         return await response.json();
     } catch (e) {
@@ -257,8 +291,12 @@ function escapeHtml(value) {
         .replace(/'/g, '&#39;');
 }
 
+function hasProjectDetailPage(project) {
+    return Boolean(project && !project.hidden && (project.pageReady || project.url));
+}
+
 function projectUrl(project) {
-    if (!project || !project.id || project.hidden) return '';
+    if (!project || !project.id || !hasProjectDetailPage(project)) return '';
     return fixPath(project.url || `project.html?id=${encodeURIComponent(project.id)}`);
 }
 
@@ -439,14 +477,20 @@ if (projectPage) {
     function renderProjectCard(project) {
         const title = escapeHtml(project.name || project.title || '');
         const meta = [project.year, project.location, project.category].filter(Boolean).join(' · ');
-        return `
-            <a class="card" href="${projectUrl(project)}">
+        const url = projectUrl(project);
+        const inner = `
                 <div class="card-img">
                     <img src="${fixPath(project.cover || project.image || '')}" alt="${title}">
                 </div>
                 <h3>${title}</h3>
-                <div class="card-meta">${escapeHtml(meta)}</div>
-            </a>`;
+                <div class="card-meta">${escapeHtml(meta)}</div>`;
+
+        if (!url) {
+            return `<div class="card card-disabled" aria-disabled="true">${inner}</div>`;
+        }
+
+        return `
+            <a class="card" href="${url}">${inner}</a>`;
     }
 
     function renderProject(projects, project) {
@@ -508,26 +552,36 @@ if (projectPage) {
 
     loadProjectsData().then(projects => {
         const visibleProjects = projects.filter(project => !project.hidden);
+        const detailProjects = visibleProjects.filter(hasProjectDetailPage);
         const params = new URLSearchParams(window.location.search);
-        const id = params.get('id') || (visibleProjects[0] && visibleProjects[0].id);
-        const project = visibleProjects.find(item => item.id === id) || visibleProjects[0];
+        const id = params.get('id') || (detailProjects[0] && detailProjects[0].id);
+        const project = detailProjects.find(item => item.id === id);
 
         if (!project) {
-            projectPage.innerHTML = '<div class="project-loading">Проекты не найдены.</div>';
+            window.location.replace('index.html#cards-start');
             return;
         }
 
-        renderProject(visibleProjects, project);
+        renderProject(detailProjects, project);
     });
 }
 
 // ========== ABOUT: SECTION SWITCHER ==========
 function showSection(num) {
     const sections = document.querySelectorAll('.section');
-    sections.forEach(section => section.classList.remove('active'));
-    document.getElementById('section-' + num).classList.add('active');
+    sections.forEach((section, index) => {
+        const isActive = index === num - 1;
+        section.classList.toggle('active', isActive);
+        section.setAttribute('role', 'tabpanel');
+        section.hidden = !isActive;
+    });
 
     const menuItems = document.querySelectorAll('.menu-item');
-    menuItems.forEach(item => item.classList.remove('active'));
-    menuItems[num - 1].classList.add('active');
+    menuItems.forEach((item, index) => {
+        const isActive = index === num - 1;
+        item.classList.toggle('active', isActive);
+        item.setAttribute('aria-selected', String(isActive));
+    });
 }
+
+showSection(1);

@@ -100,7 +100,9 @@ button,
 .header-menu a, .lang-toggle {
     position: relative;
     z-index: 2;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
 }
 
 .header-menu a::before, .lang-toggle::before {
@@ -317,7 +319,7 @@ button,
 
 .shop-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 28px 20px;
     margin-top: 42px;
 }
@@ -497,6 +499,10 @@ button,
 }
 .ekb-time { font-weight: normal; margin-top: 5px; }
 .ekb-weather { color: #666; margin-top: 5px; }
+.ekb-weather:empty,
+[data-weather-temp]:empty {
+    display: none;
+}
 
 /* ========== TABLET 1200px ========== */
 @media (max-width: 1200px) {
@@ -807,7 +813,7 @@ button,
 .filter-btn {
     display: inline-flex;
     align-items: center;
-    min-height: 34px;
+    min-height: 44px;
     padding: 3px 0 6px;
     border: 0;
     border-bottom: 2px solid transparent;
@@ -1201,8 +1207,8 @@ button,
     border: none;
     color: #fff;
     font-size: 18px;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -1304,7 +1310,7 @@ button,
 .about-actions a {
     display: inline-flex;
     align-items: center;
-    min-height: 0;
+    min-height: 44px;
     padding: 0 0 3px;
     border: 0;
     border-bottom: 1px solid currentColor;
@@ -1333,16 +1339,29 @@ button,
 }
 
 .menu-item {
+    appearance: none;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    border: 0;
+    background: transparent;
+    text-align: left;
     font-size: 24px;
     color: #666;
     padding: 6px 0;
     margin-bottom: 8px;
     line-height: 1.08;
     font-weight: normal;
+    min-height: 44px;
+    cursor: pointer;
 }
 
 .menu-item:first-child { padding-top: 0; }
 .menu-item.active { color: #000; }
+.menu-item:focus-visible {
+    outline: 1px solid #000;
+    outline-offset: 4px;
+}
 
 .menu-item span {
     margin-left: 5px;
@@ -1479,7 +1498,7 @@ td {
     }
 
     .filter-btn {
-        min-height: 30px;
+        min-height: 44px;
         padding: 2px 0 5px;
         font-size: 17px;
         white-space: nowrap;
@@ -1499,7 +1518,7 @@ td {
     .about-title { font-size: 34px; margin-bottom: 16px; }
     .cv-bio { font-size: 18px; }
     .about-actions { margin-top: 22px; }
-    .about-actions a { font-size: 13px; min-height: 0; padding: 0 0 3px; }
+    .about-actions a { font-size: 13px; min-height: 44px; padding: 0 0 3px; }
 
     .content-wrapper {
         flex-direction: column;
@@ -1512,7 +1531,7 @@ td {
         gap: 8px 14px;
         width: 100%;
     }
-    .menu-item { font-size: 16px; padding: 0; margin-bottom: 0; }
+    .menu-item { width: auto; font-size: 16px; padding: 0; margin-bottom: 0; }
     .menu-item:first-child { padding-top: 0; }
     .menu-item span { font-size: 0.65em; }
 
@@ -1723,6 +1742,7 @@ button,
 
     .filter-btn {
         font-size: 12px;
+        min-height: 44px;
     }
 
     .projects-layout .layout-third {
@@ -1739,10 +1759,6 @@ button,
 }
 
 @media (max-width: 360px) {
-    .projects-layout {
-        grid-auto-flow: dense;
-    }
-
     .projects-layout .layout-third {
         grid-column: span 3;
     }

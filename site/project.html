@@ -27,8 +27,11 @@
     </main>
 
     <div id="lightbox">
+        <button class="lb-btn" id="lb-prev" type="button" aria-label="Предыдущее фото">‹</button>
         <img id="lb-img" src="" alt="">
+        <button class="lb-btn" id="lb-next" type="button" aria-label="Следующее фото">›</button>
         <div id="lb-counter">1 / 1</div>
+        <button id="lb-close" type="button" aria-label="Закрыть просмотр">×</button>
     </div>
 
     <div class="footer">
@@ -56,11 +59,11 @@
                 <div class="footer-label">Уральское время</div>
                 <div>Екатеринбург</div>
                 <div class="ekb-time" id="ekb-time">00:00:00</div>
-                <div class="ekb-weather" id="weather-temp">--°C</div>
+                <div class="ekb-weather" id="weather-temp"></div>
             </div>
         </div>
     </div>
 
-    <script defer src="js/main.js?v=site-v1-3"></script>
+    <script defer src="js/main.js?v=site-v1-4"></script>
 </body>
 </html>

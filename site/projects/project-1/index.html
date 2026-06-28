@@ -3,155 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Наташа Пастухова — Все мои друзья</title>
-    <!--
-        base href="../../" → все относительные пути разрешаются от корня сайта.
-        Это эквивалент абсолютных путей (/css/style.css) и работает как по file://,
-        так и на любом веб-сервере.
-    -->
+    <title>Наташа Пастухова — проект временно скрыт</title>
+    <meta name="robots" content="noindex,nofollow">
     <base href="../../">
+    <meta http-equiv="refresh" content="0; url=index.html#cards-start">
+    <script>
+        window.location.replace('index.html#cards-start');
+    </script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-    <!-- HEADER -->
-    <div class="header">
-        <a href="index.html" class="header-logo">
-            Наташа Пастухова<span class="heart" aria-hidden="true">♥</span>
-        </a>
-        <div class="header-menu">
-            <a href="index.html#cards-start">Работы</a>
-            <a href="about.html">Био</a>
-            <a href="shop.html">Магазин</a>
-        </div>
-        <div class="header-lang">
-            <span class="lang-toggle" aria-label="Русская версия сайта">RU</span>
-        </div>
-    </div>
-
-    <!-- ВЕРХНЯЯ СЕКЦИЯ: СЛАЙДЕР + ИНФОРМАЦИЯ -->
-    <div class="project-top">
-
-        <!-- ЛЕВАЯ КОЛОНКА: слайдер (прилипает) -->
-        <div class="project-image-col">
-            <div class="slider" id="slider">
-                <div class="slider-track" id="slider-track">
-                    <div class="slider-slide"><img src="assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6775-ph.jpg" alt="Все мои друзья — 1"></div>
-                    <div class="slider-slide"><img src="assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6803-ph.jpg" alt="Все мои друзья — 2"></div>
-                    <div class="slider-slide"><img src="assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6804-ph.jpg" alt="Все мои друзья — 3"></div>
-                    <div class="slider-slide"><img src="assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6805-ph.jpg" alt="Все мои друзья — 4"></div>
-                    <div class="slider-slide"><img src="assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6809-ph.jpg" alt="Все мои друзья — 5"></div>
-                    <div class="slider-slide"><img src="assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6828-ph.jpg" alt="Все мои друзья — 6"></div>
-                    <div class="slider-slide"><img src="assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6845-ph.jpg" alt="Все мои друзья — 7"></div>
-                    <div class="slider-slide"><img src="assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6863-ph.jpg" alt="Все мои друзья — 8"></div>
-                    <div class="slider-slide"><img src="assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6877-ph.jpg" alt="Все мои друзья — 9"></div>
-                    <div class="slider-slide"><img src="assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6902-ph.jpg" alt="Все мои друзья — 10"></div>
-                </div>
-
-                <!-- Стрелки -->
-                <button class="slider-btn slider-prev" id="slider-prev" aria-label="Предыдущее фото">←</button>
-                <button class="slider-btn slider-next" id="slider-next" aria-label="Следующее фото">→</button>
-
-                <!-- Счётчик -->
-                <div class="slider-counter" id="slider-counter">1 / 10</div>
-
-                <!-- Точки-индикаторы (генерируются через JS) -->
-                <div class="slider-dots" id="slider-dots"></div>
-            </div>
-        </div>
-
-        <!-- ПРАВАЯ КОЛОНКА: текст -->
-        <div class="project-info-col">
-            <h1 class="project-title">Все мои друзья</h1>
-
-            <div class="project-body">
-                <!-- ОПИСАНИЕ -->
-                <p class="project-description">
-                    Мурал создан в рамках фестиваля «Стенограффия» в Екатеринбурге. Работа изображает разных животных, объединённых темой соседства и близости — тех, кого мы встречаем в городе и за его пределами. Орнаментальные паттерны и геометрия создают единое пространство, в котором каждый находит своё место.
-                </p>
-
-                <!-- КРЕДИТЫ -->
-                <div class="project-credits">
-                    <p>
-                        2024<br>
-                        Екатеринбург, Россия<br>
-                        Мурал<br>
-                        Аэрозоль и акрил<br>
-                        18 × 12 м
-                    </p>
-                    <p>
-                        Фестиваль «Стенограффия»<br>
-                        Куратор Лия Чечик
-                    </p>
-                    <p>
-                        Фото: Иван Смирнов<br>
-                        При поддержке<br>
-                        администрации города
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- СЛЕДУЮЩИЕ РАБОТЫ -->
-    <div class="next-projects">
-        <div class="next-label">Другие работы</div>
-        <div class="next-grid">
-            <div class="card">
-                <div class="card-img" style="--base-rotation: -0.8deg;">
-                    <img src="assets/images/projects/mayak/cover.jpg" alt="Маяк">
-                </div>
-                <h3>Маяк</h3>
-                <div class="card-meta">2024 · Екатеринбург · Мурал</div>
-            </div>
-            <div class="card">
-                <div class="card-img" style="--base-rotation: 0.5deg;">
-                    <img src="assets/images/projects/dushi-ne-chayu-yaroslavl/cover.jpg" alt="Души не чаю, Ярославль">
-                </div>
-                <h3>Души не чаю</h3>
-                <div class="card-meta">2023 · Ярославль · Мурал</div>
-            </div>
-            <div class="card">
-                <div class="card-img" style="--base-rotation: -0.4deg;">
-                    <img src="assets/images/projects/wooden-idols/cover.jpg" alt="Деревянные идолы">
-                </div>
-                <h3>Деревянные идолы</h3>
-                <div class="card-meta">2022 · Екатеринбург · Скульптура/Объект</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- FOOTER -->
-    <div class="footer">
-        <div class="footer-content">
-            <div class="footer-col">Наташа Пастухова<br>2026</div>
-            <div class="footer-col">Художница паблик-арта с Урала<br>Муралы, объекты, росписи</div>
-            <div class="footer-col">
-                <div class="footer-label">Контакт</div>
-                <a href="mailto:hipastukhova@gmail.com?subject=Проект%20для%20Наташи%20Пастуховой">Написать о проекте</a>
-                <a href="mailto:hipastukhova@gmail.com">hipastukhova@gmail.com</a>
-            </div>
-            <div class="footer-col">
-                <div class="footer-label">Соцсети</div>
-                <a href="https://www.behance.net/hellopepe" target="_blank" rel="noopener">Behance</a>
-                <a href="https://www.instagram.com/hellopepe" target="_blank" rel="noopener">Инстаграм</a>
-            </div>
-            <div class="footer-col">
-                <div class="footer-label">Навигация</div>
-                <a href="index.html#cards-start">Работы</a>
-                <a href="about.html">Био</a>
-                <a href="shop.html">Магазин</a>
-                <a href="assets/docs/natalia-pastukhova-cv.pdf" download>Скачать CV</a>
-            </div>
-            <div class="footer-col">
-                <div class="footer-label">Уральское время</div>
-                <div>Екатеринбург</div>
-                <div class="ekb-time" id="ekb-time">00:00:00</div>
-                <div class="ekb-weather" id="weather-temp">--°C</div>
-            </div>
-        </div>
-    </div>
-
-    <script defer src="js/main.js?v=site-v1-3"></script>
+    <main class="project-loading">
+        <a href="index.html#cards-start">Вернуться к работам</a>
+    </main>
 </body>
 </html>
