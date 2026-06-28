@@ -511,36 +511,46 @@ body {
     .row-3, .row-2 { grid-template-columns: repeat(2, 1fr) !important; }
 
     .projects-layout {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 24px 14px;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 24px 10px;
     }
 
-    .projects-layout .card {
+    .projects-layout .card,
+    .projects-layout .layout-half {
+        grid-column: span 3;
+    }
+
+    .projects-layout .layout-third {
         grid-column: span 2;
     }
 
     .projects-layout .layout-wide,
     .projects-layout .layout-large,
     .projects-layout .layout-full {
-        grid-column: span 4;
-    }
-
-    .projects-layout .layout-large:not(.story-card) {
-        grid-column: span 2;
-    }
-
-    .projects-layout .layout-half,
-    .projects-layout .layout-third {
-        grid-column: span 2;
+        grid-column: 1 / -1;
     }
 
     .projects-layout .story-card {
-        grid-column: span 4;
+        grid-column: span 3;
+    }
+
+    .projects-layout .story-card.layout-full {
+        grid-column: 1 / -1;
     }
 
     .projects-layout .card-img {
         border-radius: 9px;
         margin-bottom: 9px;
+    }
+
+    .projects-layout .card h3 {
+        font-size: 15px;
+        line-height: 1.08;
+        margin-bottom: 5px;
+    }
+
+    .projects-layout .layout-full h3 {
+        font-size: 18px;
     }
 
     .projects-layout .layout-wide .card-img,
