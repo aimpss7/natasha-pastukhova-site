@@ -14491,6 +14491,29 @@ button,
     }
 }
 
+/* ========== CYCLE 40: SHOP BREAKPOINT SMOOTHING ========== */
+@media (max-width: 1320px) and (min-width: 1021px) {
+    .shop-grid--reliefs {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        width: min(100%, 980px) !important;
+        max-width: 980px !important;
+    }
+}
+
+@media (max-width: 1020px) and (min-width: 621px) {
+    .shop-grid--reliefs {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        width: min(100%, 720px) !important;
+        max-width: 720px !important;
+    }
+}
+
+@media (max-width: 620px) {
+    .shop-page .shop-preview {
+        padding-top: 26px !important;
+    }
+}
+
 @media (max-width: 620px) {
     .onepage-main #shop {
         padding-top: 28px !important;

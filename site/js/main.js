@@ -363,17 +363,17 @@ function initLanguageSwitch() {
         const current = new URLSearchParams(window.location.search);
         const next = new URLSearchParams();
         const filterFromUrl = current.get('filter');
-        const workFromUrl = current.get('work');
         const activeFilter = document.querySelector('.filter-btn.active[data-filter]')?.getAttribute('data-filter');
+        const activeWork = document.querySelector('.project-card-inline.is-overlay-source')?.getAttribute('data-project-id') || '';
 
-        if (filterFromUrl) {
-            next.set('filter', filterFromUrl);
-        } else if (activeFilter && activeFilter !== 'all' && (hash === '#cards-start' || /^#work-/.test(hash))) {
+        if (activeFilter && activeFilter !== 'all') {
             next.set('filter', activeFilter);
+        } else if (!activeFilter && filterFromUrl) {
+            next.set('filter', filterFromUrl);
         }
 
-        if (workFromUrl) {
-            next.set('work', workFromUrl);
+        if (activeWork) {
+            next.set('work', activeWork);
         } else if (/^#work-/.test(hash)) {
             next.set('work', decodeURIComponent(hash.replace(/^#work-/, '')));
         }
@@ -400,6 +400,7 @@ function initLanguageSwitch() {
 
     updateLanguageLinks();
     window.addEventListener('hashchange', updateLanguageLinks);
+    window.addEventListener('site-context-change', updateLanguageLinks);
     window.addEventListener('scroll', () => {
         window.requestAnimationFrame(updateLanguageLinks);
     }, { passive: true });
@@ -1287,6 +1288,44 @@ if (projectsGrid) {
         const overlayHost = document.querySelector('.onepage-main') || layout || document.body;
         let restoreFocus = null;
         let hiddenProjectBackground = [];
+        let isSyncingProjectHistory = false;
+
+        function activeFilterKey() {
+            return document.querySelector('.filter-btn.active[data-filter]')?.getAttribute('data-filter') || 'all';
+        }
+
+        function projectStateUrl(projectId) {
+            const params = new URLSearchParams(window.location.search);
+            params.delete('work');
+            const filter = activeFilterKey();
+
+            if (filter && filter !== 'all') {
+                params.set('filter', filter);
+            } else {
+                params.delete('filter');
+            }
+
+            if (projectId) params.set('work', projectId);
+
+            const query = params.toString();
+            const page = getCurrentPageName() || 'index.html';
+            const hash = projectId ? `#work-${encodeURIComponent(projectId)}` : '#cards-start';
+            return `${page}${query ? `?${query}` : ''}${hash}`;
+        }
+
+        function pushProjectState(projectId) {
+            if (!window.history || isSyncingProjectHistory) return;
+            const nextUrl = projectStateUrl(projectId);
+            const currentUrl = `${window.location.pathname.split('/').pop() || 'index.html'}${window.location.search}${window.location.hash}`;
+            if (nextUrl !== currentUrl) {
+                window.history.pushState({ projectId }, '', nextUrl);
+            }
+        }
+
+        function replaceProjectState(projectId = '') {
+            if (!window.history || isSyncingProjectHistory) return;
+            window.history.replaceState({ projectId }, '', projectStateUrl(projectId));
+        }
 
         function setProjectBackgroundHidden(isHidden) {
             if (!isHidden) {
@@ -1340,7 +1379,7 @@ if (projectsGrid) {
             }
         }
 
-        function openProject(projectId) {
+        function openProject(projectId, options = {}) {
             const project = byId.get(projectId);
             if (!project) return;
             const card = Array.from(projectsGrid.querySelectorAll('.project-card-inline')).find(item => item.dataset.projectId === projectId);
@@ -1396,9 +1435,11 @@ if (projectsGrid) {
                 detail.querySelector('.project-detail-close')?.focus();
             });
             initReadableTypography(detail);
+            if (options.updateHistory !== false) pushProjectState(projectId);
+            window.dispatchEvent(new Event('site-context-change'));
         }
 
-        function closeProject() {
+        function closeProject(options = {}) {
             projectsGrid.querySelectorAll('.project-card-inline.is-overlay-source').forEach(card => card.classList.remove('is-overlay-source'));
             projectsGrid.querySelectorAll('[data-project-open]').forEach(button => {
                 button.setAttribute('aria-expanded', 'false');
@@ -1419,6 +1460,8 @@ if (projectsGrid) {
                 restoreFocus.focus();
             }
             restoreFocus = null;
+            if (options.updateHistory !== false) replaceProjectState('');
+            window.dispatchEvent(new Event('site-context-change'));
         }
 
         if (projectDisclosureController) projectDisclosureController.abort();
@@ -1443,6 +1486,23 @@ if (projectsGrid) {
             if (event.key === 'Escape' && !detail.hidden) closeProject();
             keepProjectFocus(event);
         }, { signal: projectDisclosureController.signal });
+
+        window.addEventListener('popstate', () => {
+            if (!isOnePagePage()) return;
+            const projectId = getOnePageHashProjectId();
+            isSyncingProjectHistory = true;
+            if (projectId && byId.has(projectId)) {
+                openProject(projectId, { updateHistory: false });
+            } else if (!detail.hidden) {
+                closeProject({ updateHistory: false });
+            }
+            isSyncingProjectHistory = false;
+        }, { signal: projectDisclosureController.signal });
+
+        const initialProjectId = getOnePageHashProjectId();
+        if (initialProjectId && byId.has(initialProjectId)) {
+            requestAnimationFrame(() => openProject(initialProjectId, { updateHistory: false }));
+        }
     }
 
     function initFilters(allProjects) {
@@ -1500,6 +1560,20 @@ if (projectsGrid) {
             return filterKey ? filterContainer.querySelector(`.filter-btn[data-filter="${filterKey}"]`) : null;
         }
 
+        function updateFilterUrl(filterKey) {
+            if (!isOnePagePage() || !window.history) return;
+            const params = new URLSearchParams(window.location.search);
+            params.delete('work');
+            if (filterKey && filterKey !== 'all') {
+                params.set('filter', filterKey);
+            } else {
+                params.delete('filter');
+            }
+            const query = params.toString();
+            const page = getCurrentPageName() || 'index.html';
+            window.history.replaceState({}, '', `${page}${query ? `?${query}` : ''}#cards-start`);
+        }
+
         function applyFilter(btn, options = {}) {
             buttons.forEach(b => {
                 const isActive = b === btn;
@@ -1511,11 +1585,13 @@ if (projectsGrid) {
             const categoryFilter = categoryMap[btn.dataset.filter || 'all'];
             const filteredProjects = categoryFilter ? visibleProjects.filter(p => categoryFilter.includes(p.category)) : visibleProjects;
             renderProjects(filteredProjects, { showCategoryInMeta: !categoryFilter });
+            if (options.syncUrl) updateFilterUrl(btn.dataset.filter || 'all');
+            window.dispatchEvent(new Event('site-context-change'));
             if (options.scrollToHash) scrollToOnePageHashProject();
         }
 
         buttons.forEach(btn => {
-            btn.addEventListener('click', () => applyFilter(btn));
+            btn.addEventListener('click', () => applyFilter(btn, { syncUrl: true }));
         });
 
         const initialButton = buttonForReturnContext() || filterContainer.querySelector('.filter-btn.active') || buttons[0];
@@ -1820,6 +1896,7 @@ function initShopOrderModal() {
         mail: 'Write an email',
         copy: 'Copy text',
         copied: 'Copied',
+        copyFailed: 'Copy failed',
         subjectPrefix: 'Relief availability',
         hello: title => `Hello! I would like to check availability of “${title}”.`,
         details: value => `Details: ${value}.`,
@@ -1837,6 +1914,7 @@ function initShopOrderModal() {
         mail: 'Написать на почту',
         copy: 'Скопировать текст',
         copied: 'Скопировано',
+        copyFailed: 'Не удалось скопировать',
         subjectPrefix: 'Уточнить наличие: барельеф',
         hello: title => `Здравствуйте! Хочу уточнить наличие работы «${title}».`,
         details: value => `Детали: ${value}.`,
@@ -1870,12 +1948,38 @@ function initShopOrderModal() {
     document.body.appendChild(modal);
 
     const panel = modal.querySelector('.shop-order-modal-panel');
+    panel?.setAttribute('tabindex', '-1');
     const closeButtons = modal.querySelectorAll('.shop-order-modal-close, .shop-order-modal-cancel');
     const itemText = modal.querySelector('.shop-order-modal-item');
     const mailLink = modal.querySelector('.shop-order-modal-mail');
     const copyButton = modal.querySelector('.shop-order-modal-copy');
     let previousFocus = null;
     let preparedBody = '';
+
+    function modalFocusableElements() {
+        return Array.from(modal.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'))
+            .filter(element => element.offsetParent !== null);
+    }
+
+    function keepModalFocus(event) {
+        if (event.key !== 'Tab' || modal.hidden) return;
+        const focusable = modalFocusableElements();
+        if (!focusable.length) {
+            event.preventDefault();
+            panel?.focus();
+            return;
+        }
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+        }
+    }
 
     function openModal(trigger) {
         const item = trigger.closest('.shop-item');
@@ -1913,6 +2017,7 @@ function initShopOrderModal() {
     }
 
     function closeModal() {
+        if (modal.hidden) return;
         modal.classList.remove('is-open');
         document.body.classList.remove('shop-order-modal-open');
         window.setTimeout(() => {
@@ -1935,10 +2040,11 @@ function initShopOrderModal() {
     copyButton?.addEventListener('click', async () => {
         if (!preparedBody) return;
         try {
+            if (!navigator.clipboard?.writeText) throw new Error('Clipboard API unavailable');
             await navigator.clipboard.writeText(preparedBody);
             copyButton.textContent = modalCopy.copied;
         } catch (e) {
-            copyButton.textContent = modalCopy.copy;
+            copyButton.textContent = modalCopy.copyFailed;
         }
     });
 
@@ -1949,7 +2055,12 @@ function initShopOrderModal() {
 
     document.addEventListener('keydown', event => {
         if (modal.hidden) return;
-        if (event.key === 'Escape') closeModal();
+        if (event.key === 'Escape') {
+            event.preventDefault();
+            closeModal();
+            return;
+        }
+        keepModalFocus(event);
     });
 }
 
