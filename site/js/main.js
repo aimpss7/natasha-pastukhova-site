@@ -288,10 +288,11 @@ function initReadableTypography(root = document) {
 
 initReadableTypography();
 
-// ========== SHARED: LANGUAGE SWITCH PLACEHOLDER ==========
+// ========== SHARED: LANGUAGE SWITCH ==========
 function initLanguageSwitch() {
+    const languageLinks = document.querySelectorAll('.lang-toggle[href]');
     const pendingButtons = document.querySelectorAll('[data-lang-pending]');
-    if (!pendingButtons.length) return;
+    if (!languageLinks.length && !pendingButtons.length) return;
 
     let toast = null;
     let toastTimer = null;
@@ -321,6 +322,90 @@ function initLanguageSwitch() {
                 button.classList.remove('is-pending');
             }, 1700);
         });
+    });
+
+    if (!languageLinks.length) return;
+
+    const sectionAnchors = ['shop', 'artist', 'cards-start', 'projects'];
+
+    function currentPageName() {
+        return (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    }
+
+    function visibleSectionHash() {
+        const headerOffset = document.querySelector('.header')?.getBoundingClientRect().height || 0;
+        const probeY = Math.min(window.innerHeight * 0.42, headerOffset + 180);
+        let best = null;
+
+        sectionAnchors.forEach(id => {
+            const element = document.getElementById(id);
+            if (!element) return;
+            const rect = element.getBoundingClientRect();
+            const distance = rect.top <= probeY && rect.bottom >= probeY
+                ? 0
+                : Math.min(Math.abs(rect.top - probeY), Math.abs(rect.bottom - probeY));
+            if (!best || distance < best.distance) {
+                best = { id, distance };
+            }
+        });
+
+        return best ? `#${best.id}` : '';
+    }
+
+    function currentContextHash() {
+        const hash = window.location.hash || '';
+        if (hash && (document.getElementById(hash.slice(1)) || /^#work-/.test(hash))) return hash;
+        if (currentPageName() === 'shop.html') return '#shop';
+        return visibleSectionHash();
+    }
+
+    function contextQuery(hash) {
+        const current = new URLSearchParams(window.location.search);
+        const next = new URLSearchParams();
+        const filterFromUrl = current.get('filter');
+        const workFromUrl = current.get('work');
+        const activeFilter = document.querySelector('.filter-btn.active[data-filter]')?.getAttribute('data-filter');
+
+        if (filterFromUrl) {
+            next.set('filter', filterFromUrl);
+        } else if (activeFilter && activeFilter !== 'all' && (hash === '#cards-start' || /^#work-/.test(hash))) {
+            next.set('filter', activeFilter);
+        }
+
+        if (workFromUrl) {
+            next.set('work', workFromUrl);
+        } else if (/^#work-/.test(hash)) {
+            next.set('work', decodeURIComponent(hash.replace(/^#work-/, '')));
+        }
+
+        return next.toString();
+    }
+
+    function languageHref(targetLang) {
+        const hash = currentContextHash();
+        if (targetLang === 'ru' && currentPageName() === 'shop.html') return 'shop.html';
+        const page = targetLang === 'en' ? 'en.html' : 'index.html';
+        const query = contextQuery(hash);
+        return `${page}${query ? `?${query}` : ''}${hash || ''}`;
+    }
+
+    function updateLanguageLinks() {
+        languageLinks.forEach(link => {
+            const targetLang = (link.getAttribute('lang') || '').toLowerCase();
+            if (targetLang === 'en' || targetLang === 'ru') {
+                link.setAttribute('href', languageHref(targetLang));
+            }
+        });
+    }
+
+    updateLanguageLinks();
+    window.addEventListener('hashchange', updateLanguageLinks);
+    window.addEventListener('scroll', () => {
+        window.requestAnimationFrame(updateLanguageLinks);
+    }, { passive: true });
+
+    languageLinks.forEach(link => {
+        link.addEventListener('click', updateLanguageLinks);
     });
 }
 
