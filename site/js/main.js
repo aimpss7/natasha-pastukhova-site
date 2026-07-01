@@ -1024,7 +1024,8 @@ if (projectsGrid) {
         function show(project, index) {
             const title = projectTitle(project);
             const src = fixPath(project.cover || projectImages(project)[0] || '');
-            const meta = projectLocation(project) || projectCategory(project) || '';
+            const captionTitle = title ? `«${title}»` : '';
+            const captionDetails = [projectLocation(project), project.year].filter(Boolean).join(', ');
             const cardAnchor = project.id ? `#work-${project.id}` : '#cards-start';
             const detailUrl = projectUrl(project);
 
@@ -1032,7 +1033,12 @@ if (projectsGrid) {
                 if (src) image.src = src;
                 image.alt = title;
             });
-            if (heroCaption) heroCaption.textContent = [title, meta].filter(Boolean).join(' · ');
+            if (heroCaption) {
+                heroCaption.innerHTML = [
+                    captionTitle ? `<span class="hero-caption-title">${escapeHtml(captionTitle)}</span>` : '',
+                    captionDetails ? `<span class="hero-caption-details">${escapeHtml(captionDetails)}</span>` : ''
+                ].filter(Boolean).join('');
+            }
             if (heroLink) {
                 const heroTarget = isOnePagePage() ? onePageProjectBackUrl(project) : (detailUrl || cardAnchor);
                 heroLink.href = heroTarget;

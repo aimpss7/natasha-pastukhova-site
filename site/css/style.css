@@ -14808,3 +14808,275 @@ button,
         row-gap: 2px !important;
     }
 }
+
+/* ========== CYCLE 41: GRID AND RHYTHM SYSTEM ========== */
+:root {
+    --site-frame: minmax(20px, 1fr) minmax(0, 1600px) minmax(20px, 1fr);
+    --site-edge: clamp(28px, 4.8vw, 96px);
+    --site-max: 1600px;
+}
+
+.header {
+    display: grid !important;
+    grid-template-columns: minmax(220px, 1fr) auto minmax(220px, 1fr) !important;
+    align-items: center !important;
+    width: min(calc(100% - (2 * var(--site-edge))), var(--site-max)) !important;
+    margin-inline: auto !important;
+    padding: 20px 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    column-gap: clamp(18px, 2.8vw, 48px) !important;
+}
+
+.header-logo {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.34em !important;
+    min-width: 0 !important;
+    color: rgba(0, 0, 0, 0.92) !important;
+    font-size: clamp(17px, 1.15vw, 22px) !important;
+    line-height: 1 !important;
+    text-transform: none !important;
+}
+
+.header-logo .heart {
+    display: inline-block !important;
+    color: currentColor !important;
+    font-size: 0.86em !important;
+    line-height: 1 !important;
+    transform: translateY(-0.02em);
+}
+
+.header-logo::after,
+.header.is-compact .header-logo::after {
+    content: none !important;
+    display: none !important;
+}
+
+.header-menu {
+    justify-self: center !important;
+}
+
+.header-lang {
+    justify-self: end !important;
+}
+
+.lang-toggle {
+    color: rgba(0, 0, 0, 0.86) !important;
+    font-size: clamp(15px, 0.95vw, 18px) !important;
+}
+
+.onepage-main .hero-editorial {
+    padding-right: var(--site-edge) !important;
+    padding-left: var(--site-edge) !important;
+}
+
+.onepage-main .hero-editorial .hero-copy {
+    max-width: min(920px, calc(100vw - (2 * var(--site-edge)))) !important;
+}
+
+.onepage-main .hero-editorial .hero-image-caption {
+    right: var(--site-edge) !important;
+    bottom: clamp(24px, 3vw, 46px) !important;
+    display: grid !important;
+    gap: 4px !important;
+    color: rgba(255, 255, 255, 0.76) !important;
+}
+
+.onepage-main .hero-caption-title,
+.onepage-main .hero-caption-details {
+    display: block !important;
+}
+
+.onepage-main .hero-caption-title {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.onepage-main .hero-caption-details {
+    color: rgba(255, 255, 255, 0.64) !important;
+}
+
+.onepage-main .onepage-section-inner--projects,
+.onepage-main .project-filters,
+.onepage-main #cards-start.container,
+.onepage-main .onepage-section > .onepage-section-inner,
+.onepage-main #shop > .onepage-section-inner {
+    width: min(calc(100% - (2 * var(--site-edge))), var(--site-max)) !important;
+    max-width: var(--site-max) !important;
+    margin-inline: auto !important;
+}
+
+.onepage-main .project-filters,
+.onepage-main #cards-start.container {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+
+.onepage-main .project-filters {
+    padding-top: clamp(22px, 2.4vw, 34px) !important;
+    padding-bottom: clamp(8px, 1vw, 14px) !important;
+}
+
+.onepage-main #cards-start.container {
+    padding-top: clamp(10px, 1.1vw, 18px) !important;
+    padding-bottom: clamp(44px, 5vw, 76px) !important;
+}
+
+.onepage-main .projects-layout {
+    row-gap: clamp(42px, 4.8vw, 72px) !important;
+    column-gap: clamp(22px, 2vw, 34px) !important;
+}
+
+.onepage-main .project-card-inline,
+.onepage-main .story-card {
+    gap: 0 !important;
+}
+
+.onepage-main .card-img,
+.onepage-main .story-media {
+    margin-bottom: 0 !important;
+}
+
+.onepage-main .card-meta {
+    margin-top: clamp(10px, 0.82vw, 14px) !important;
+    margin-bottom: 0 !important;
+    font-size: clamp(13px, 0.92vw, 16px) !important;
+    line-height: 1.18 !important;
+}
+
+.onepage-main .card h3,
+.onepage-main .story-copy h3 {
+    margin-top: clamp(6px, 0.58vw, 10px) !important;
+    margin-bottom: 0 !important;
+}
+
+.onepage-main .card-desc {
+    margin-top: clamp(8px, 0.8vw, 12px) !important;
+    max-width: 31em !important;
+}
+
+.onepage-main .card-meta-list--place span + span::before {
+    margin-inline: 0.34em !important;
+}
+
+.onepage-main #artist {
+    padding-bottom: clamp(40px, 5vw, 74px) !important;
+}
+
+.onepage-main #shop {
+    min-height: auto !important;
+    margin-top: 0 !important;
+    padding-top: clamp(42px, 5.2vw, 82px) !important;
+    padding-bottom: clamp(54px, 5vw, 82px) !important;
+}
+
+.onepage-main #shop .shop-heading,
+.onepage-main #shop .shop-terms,
+.onepage-main #shop .shop-catalog,
+.shop-page .shop-heading,
+.shop-page .shop-terms,
+.shop-page .shop-catalog {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+.onepage-main #shop .shop-heading,
+.shop-page .shop-heading {
+    margin-bottom: clamp(18px, 2vw, 28px) !important;
+}
+
+.shop-heading p {
+    max-width: 520px !important;
+}
+
+.onepage-main #shop .shop-terms,
+.shop-page .shop-terms {
+    margin-top: clamp(16px, 1.8vw, 24px) !important;
+    margin-bottom: clamp(28px, 3vw, 46px) !important;
+}
+
+.shop-terms li {
+    min-height: 0 !important;
+}
+
+.shop-grid--reliefs {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+@media (min-width: 1601px) {
+    .header,
+    .onepage-main .onepage-section-inner--projects,
+    .onepage-main .project-filters,
+    .onepage-main #cards-start.container,
+    .onepage-main .onepage-section > .onepage-section-inner,
+    .onepage-main #shop > .onepage-section-inner {
+        width: min(calc(100% - 160px), var(--site-max)) !important;
+    }
+}
+
+@media (max-width: 920px) {
+    :root {
+        --site-edge: clamp(20px, 4.6vw, 42px);
+    }
+
+    .header {
+        grid-template-columns: minmax(0, 1fr) auto auto !important;
+        width: calc(100% - (2 * var(--site-edge))) !important;
+        padding-top: 16px !important;
+    }
+}
+
+@media (max-width: 620px) {
+    :root {
+        --site-edge: 20px;
+    }
+
+    .header {
+        width: calc(100% - 40px) !important;
+        grid-template-columns: minmax(0, 1fr) auto !important;
+        column-gap: 12px !important;
+    }
+
+    .header-logo {
+        font-size: 16px !important;
+    }
+
+    .header-logo .heart {
+        display: inline-block !important;
+    }
+
+    .onepage-main .hero-editorial {
+        padding-right: var(--site-edge) !important;
+        padding-left: var(--site-edge) !important;
+    }
+
+    .onepage-main .hero-editorial .hero-image-caption {
+        right: auto !important;
+        left: var(--site-edge) !important;
+        bottom: 18px !important;
+    }
+
+    .onepage-main .project-filters,
+    .onepage-main #cards-start.container {
+        width: calc(100% - 40px) !important;
+    }
+
+    .onepage-main .card-meta {
+        margin-top: 8px !important;
+        font-size: 12px !important;
+    }
+
+    .onepage-main .card h3,
+    .onepage-main .story-copy h3 {
+        margin-top: 5px !important;
+    }
+
+    .onepage-main #artist {
+        padding-bottom: 36px !important;
+    }
+
+    .onepage-main #shop {
+        padding-top: 38px !important;
+    }
+}
