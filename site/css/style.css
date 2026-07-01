@@ -17748,3 +17748,105 @@ body.site-home .cv-section .work-location + .work-details::before {
         row-gap: 8px !important;
     }
 }
+
+/* ========== CYCLE 67: CONTACT GROUPS AND FOOTER FLOWER LAYERING ========== */
+.contact-chips.about-actions {
+    display: flex !important;
+    align-items: baseline !important;
+    flex-wrap: wrap !important;
+    gap: 12px clamp(32px, 3vw, 44px) !important;
+}
+
+.contact-chips.about-actions .contact-group {
+    display: inline-flex !important;
+    align-items: baseline !important;
+    flex-wrap: wrap !important;
+    gap: clamp(14px, 1.2vw, 18px) !important;
+    min-width: 0 !important;
+}
+
+.contact-chips.about-actions .contact-chip,
+.contact-chips.about-actions a.contact-chip,
+.contact-chips.about-actions button.contact-chip {
+    display: inline-flex !important;
+    align-items: center !important;
+    width: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    white-space: nowrap !important;
+}
+
+.contact-chips.about-actions .contact-group-social .contact-chip {
+    color: rgba(0, 0, 0, 0.56) !important;
+}
+
+.contact-chips.about-actions .contact-group-social .contact-chip:hover,
+.contact-chips.about-actions .contact-group-social .contact-chip:focus-visible {
+    color: rgba(0, 0, 0, 0.92) !important;
+}
+
+.contact-chips.about-actions > * + *::before,
+.contact-chips.about-actions .contact-group > * + *::before,
+.contact-chips.about-actions .contact-chip::before,
+.contact-chips.about-actions .contact-chip::after {
+    content: none !important;
+    display: none !important;
+}
+
+.contact-chips.about-actions .contact-mail-value,
+.contact-chips.about-actions .contact-mail-copy,
+.contact-chips.about-actions .contact-icon {
+    display: none !important;
+}
+
+.footer {
+    overflow: hidden !important;
+    padding-bottom: clamp(18px, 2.2vw, 30px) !important;
+}
+
+.footer::before {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    left: 0 !important;
+    z-index: 0 !important;
+    height: 1px !important;
+    content: "" !important;
+    background: rgba(0, 0, 0, 0.12) !important;
+}
+
+.footer-content {
+    z-index: 1 !important;
+}
+
+.footer-flower {
+    z-index: 2 !important;
+    bottom: clamp(-54px, -3.6vw, -34px) !important;
+    width: clamp(110px, 10vw, 156px) !important;
+}
+
+@media (max-width: 760px) {
+    .contact-chips.about-actions {
+        display: grid !important;
+        gap: 10px !important;
+    }
+
+    .contact-chips.about-actions .contact-group {
+        gap: 16px !important;
+    }
+
+    .footer {
+        padding-bottom: 22px !important;
+    }
+
+    .footer-flower {
+        right: 14px !important;
+        bottom: -42px !important;
+        width: 106px !important;
+    }
+}
