@@ -42,7 +42,7 @@
     "layoutSize": "wide",
     "url": "",
     "location": "Екатеринбург",
-    "desc": "Роспись объекта в Екатеринбурге. Вертикальная форма работает как городской ориентир: яркие красно-голубые блоки и простые фигуры меняют ощущение места в разное время года.",
+    "desc": "Роспись городского объекта в Екатеринбурге. Вертикальная форма работает как ориентир: красно-голубые блоки, птицы и простые графические силуэты собирают техническую конструкцию в заметный городской знак.",
     "cover": "assets/images/projects/mayak/cover.jpg",
     "images": [
       "assets/images/projects/mayak/story-01.jpg",
@@ -57,7 +57,26 @@
       "materials/source-photos/Маяк"
     ],
     "rotation": 0.04,
-    "descriptionStatus": "draft-from-images"
+    "descriptionStatus": "draft-from-images",
+    "heroRank": 1,
+    "nameEn": "Beacon",
+    "categoryEn": "Object painting",
+    "locationEn": "Yekaterinburg",
+    "descEn": "A painted urban object in Yekaterinburg. The vertical structure becomes a local beacon: red and blue blocks, birds and clean graphic silhouettes turn a technical form into a visible city landmark.",
+    "series": "городской объект",
+    "role": "концепция и роспись",
+    "materials": "акрил, аэрозоль, фасадные материалы",
+    "size": "site-specific",
+    "credits": [
+      "2025<br>Екатеринбург<br>Роспись городского объекта",
+      "Концепция и исполнение: Наташа Пастухова",
+      "Материалы: акрил, аэрозоль, защитное покрытие"
+    ],
+    "creditsEn": [
+      "2025<br>Yekaterinburg<br>Painted urban object",
+      "Concept and painting: Natasha Pastukhova",
+      "Materials: acrylic, spray paint, protective coating"
+    ]
   },
   {
     "id": "dushi-ne-chayu-yaroslavl",
@@ -70,7 +89,7 @@
     "layoutSize": "large",
     "url": "",
     "location": "Ярославль",
-    "desc": "Мурал для проекта «Души не чаю» в Ярославле. Работа разворачивается вдоль городской поверхности как протяженная цветная сцена: крупные персонажи, бытовые детали и декоративные формы собирают фасад в цельный визуальный рассказ.",
+    "desc": "Фасадная роспись для проекта «Души не чаю» в Ярославле. Длинная цветная сцена соединяет персонажей, бытовые детали и декоративные формы; работа читается и как маршрут вдоль стены, и как цельная картинка издалека.",
     "cover": "assets/images/projects/dushi-ne-chayu-yaroslavl/cover.jpg",
     "previewImage": "assets/images/projects/dushi-ne-chayu-yaroslavl/story-03.jpg",
     "images": [
@@ -89,7 +108,26 @@
       "materials/source-photos/Самокат_Ярославль/Ярославль v2.mov"
     ],
     "rotation": 0.11,
-    "descriptionStatus": "draft-from-images"
+    "descriptionStatus": "draft-from-images",
+    "heroRank": 3,
+    "nameEn": "Dushi Ne Chayu: Yaroslavl",
+    "categoryEn": "Mural",
+    "locationEn": "Yaroslavl",
+    "descEn": "A facade mural for the Dushi Ne Chayu project in Yaroslavl. The long painted scene connects characters, everyday details and decorative forms, working both as a route along the wall and as a complete image from a distance.",
+    "series": "Души не чаю",
+    "role": "эскиз, адаптация под фасад, роспись",
+    "materials": "фасадная краска, аэрозоль",
+    "size": "протяжённая фасадная композиция",
+    "credits": [
+      "2023<br>Ярославль<br>Мурал",
+      "Проект «Души не чаю»",
+      "Эскиз и роспись: Наташа Пастухова"
+    ],
+    "creditsEn": [
+      "2023<br>Yaroslavl<br>Mural",
+      "Dushi Ne Chayu project",
+      "Sketch and painting: Natasha Pastukhova"
+    ]
   },
   {
     "id": "dushi-ne-chayu-ivanovo",
@@ -99,7 +137,7 @@
     "status": "v0",
     "url": "",
     "location": "Иваново",
-    "desc": "Мурал для проекта «Души не чаю» в Иваново. Длинная горизонтальная композиция работает с ритмом фасада: окна, цветовые блоки, растительные мотивы и мягкие фигуры связывают архитектуру с повседневным городским движением.",
+    "desc": "Фасадная роспись для проекта «Души не чаю» в Иваново. Композиция построена как горизонтальная лента: окна, цветовые поля, растительные мотивы и мягкие фигуры связывают архитектуру с повседневным движением улицы.",
     "cover": "assets/images/projects/dushi-ne-chayu-ivanovo/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
@@ -109,7 +147,25 @@
       "materials/source-photos/Самокат_Иваново/Иваново v5.mov"
     ],
     "rotation": -0.05,
-    "descriptionStatus": "draft-from-images"
+    "descriptionStatus": "draft-from-images",
+    "nameEn": "Dushi Ne Chayu: Ivanovo",
+    "categoryEn": "Mural",
+    "locationEn": "Ivanovo",
+    "descEn": "A facade mural for the Dushi Ne Chayu project in Ivanovo. The composition works as a horizontal ribbon: windows, colour fields, botanical motifs and soft figures connect the architecture with the everyday movement of the street.",
+    "series": "Души не чаю",
+    "role": "эскиз и роспись",
+    "materials": "фасадная краска, аэрозоль",
+    "size": "протяжённый фасад",
+    "credits": [
+      "2023<br>Иваново<br>Мурал",
+      "Проект «Души не чаю»",
+      "Эскиз и роспись: Наташа Пастухова"
+    ],
+    "creditsEn": [
+      "2023<br>Ivanovo<br>Mural",
+      "Dushi Ne Chayu project",
+      "Sketch and painting: Natasha Pastukhova"
+    ]
   },
   {
     "id": "dushi-ne-chayu-vologda",
@@ -119,7 +175,7 @@
     "status": "v0",
     "url": "",
     "location": "Вологда",
-    "desc": "Мурал для проекта «Души не чаю» в Вологде. Роспись вытянута вдоль городской стены и собирает узнаваемые бытовые образы в яркую декоративную ленту, которую можно считывать и издалека, и при движении вдоль объекта.",
+    "desc": "Фасадная роспись для проекта «Души не чаю» в Вологде. Работа собирает бытовые образы, растения и крупные цветовые пятна в яркую декоративную ленту, которую можно считывать в движении вдоль объекта.",
     "cover": "assets/images/projects/dushi-ne-chayu-vologda/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
@@ -129,7 +185,25 @@
       "materials/source-photos/Самокат_Вологда/Вологда v4.mov"
     ],
     "rotation": 0.08,
-    "descriptionStatus": "draft-from-images"
+    "descriptionStatus": "draft-from-images",
+    "nameEn": "Dushi Ne Chayu: Vologda",
+    "categoryEn": "Mural",
+    "locationEn": "Vologda",
+    "descEn": "A facade mural for the Dushi Ne Chayu project in Vologda. Everyday images, plants and large colour fields form a bright decorative ribbon that can be read while moving along the wall.",
+    "series": "Души не чаю",
+    "role": "эскиз и роспись",
+    "materials": "фасадная краска, аэрозоль",
+    "size": "длинная фасадная роспись",
+    "credits": [
+      "2023<br>Вологда<br>Мурал",
+      "Проект «Души не чаю»",
+      "Эскиз и роспись: Наташа Пастухова"
+    ],
+    "creditsEn": [
+      "2023<br>Vologda<br>Mural",
+      "Dushi Ne Chayu project",
+      "Sketch and painting: Natasha Pastukhova"
+    ]
   },
   {
     "id": "kot-pchela-i-drakon",
@@ -152,14 +226,33 @@
     "status": "v0",
     "url": "",
     "location": "Екатеринбург",
-    "desc": "Серия деревянных объектов для фестиваля паблик-арта ЧО. Скульптуры сохраняют след ручной работы и выглядят как группа вертикальных персонажей, встроенных в природный ландшафт и меняющих масштаб прогулочного пространства.",
+    "desc": "Серия деревянных объектов для фестиваля паблик-арта ЧО. Вертикальные фигуры сохраняют след ручной работы и выглядят как группа персонажей, встроенных в природный ландшафт и меняющих масштаб прогулочного пространства.",
     "cover": "assets/images/projects/wooden-idols/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
       "materials/source-photos/ЧО_идолы"
     ],
     "rotation": 0.07,
-    "descriptionStatus": "draft-from-images"
+    "descriptionStatus": "draft-from-images",
+    "heroRank": 2,
+    "nameEn": "Wooden Idols",
+    "categoryEn": "Object",
+    "locationEn": "Yekaterinburg",
+    "descEn": "A series of wooden objects for the CHO public art festival. The vertical figures keep the trace of handwork and appear as a group of characters placed into the landscape, shifting the scale of the walking route.",
+    "series": "ЧО",
+    "role": "концепция, эскиз, объект",
+    "materials": "дерево, резьба, защитная обработка",
+    "size": "серия уличных объектов",
+    "credits": [
+      "2022<br>Екатеринбург<br>Объекты в природной среде",
+      "Фестиваль паблик-арта ЧО",
+      "Концепция: Наташа Пастухова"
+    ],
+    "creditsEn": [
+      "2022<br>Yekaterinburg<br>Outdoor objects",
+      "CHO public art festival",
+      "Concept: Natasha Pastukhova"
+    ]
   },
   {
     "id": "moon-cycle",
@@ -169,14 +262,31 @@
     "status": "v0",
     "url": "",
     "location": "Певек",
-    "desc": "Муральный триптих в Певеке. Три фасада объединены мотивами ночного неба, животных и циклического движения; работа связывает северный городской пейзаж с ярким орнаментальным рассказом.",
+    "desc": "Муральный триптих в Певеке. Три фасада объединены мотивами ночного неба, животных и циклического движения; северный городской пейзаж получает яркий орнаментальный слой и собственный ритм.",
     "cover": "assets/images/projects/moon-cycle/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
       "materials/source-photos/Фазы луны, Певек 22"
     ],
     "rotation": -0.13,
-    "descriptionStatus": "draft-from-images"
+    "descriptionStatus": "draft-from-images",
+    "nameEn": "Moon Cycle",
+    "categoryEn": "Mural",
+    "locationEn": "Pevek",
+    "descEn": "A mural triptych in Pevek. Three facades are connected by motifs of the night sky, animals and cyclical movement, adding a bright ornamental layer and a distinct rhythm to the northern urban landscape.",
+    "role": "эскиз и роспись",
+    "materials": "фасадная краска, аэрозоль",
+    "size": "три фасада",
+    "credits": [
+      "2022<br>Певек<br>Муральный триптих",
+      "Эскиз и роспись: Наташа Пастухова",
+      "Материалы: фасадная краска, аэрозоль"
+    ],
+    "creditsEn": [
+      "2022<br>Pevek<br>Mural triptych",
+      "Sketch and painting: Natasha Pastukhova",
+      "Materials: facade paint, spray paint"
+    ]
   },
   {
     "id": "moroshka",
@@ -186,14 +296,31 @@
     "status": "v0",
     "url": "",
     "location": "Анадырь",
-    "desc": "Мурал в Анадыре. Композиция построена на северных растительных мотивах: крупные ягоды, мягкие цветовые пятна и слоистые формы превращают фасад в спокойный, но заметный городской знак.",
+    "desc": "Мурал в Анадыре, построенный на северных растительных мотивах. Крупные ягоды, мягкие цветовые пятна и слоистые формы превращают фасад в спокойный, но хорошо заметный городской знак.",
     "cover": "assets/images/projects/moroshka/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
       "materials/source-photos/Морошка_Анадырь 22"
     ],
     "rotation": 0.05,
-    "descriptionStatus": "draft-from-images"
+    "descriptionStatus": "draft-from-images",
+    "nameEn": "Cloudberry",
+    "categoryEn": "Mural",
+    "locationEn": "Anadyr",
+    "descEn": "A mural in Anadyr based on northern botanical motifs. Large berries, soft colour fields and layered shapes turn the facade into a calm but visible urban sign.",
+    "role": "эскиз и роспись",
+    "materials": "фасадная краска, аэрозоль",
+    "size": "фасадная композиция",
+    "credits": [
+      "2022<br>Анадырь<br>Мурал",
+      "Северные растительные мотивы",
+      "Эскиз и роспись: Наташа Пастухова"
+    ],
+    "creditsEn": [
+      "2022<br>Anadyr<br>Mural",
+      "Northern botanical motifs",
+      "Sketch and painting: Natasha Pastukhova"
+    ]
   },
   {
     "id": "sea-stones",
@@ -203,14 +330,31 @@
     "status": "v0",
     "url": "",
     "location": "Анадырь",
-    "desc": "Мурал в Анадыре. Фасад заполняют крупные округлые формы, напоминающие морские камни и живые природные паттерны; работа добавляет в городскую среду яркий, почти тактильный слой.",
+    "desc": "Мурал в Анадыре с крупными округлыми формами, напоминающими морские камни и живые природные паттерны. Работа добавляет в городскую среду яркий, почти тактильный слой.",
     "cover": "assets/images/projects/sea-stones/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
       "materials/source-photos/Морские камушки_Анадырь 22"
     ],
     "rotation": -0.06,
-    "descriptionStatus": "draft-from-images"
+    "descriptionStatus": "draft-from-images",
+    "nameEn": "Sea Stones",
+    "categoryEn": "Mural",
+    "locationEn": "Anadyr",
+    "descEn": "A mural in Anadyr with large rounded forms recalling sea stones and living natural patterns. The work adds a bright, almost tactile layer to the urban environment.",
+    "role": "эскиз и роспись",
+    "materials": "фасадная краска, аэрозоль",
+    "size": "фасадная композиция",
+    "credits": [
+      "2022<br>Анадырь<br>Мурал",
+      "Природные и морские мотивы",
+      "Эскиз и роспись: Наташа Пастухова"
+    ],
+    "creditsEn": [
+      "2022<br>Anadyr<br>Mural",
+      "Natural and marine motifs",
+      "Sketch and painting: Natasha Pastukhova"
+    ]
   },
   {
     "id": "meeting",
@@ -246,7 +390,7 @@
     "status": "v0",
     "url": "",
     "location": "Екатеринбург",
-    "desc": "Роспись троллейбуса для фестиваля «Стенограффия». Работа переносит художественный язык Наташи на движущийся городской объект: цветные формы, растения и персонажи становятся частью маршрута и повседневного транспорта.",
+    "desc": "Роспись троллейбуса для фестиваля «Стенограффия». Художественный язык Наташи переносится на движущийся городской объект: цветные формы, растения и персонажи становятся частью маршрута и повседневного транспорта.",
     "cover": "assets/images/projects/july/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
@@ -256,7 +400,25 @@
       "materials/source-photos/ИЮЛЬ_Стенограффия 21г Екатеринбург/Троллейбус.mp4"
     ],
     "rotation": 0.12,
-    "descriptionStatus": "draft-from-images"
+    "descriptionStatus": "draft-from-images",
+    "nameEn": "July",
+    "categoryEn": "Object painting",
+    "locationEn": "Yekaterinburg",
+    "descEn": "A painted trolleybus for the Stenograffia festival. Natasha’s visual language moves onto a travelling urban object: colourful forms, plants and characters become part of a daily route.",
+    "series": "Стенограффия",
+    "role": "концепция и роспись",
+    "materials": "краска для транспорта, защитное покрытие",
+    "size": "городской транспорт",
+    "credits": [
+      "2021<br>Екатеринбург<br>Роспись троллейбуса",
+      "Фестиваль «Стенограффия»",
+      "Концепция и роспись: Наташа Пастухова"
+    ],
+    "creditsEn": [
+      "2021<br>Yekaterinburg<br>Painted trolleybus",
+      "Stenograffia festival",
+      "Concept and painting: Natasha Pastukhova"
+    ]
   },
   {
     "id": "hunter",
@@ -279,13 +441,31 @@
     "status": "v0",
     "url": "",
     "location": "Екатеринбург",
-    "desc": "Мурал для фестиваля «Стенограффия XI» в Екатеринбурге. Работа занимает торец жилого дома и смотрит во двор как большой цветной персонаж; тема соседства здесь буквально встроена в городскую повседневность.",
+    "desc": "Мурал для фестиваля «Стенограффия XI» в Екатеринбурге. Работа занимает торец жилого дома и смотрит во двор как большой цветной персонаж; тема соседства буквально встроена в городскую повседневность.",
     "cover": "assets/images/projects/neighbors/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
       "materials/source-photos/Соседи"
     ],
     "rotation": 0.06,
-    "descriptionStatus": "draft-from-images"
+    "descriptionStatus": "draft-from-images",
+    "nameEn": "Neighbours",
+    "categoryEn": "Mural",
+    "locationEn": "Yekaterinburg",
+    "descEn": "A mural for Stenograffia XI in Yekaterinburg. The work occupies the end wall of a residential building and looks into the courtyard like a large colourful character, making the theme of neighbourhood part of everyday city life.",
+    "series": "Стенограффия XI",
+    "role": "эскиз и роспись",
+    "materials": "фасадная краска, аэрозоль",
+    "size": "торец жилого дома",
+    "credits": [
+      "2020<br>Екатеринбург<br>Мурал",
+      "Фестиваль «Стенограффия XI»",
+      "Эскиз и роспись: Наташа Пастухова"
+    ],
+    "creditsEn": [
+      "2020<br>Yekaterinburg<br>Mural",
+      "Stenograffia XI festival",
+      "Sketch and painting: Natasha Pastukhova"
+    ]
   }
 ]

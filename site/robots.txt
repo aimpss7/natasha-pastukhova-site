@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /projects/project-1/
+
+Sitemap: https://aimpss7.github.io/natasha-pastukhova-site/sitemap.xml

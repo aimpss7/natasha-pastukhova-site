@@ -8792,6 +8792,7 @@ button.footer-privacy {
 
 .shop-order-modal-close,
 .shop-order-modal-cancel,
+.shop-order-modal-copy,
 .shop-order-modal-mail {
     appearance: none;
     border: 0;
@@ -8823,6 +8824,7 @@ button.footer-privacy {
 }
 
 .shop-order-modal-mail,
+.shop-order-modal-copy,
 .shop-order-modal-cancel {
     display: inline-flex;
     align-items: center;
@@ -8839,6 +8841,8 @@ button.footer-privacy {
 
 .shop-order-modal-mail:hover,
 .shop-order-modal-mail:focus-visible,
+.shop-order-modal-copy:hover,
+.shop-order-modal-copy:focus-visible,
 .shop-order-modal-cancel:hover,
 .shop-order-modal-cancel:focus-visible,
 .shop-order-modal-close:hover,
@@ -8862,6 +8866,7 @@ button.footer-privacy {
 
     .shop-order-modal-actions,
     .shop-order-modal-mail,
+    .shop-order-modal-copy,
     .shop-order-modal-cancel {
         width: 100%;
     }
@@ -8934,6 +8939,7 @@ body,
 .shop-item--mayak-reflect .shop-order,
 .privacy-modal-ok,
 .shop-order-modal-mail,
+.shop-order-modal-copy,
 .shop-order-modal-cancel {
     border: 1px solid rgba(0, 0, 0, 0.82) !important;
     background: transparent !important;
@@ -8963,6 +8969,8 @@ body,
 .privacy-modal-ok:focus-visible,
 .shop-order-modal-mail:hover,
 .shop-order-modal-mail:focus-visible,
+.shop-order-modal-copy:hover,
+.shop-order-modal-copy:focus-visible,
 .shop-order-modal-cancel:hover,
 .shop-order-modal-cancel:focus-visible {
     border-color: #000 !important;
@@ -10211,6 +10219,7 @@ html {
 
     .privacy-modal-ok,
     .shop-order-modal-mail,
+    .shop-order-modal-copy,
     .shop-order-modal-cancel {
         min-height: 44px !important;
     }
@@ -14618,5 +14627,57 @@ button,
 
     .onepage-main .project-filters {
         padding-top: 14px !important;
+    }
+}
+
+/* ========== CYCLE 38: CONTENT TRUST LAYER ========== */
+.site-en .content-wrapper {
+    display: none !important;
+}
+
+.shop-terms {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(12px, 1.6vw, 22px);
+    margin: clamp(18px, 2.4vw, 30px) 0 clamp(28px, 3.5vw, 46px);
+    padding: 0;
+    list-style: none;
+}
+
+.shop-terms li {
+    min-height: 96px;
+    padding: 16px 0 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.16);
+    color: rgba(0, 0, 0, 0.58);
+    font-size: clamp(13px, 1vw, 15px);
+    line-height: 1.22;
+}
+
+.shop-terms strong {
+    display: block;
+    margin-bottom: 7px;
+    color: #111;
+    font-size: clamp(16px, 1.35vw, 20px);
+    font-weight: 400;
+    line-height: 1.05;
+}
+
+@media (max-width: 900px) {
+    .shop-terms {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 620px) {
+    .shop-terms {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+        margin-bottom: 34px;
+    }
+
+    .shop-terms li {
+        min-height: 0;
+        padding-top: 12px;
+        font-size: 14px;
     }
 }
