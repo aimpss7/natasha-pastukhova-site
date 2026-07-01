@@ -14559,3 +14559,64 @@ button,
         line-height: 1.25 !important;
     }
 }
+
+/* ========== CYCLE 37: FIRST SCREEN DEPTH ========== */
+.onepage-main .hero-editorial {
+    min-height: clamp(640px, 94svh, 980px) !important;
+    padding-top: clamp(108px, 12svh, 148px) !important;
+    padding-bottom: clamp(64px, 8svh, 96px) !important;
+}
+
+.onepage-main .hero-editorial .hero-copy {
+    transform: translateY(clamp(8px, 1.8svh, 22px)) !important;
+}
+
+.onepage-main .project-filters {
+    padding-top: clamp(14px, 2.2vw, 26px) !important;
+}
+
+.onepage-main #cards-start.container {
+    padding-top: 12px !important;
+}
+
+@media (min-width: 1440px) {
+    .onepage-main .hero-editorial {
+        min-height: clamp(720px, 92svh, 1040px) !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .onepage-main .hero-editorial {
+        min-height: clamp(660px, calc(100svh - 48px), 840px) !important;
+        padding-top: 104px !important;
+        padding-bottom: 58px !important;
+    }
+
+    .onepage-main .hero-editorial .hero-copy {
+        transform: translateY(10px) !important;
+    }
+}
+
+@media (max-width: 620px) {
+    .site-home .header:not(.is-compact):not(.nav-open) {
+        background: transparent !important;
+    }
+
+    .site-home .header:not(.is-compact):not(.nav-open)::before {
+        background: linear-gradient(180deg, rgba(252, 251, 247, 0.58), rgba(252, 251, 247, 0)) !important;
+    }
+
+    .onepage-main .hero-editorial {
+        min-height: clamp(620px, calc(100svh - 42px), 820px) !important;
+        padding-top: 92px !important;
+        padding-bottom: 52px !important;
+    }
+
+    .onepage-main .hero-editorial .hero-copy {
+        transform: none !important;
+    }
+
+    .onepage-main .project-filters {
+        padding-top: 14px !important;
+    }
+}
