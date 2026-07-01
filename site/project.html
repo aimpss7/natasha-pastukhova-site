@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.open-meteo.com; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'">
     <meta name="description" content="Страница проекта Наташи Пастуховой: описание, фотографии, место, год и связанные работы.">
     <title>Наташа Пастухова — Проект</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -52,8 +54,8 @@
                     <span class="contact-mail-copy">Копировать</span>
                 </button>
                 <a class="footer-link footer-link-document" href="assets/docs/natalia-pastukhova-cv.pdf" download><svg class="footer-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M12 18v-6"></path><path d="m9 15 3 3 3-3"></path></svg>CV</a>
-                <a class="footer-link" href="https://www.behance.net/hellopepe" target="_blank" rel="noopener">Behance</a>
-                <a class="footer-link" href="https://www.instagram.com/hellopepe" target="_blank" rel="noopener">Instagram</a>
+                <a class="footer-link" href="https://www.behance.net/hellopepe" target="_blank" rel="noopener noreferrer">Behance</a>
+                <a class="footer-link" href="https://www.instagram.com/hellopepe" target="_blank" rel="noopener noreferrer">Instagram</a>
                 <button class="footer-link footer-privacy" type="button" data-privacy-open>О данных</button>
             </div>
             <div class="footer-context" aria-label="Екатеринбург: локальное время и погода">
@@ -62,6 +64,6 @@
         </div>
     </footer>
 
-    <script defer src="js/main.js?v=site-v1-19"></script>
+    <script defer src="js/main.js?v=site-v1-20"></script>
 </body>
 </html>

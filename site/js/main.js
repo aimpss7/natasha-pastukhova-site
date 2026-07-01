@@ -1676,7 +1676,7 @@ if (projectPage) {
                         <div class="slider-track" id="slider-track">
                             ${images.map((src, index) => `
                                 <div class="slider-slide">
-                                    <img src="${src}" alt="${title} — ${index + 1}" ${index === 0 ? 'loading="eager"' : 'loading="lazy"'} decoding="async">
+                                    <img src="${escapeHtml(src)}" alt="${title} — ${index + 1}" ${index === 0 ? 'loading="eager"' : 'loading="lazy"'} decoding="async">
                                 </div>`).join('')}
                         </div>
                         ${images.length > 1 ? `
@@ -1747,6 +1747,15 @@ function showSection(num) {
         const isActive = index === num - 1;
         item.classList.toggle('active', isActive);
         item.setAttribute('aria-selected', String(isActive));
+    });
+}
+
+function initSectionSwitcher() {
+    const menuItems = Array.from(document.querySelectorAll('.menu-item[aria-controls^="section-"]'));
+    if (!menuItems.length) return;
+
+    menuItems.forEach((item, index) => {
+        item.addEventListener('click', () => showSection(index + 1));
     });
 }
 
@@ -1836,6 +1845,7 @@ function initCvArchive() {
 }
 
 showSection(1);
+initSectionSwitcher();
 initCvArchive();
 
 function initShopStories() {

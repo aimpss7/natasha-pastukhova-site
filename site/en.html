@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.open-meteo.com; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'">
     <meta name="description" content="Natasha Pastukhova: public art, murals, painted urban objects and plaster reliefs.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Natasha Pastukhova">
@@ -98,19 +100,19 @@
                                     <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M12 18v-6"></path><path d="m9 15 3 3 3-3"></path></svg>
                                     CV
                                 </a>
-                                <a class="contact-chip contact-chip-social" href="https://www.instagram.com/hellopepe" target="_blank" rel="noopener">Instagram</a>
-                                <a class="contact-chip contact-chip-social" href="https://www.behance.net/hellopepe" target="_blank" rel="noopener">Behance</a>
+                                <a class="contact-chip contact-chip-social" href="https://www.instagram.com/hellopepe" target="_blank" rel="noopener noreferrer">Instagram</a>
+                                <a class="contact-chip contact-chip-social" href="https://www.behance.net/hellopepe" target="_blank" rel="noopener noreferrer">Behance</a>
                             </div>
                         </div>
 
                         <div class="content-wrapper" hidden>
                             <div class="menu-sidebar" role="tablist" aria-label="Разделы CV">
-                                <button class="menu-item active" type="button" role="tab" aria-selected="true" aria-controls="section-1" aria-label="Муралы, 42 работы" onclick="showSection(1)">Муралы <span aria-hidden="true">42</span></button>
-                                <button class="menu-item" type="button" role="tab" aria-selected="false" aria-controls="section-2" aria-label="Инсталляции, 5 работ" onclick="showSection(2)">Инсталляции <span aria-hidden="true">5</span></button>
-                                <button class="menu-item" type="button" role="tab" aria-selected="false" aria-controls="section-3" aria-label="Выставки, 23 участия" onclick="showSection(3)">Выставки <span aria-hidden="true">23</span></button>
-                                <button class="menu-item" type="button" role="tab" aria-selected="false" aria-controls="section-4" aria-label="Коллаборации, 6 работ" onclick="showSection(4)">Коллаборации <span aria-hidden="true">6</span></button>
-                                <button class="menu-item" type="button" role="tab" aria-selected="false" aria-controls="section-5" aria-label="Кураторство, 3 проекта" onclick="showSection(5)">Кураторство <span aria-hidden="true">3</span></button>
-                                <button class="menu-item" type="button" role="tab" aria-selected="false" aria-controls="section-6" aria-label="Мастер-классы, 15 событий" onclick="showSection(6)">Мастер-классы <span aria-hidden="true">15</span></button>
+                                <button class="menu-item active" type="button" role="tab" aria-selected="true" aria-controls="section-1" aria-label="Муралы, 42 работы">Муралы <span aria-hidden="true">42</span></button>
+                                <button class="menu-item" type="button" role="tab" aria-selected="false" aria-controls="section-2" aria-label="Инсталляции, 5 работ">Инсталляции <span aria-hidden="true">5</span></button>
+                                <button class="menu-item" type="button" role="tab" aria-selected="false" aria-controls="section-3" aria-label="Выставки, 23 участия">Выставки <span aria-hidden="true">23</span></button>
+                                <button class="menu-item" type="button" role="tab" aria-selected="false" aria-controls="section-4" aria-label="Коллаборации, 6 работ">Коллаборации <span aria-hidden="true">6</span></button>
+                                <button class="menu-item" type="button" role="tab" aria-selected="false" aria-controls="section-5" aria-label="Кураторство, 3 проекта">Кураторство <span aria-hidden="true">3</span></button>
+                                <button class="menu-item" type="button" role="tab" aria-selected="false" aria-controls="section-6" aria-label="Мастер-классы, 15 событий">Мастер-классы <span aria-hidden="true">15</span></button>
                             </div>
 
                             <div class="sections-container">
@@ -312,6 +314,6 @@
         </div>
     </footer>
 
-    <script defer src="js/main.js?v=site-v1-48"></script>
+    <script defer src="js/main.js?v=site-v1-49"></script>
 </body>
 </html>
