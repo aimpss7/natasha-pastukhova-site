@@ -262,6 +262,11 @@ function initReadableTypography(root = document) {
         '.shop-item p',
         '.project-description',
         '.project-facts-notes',
+        '.project-title',
+        '.project-title-button',
+        '.project-card-inline h3',
+        '.story-copy h3',
+        '.project-detail-copy h3',
         '.project-detail-copy p',
         '.project-detail-credits p',
         '.privacy-content p',
@@ -727,7 +732,7 @@ async function loadProjectsData() {
     }
 
     try {
-        const response = await fetch('assets/data/projects.json?v=site-v1-12');
+        const response = await fetch('assets/data/projects.json?v=site-v1-13');
         if (!response.ok) throw new Error('Network error');
         return await response.json();
     } catch (e) {
@@ -991,24 +996,29 @@ if (projectsGrid) {
     let projectDisclosureController = null;
 
     function heroCandidates(projects) {
-        const preferred = [
-            'mayak',
-            'wooden-idols',
-            'dushi-ne-chayu-yaroslavl'
-        ];
         const visible = (projects || []).filter(project => !project.hidden && (project.cover || (project.images && project.images.length)));
-        const ranked = visible
-            .filter(project => Number.isFinite(project.heroRank))
-            .sort((a, b) => a.heroRank - b.heroRank);
-        const curated = ranked.length
-            ? ranked
-            : preferred
-                .map(id => visible.find(project => project.id === id))
-                .filter(Boolean);
-        const curatedIds = new Set(curated.map(project => project.id));
-        return curated
-            .concat(visible.filter(project => !curatedIds.has(project.id)))
-            .slice(0, 3);
+        const items = [];
+
+        visible.forEach(project => {
+            const preferredImages = Array.isArray(project.heroImages) && project.heroImages.length
+                ? project.heroImages
+                : [project.cover, ...(project.images || [])];
+            preferredImages
+                .map(fixPath)
+                .filter(Boolean)
+                .forEach((src, index) => {
+                    items.push({
+                        project,
+                        src,
+                        rank: Number.isFinite(project.heroRank) ? project.heroRank : 50,
+                        index
+                    });
+                });
+        });
+
+        return items
+            .sort((a, b) => (a.rank - b.rank) || (a.index - b.index))
+            .slice(0, 18);
     }
 
     function renderHeroWorks(projects) {
@@ -1021,9 +1031,10 @@ if (projectsGrid) {
         const items = heroCandidates(projects);
         if (!items.length) return;
 
-        function show(project, index) {
+        function show(item, index) {
+            const project = item.project || item;
             const title = projectTitle(project);
-            const src = fixPath(project.cover || projectImages(project)[0] || '');
+            const src = fixPath(item.src || project.cover || projectImages(project)[0] || '');
             const captionTitle = title ? `«${title}»` : '';
             const captionDetails = [projectLocation(project), project.year].filter(Boolean).join(', ');
             const cardAnchor = project.id ? `#work-${project.id}` : '#cards-start';
@@ -1056,10 +1067,11 @@ if (projectsGrid) {
             heroWorks.innerHTML = '';
         }
 
-        show(items[0], 0);
+        const initialIndex = items.length > 1 ? Math.floor(Math.random() * items.length) : 0;
+        show(items[initialIndex], initialIndex);
 
         if (items.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            let current = 0;
+            let current = initialIndex;
             window.setInterval(() => {
                 current = (current + 1) % items.length;
                 show(items[current], current);
@@ -1183,8 +1195,45 @@ if (projectsGrid) {
 
         document.body.classList.remove('project-overlay-open');
         projectsGrid.innerHTML = html;
+        initReadableTypography(projectsGrid);
         initStoryCards(projects);
         initProjectDisclosure(projects);
+    }
+
+    function bindGalleryGestures(element, handlers) {
+        if (!element || !handlers) return;
+
+        let startX = 0;
+        let startY = 0;
+        let wheelLock = false;
+
+        element.addEventListener('touchstart', event => {
+            const touch = event.touches[0];
+            if (!touch) return;
+            startX = touch.clientX;
+            startY = touch.clientY;
+        }, { passive: true });
+
+        element.addEventListener('touchend', event => {
+            const touch = event.changedTouches[0];
+            if (!touch) return;
+            const dx = touch.clientX - startX;
+            const dy = touch.clientY - startY;
+            if (Math.abs(dx) < 36 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
+            if (dx < 0) handlers.next();
+            else handlers.prev();
+        }, { passive: true });
+
+        element.addEventListener('wheel', event => {
+            if (Math.abs(event.deltaX) < 24 || Math.abs(event.deltaX) < Math.abs(event.deltaY) * 1.35 || wheelLock) return;
+            event.preventDefault();
+            wheelLock = true;
+            if (event.deltaX > 0) handlers.next();
+            else handlers.prev();
+            window.setTimeout(() => {
+                wheelLock = false;
+            }, 420);
+        }, { passive: false });
     }
 
     function initStoryCards(projects) {
@@ -1207,8 +1256,15 @@ if (projectsGrid) {
                 dots.forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === current));
             }
 
-            card.querySelector('.story-prev').addEventListener('click', () => show(current - 1));
-            card.querySelector('.story-next').addEventListener('click', () => show(current + 1));
+            const showPrev = () => show(current - 1);
+            const showNext = () => show(current + 1);
+
+            card.querySelector('.story-prev').addEventListener('click', showPrev);
+            card.querySelector('.story-next').addEventListener('click', showNext);
+            bindGalleryGestures(card.querySelector('.story-media'), {
+                prev: showPrev,
+                next: showNext
+            });
         });
     }
 
@@ -1229,7 +1285,21 @@ if (projectsGrid) {
     }
 
     function projectCreditBlocks(project) {
-        return projectCredits(project);
+        const duplicateMetaPattern = [
+            project.year,
+            projectLocation(project),
+            projectCategory(project)
+        ].filter(Boolean).map(value => String(value).trim().toLowerCase());
+
+        return projectCredits(project).filter((credit, index) => {
+            if (index !== 0 || duplicateMetaPattern.length < 2) return true;
+            const normalized = String(credit)
+                .replace(/<br\s*\/?>/gi, ' ')
+                .replace(/\s+/g, ' ')
+                .trim()
+                .toLowerCase();
+            return !duplicateMetaPattern.every(value => normalized.includes(value));
+        });
     }
 
     function renderProjectCredit(value) {
@@ -1872,6 +1942,9 @@ function initShopStories() {
         }
 
         let current = 0;
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let wheelLock = false;
 
         function show(nextIndex) {
             current = (nextIndex + images.length) % images.length;
@@ -1893,6 +1966,32 @@ function initShopStories() {
             event.preventDefault();
             show(current + 1);
         });
+
+        story.addEventListener('touchstart', event => {
+            const touch = event.touches[0];
+            if (!touch) return;
+            touchStartX = touch.clientX;
+            touchStartY = touch.clientY;
+        }, { passive: true });
+
+        story.addEventListener('touchend', event => {
+            const touch = event.changedTouches[0];
+            if (!touch) return;
+            const dx = touch.clientX - touchStartX;
+            const dy = touch.clientY - touchStartY;
+            if (Math.abs(dx) < 36 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
+            show(dx < 0 ? current + 1 : current - 1);
+        }, { passive: true });
+
+        story.addEventListener('wheel', event => {
+            if (Math.abs(event.deltaX) < 24 || Math.abs(event.deltaX) < Math.abs(event.deltaY) * 1.35 || wheelLock) return;
+            event.preventDefault();
+            wheelLock = true;
+            show(event.deltaX > 0 ? current + 1 : current - 1);
+            window.setTimeout(() => {
+                wheelLock = false;
+            }, 420);
+        }, { passive: false });
 
         show(0);
     });
