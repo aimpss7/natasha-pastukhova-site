@@ -11,23 +11,23 @@
     "url": "/projects/project-1/",
     "location": "Екатеринбург",
     "desc": "Мурал создан в рамках фестиваля «Стенограффия» в Екатеринбурге. Работа изображает разных животных, объединённых темой соседства и близости — тех, кого мы встречаем в городе и за его пределами. Орнаментальные паттерны и геометрия создают единое пространство, в котором каждый находит своё место.",
-    "cover": "/assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6775-ph.jpg",
+    "cover": "assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6775-ph.jpg",
     "credits": [
       "2024<br>Екатеринбург, Россия<br>Мурал<br>Аэрозоль и акрил<br>18 × 12 м",
       "Фестиваль «Стенограффия»<br>Куратор Лия Чечик",
       "Фото: Иван Смирнов<br>При поддержке<br>администрации города"
     ],
     "images": [
-      "/assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6775-ph.jpg",
-      "/assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6803-ph.jpg",
-      "/assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6804-ph.jpg",
-      "/assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6805-ph.jpg",
-      "/assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6809-ph.jpg",
-      "/assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6828-ph.jpg",
-      "/assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6845-ph.jpg",
-      "/assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6863-ph.jpg",
-      "/assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6877-ph.jpg",
-      "/assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6902-ph.jpg"
+      "assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6775-ph.jpg",
+      "assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6803-ph.jpg",
+      "assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6804-ph.jpg",
+      "assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6805-ph.jpg",
+      "assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6809-ph.jpg",
+      "assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6828-ph.jpg",
+      "assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6845-ph.jpg",
+      "assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6863-ph.jpg",
+      "assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6877-ph.jpg",
+      "assets/images/projects/project-1/26-02-11_Lisitsin_Pastuhova_6902-ph.jpg"
     ],
     "rotation": -0.2192
   },
@@ -43,14 +43,14 @@
     "url": "",
     "location": "Екатеринбург",
     "desc": "Роспись объекта в Екатеринбурге. Вертикальная форма работает как городской ориентир: яркие красно-голубые блоки и простые фигуры меняют ощущение места в разное время года.",
-    "cover": "/assets/images/projects/mayak/cover.jpg",
+    "cover": "assets/images/projects/mayak/cover.jpg",
     "images": [
-      "/assets/images/projects/mayak/story-01.jpg",
-      "/assets/images/projects/mayak/story-02.jpg",
-      "/assets/images/projects/mayak/story-03.jpg",
-      "/assets/images/projects/mayak/story-04.jpg",
-      "/assets/images/projects/mayak/story-05.jpg",
-      "/assets/images/projects/mayak/story-06.jpg"
+      "assets/images/projects/mayak/story-01.jpg",
+      "assets/images/projects/mayak/story-02.jpg",
+      "assets/images/projects/mayak/story-03.jpg",
+      "assets/images/projects/mayak/story-04.jpg",
+      "assets/images/projects/mayak/story-05.jpg",
+      "assets/images/projects/mayak/story-06.jpg"
     ],
     "imageStatus": "web-cover-and-story-ready",
     "sourceFolders": [
@@ -71,15 +71,15 @@
     "url": "",
     "location": "Ярославль",
     "desc": "Мурал для проекта «Души не чаю» в Ярославле. Работа разворачивается вдоль городской поверхности как протяженная цветная сцена: крупные персонажи, бытовые детали и декоративные формы собирают фасад в цельный визуальный рассказ.",
-    "cover": "/assets/images/projects/dushi-ne-chayu-yaroslavl/cover.jpg",
-    "previewImage": "/assets/images/projects/dushi-ne-chayu-yaroslavl/story-03.jpg",
+    "cover": "assets/images/projects/dushi-ne-chayu-yaroslavl/cover.jpg",
+    "previewImage": "assets/images/projects/dushi-ne-chayu-yaroslavl/story-03.jpg",
     "images": [
-      "/assets/images/projects/dushi-ne-chayu-yaroslavl/story-01.jpg",
-      "/assets/images/projects/dushi-ne-chayu-yaroslavl/story-02.jpg",
-      "/assets/images/projects/dushi-ne-chayu-yaroslavl/story-03.jpg",
-      "/assets/images/projects/dushi-ne-chayu-yaroslavl/story-04.jpg",
-      "/assets/images/projects/dushi-ne-chayu-yaroslavl/story-05.jpg",
-      "/assets/images/projects/dushi-ne-chayu-yaroslavl/story-06.jpg"
+      "assets/images/projects/dushi-ne-chayu-yaroslavl/story-01.jpg",
+      "assets/images/projects/dushi-ne-chayu-yaroslavl/story-02.jpg",
+      "assets/images/projects/dushi-ne-chayu-yaroslavl/story-03.jpg",
+      "assets/images/projects/dushi-ne-chayu-yaroslavl/story-04.jpg",
+      "assets/images/projects/dushi-ne-chayu-yaroslavl/story-05.jpg",
+      "assets/images/projects/dushi-ne-chayu-yaroslavl/story-06.jpg"
     ],
     "imageStatus": "web-cover-and-story-ready",
     "sourceFolders": [
@@ -100,7 +100,7 @@
     "url": "",
     "location": "Иваново",
     "desc": "Мурал для проекта «Души не чаю» в Иваново. Длинная горизонтальная композиция работает с ритмом фасада: окна, цветовые блоки, растительные мотивы и мягкие фигуры связывают архитектуру с повседневным городским движением.",
-    "cover": "/assets/images/projects/dushi-ne-chayu-ivanovo/cover.jpg",
+    "cover": "assets/images/projects/dushi-ne-chayu-ivanovo/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
       "materials/source-photos/Самокат_Иваново"
@@ -120,7 +120,7 @@
     "url": "",
     "location": "Вологда",
     "desc": "Мурал для проекта «Души не чаю» в Вологде. Роспись вытянута вдоль городской стены и собирает узнаваемые бытовые образы в яркую декоративную ленту, которую можно считывать и издалека, и при движении вдоль объекта.",
-    "cover": "/assets/images/projects/dushi-ne-chayu-vologda/cover.jpg",
+    "cover": "assets/images/projects/dushi-ne-chayu-vologda/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
       "materials/source-photos/Самокат_Вологда"
@@ -153,7 +153,7 @@
     "url": "",
     "location": "Екатеринбург",
     "desc": "Серия деревянных объектов для фестиваля паблик-арта ЧО. Скульптуры сохраняют след ручной работы и выглядят как группа вертикальных персонажей, встроенных в природный ландшафт и меняющих масштаб прогулочного пространства.",
-    "cover": "/assets/images/projects/wooden-idols/cover.jpg",
+    "cover": "assets/images/projects/wooden-idols/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
       "materials/source-photos/ЧО_идолы"
@@ -170,7 +170,7 @@
     "url": "",
     "location": "Певек",
     "desc": "Муральный триптих в Певеке. Три фасада объединены мотивами ночного неба, животных и циклического движения; работа связывает северный городской пейзаж с ярким орнаментальным рассказом.",
-    "cover": "/assets/images/projects/moon-cycle/cover.jpg",
+    "cover": "assets/images/projects/moon-cycle/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
       "materials/source-photos/Фазы луны, Певек 22"
@@ -187,7 +187,7 @@
     "url": "",
     "location": "Анадырь",
     "desc": "Мурал в Анадыре. Композиция построена на северных растительных мотивах: крупные ягоды, мягкие цветовые пятна и слоистые формы превращают фасад в спокойный, но заметный городской знак.",
-    "cover": "/assets/images/projects/moroshka/cover.jpg",
+    "cover": "assets/images/projects/moroshka/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
       "materials/source-photos/Морошка_Анадырь 22"
@@ -204,7 +204,7 @@
     "url": "",
     "location": "Анадырь",
     "desc": "Мурал в Анадыре. Фасад заполняют крупные округлые формы, напоминающие морские камни и живые природные паттерны; работа добавляет в городскую среду яркий, почти тактильный слой.",
-    "cover": "/assets/images/projects/sea-stones/cover.jpg",
+    "cover": "assets/images/projects/sea-stones/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
       "materials/source-photos/Морские камушки_Анадырь 22"
@@ -247,7 +247,7 @@
     "url": "",
     "location": "Екатеринбург",
     "desc": "Роспись троллейбуса для фестиваля «Стенограффия». Работа переносит художественный язык Наташи на движущийся городской объект: цветные формы, растения и персонажи становятся частью маршрута и повседневного транспорта.",
-    "cover": "/assets/images/projects/july/cover.jpg",
+    "cover": "assets/images/projects/july/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
       "materials/source-photos/ИЮЛЬ_Стенограффия 21г Екатеринбург"
@@ -280,7 +280,7 @@
     "url": "",
     "location": "Екатеринбург",
     "desc": "Мурал для фестиваля «Стенограффия XI» в Екатеринбурге. Работа занимает торец жилого дома и смотрит во двор как большой цветной персонаж; тема соседства здесь буквально встроена в городскую повседневность.",
-    "cover": "/assets/images/projects/neighbors/cover.jpg",
+    "cover": "assets/images/projects/neighbors/cover.jpg",
     "imageStatus": "web-cover-ready",
     "sourceFolders": [
       "materials/source-photos/Соседи"

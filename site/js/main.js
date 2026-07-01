@@ -641,7 +641,7 @@ async function loadProjectsData() {
     }
 
     try {
-        const response = await fetch('assets/data/projects.json?v=site-v1-10');
+        const response = await fetch('assets/data/projects.json?v=site-v1-11');
         if (!response.ok) throw new Error('Network error');
         return await response.json();
     } catch (e) {
