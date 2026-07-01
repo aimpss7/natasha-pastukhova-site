@@ -3,25 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Страница проекта Наташи Пастуховой: описание, фотографии, место, год и связанные работы.">
     <title>Наташа Пастухова — Проект</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="css/style.css?v=site-v1-19">
+    <link rel="stylesheet" href="css/style.css?v=site-v1-49">
 </head>
 <body>
 
-    <div class="header">
+    <header class="header">
         <a href="index.html" class="header-logo">
-            Наташа Пастухова<span class="heart" aria-hidden="true">♥</span>
+            <span class="brand-full">Наташа Пастухова</span><span class="brand-short">Пастухова</span><span class="heart" aria-hidden="true">♥</span>
         </a>
-        <div class="header-menu">
-            <a href="index.html#cards-start">Работы</a>
-            <a href="about.html">Био</a>
-            <a href="shop.html">Магазин</a>
+        <div class="header-menu" id="site-menu">
+            <a href="index.html#projects" aria-current="page">Проекты</a>
+            <a href="index.html#artist">О художнице</a>
+            <a href="index.html#shop">Магазин</a>
         </div>
-        <div class="header-lang">
-            <span class="lang-toggle" aria-label="Русская версия сайта">RU</span>
+        <button class="header-burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-menu" data-nav-toggle>
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="header-lang" aria-label="Язык сайта">
+            <a class="lang-toggle is-active" href="project.html" lang="ru" aria-current="true" aria-label="Русская версия сайта">RU</a>
+            <button class="lang-toggle" type="button" lang="en" data-lang-pending aria-label="English version in progress">EN</button>
         </div>
-    </div>
+    </header>
 
     <main id="project-page" aria-live="polite">
         <div class="project-loading">Загрузка проекта</div>
@@ -35,31 +42,26 @@
         <button id="lb-close" type="button" aria-label="Закрыть просмотр">×</button>
     </div>
 
-    <div class="footer">
+    <footer class="footer">
         <div class="footer-content">
-            <div class="footer-col footer-brand">
-                <span>Наташа Пастухова</span>
-                <span>Паблик-арт</span>
-                <span>2026</span>
-            </div>
-            <div class="footer-col footer-contact">
-                <a class="footer-link" href="mailto:hipastukhova@gmail.com">Написать на почту</a>
-            </div>
-            <div class="footer-col footer-socials" aria-label="Соцсети">
+            <div class="footer-service" aria-label="Контакты и профессиональные ссылки">
+                <button class="footer-link footer-link-primary footer-mail" type="button" data-copy-mail="hipastukhova@gmail.com" aria-expanded="false">
+                    <svg class="footer-icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                    <span class="contact-mail-label">Почта</span>
+                    <span class="contact-mail-value">hipastukhova@gmail.com</span>
+                    <span class="contact-mail-copy">Копировать</span>
+                </button>
+                <a class="footer-link footer-link-document" href="assets/docs/natalia-pastukhova-cv.pdf" download><svg class="footer-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M12 18v-6"></path><path d="m9 15 3 3 3-3"></path></svg>CV</a>
                 <a class="footer-link" href="https://www.behance.net/hellopepe" target="_blank" rel="noopener">Behance</a>
                 <a class="footer-link" href="https://www.instagram.com/hellopepe" target="_blank" rel="noopener">Instagram</a>
+                <button class="footer-link footer-privacy" type="button" data-privacy-open>О данных</button>
             </div>
-            <div class="footer-col footer-cv">
-                <a class="footer-link" href="assets/docs/natalia-pastukhova-cv.pdf" download>Скачать CV</a>
-            </div>
-            <div class="footer-col footer-local" aria-label="Екатеринбург">
-                <span>Екатеринбург</span>
-                <span class="ekb-time" id="ekb-time">00:00:00</span>
-                <span class="ekb-weather" id="weather-temp"></span>
+            <div class="footer-context" aria-label="Екатеринбург: локальное время и погода">
+                <span class="footer-live">В Екатеринбурге <span class="ekb-time" id="ekb-time">00:00</span><span class="ekb-weather" id="weather-temp"></span></span>
             </div>
         </div>
-    </div>
+    </footer>
 
-    <script defer src="js/main.js?v=site-v1-9"></script>
+    <script defer src="js/main.js?v=site-v1-19"></script>
 </body>
 </html>

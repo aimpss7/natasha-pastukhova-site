@@ -3,35 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Биография Наташи Пастуховой: CV, муралы, инсталляции, выставки, коллаборации, кураторство и мастер-классы.">
     <title>Наташа Пастухова — Биография</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="css/style.css?v=site-v1-19">
+    <link rel="stylesheet" href="css/style.css?v=site-v1-49">
 </head>
 <body>
     <!-- HEADER -->
-    <div class="header">
+    <header class="header">
         <a href="index.html" class="header-logo">
-            Наташа Пастухова<span class="heart" aria-hidden="true">♥</span>
+            <span class="brand-full">Наташа Пастухова</span><span class="brand-short">Пастухова</span><span class="heart" aria-hidden="true">♥</span>
         </a>
-        <div class="header-menu">
-            <a href="index.html#cards-start">Работы</a>
-            <a href="about.html">Био</a>
-            <a href="shop.html">Магазин</a>
+        <div class="header-menu" id="site-menu">
+            <a href="index.html#projects">Проекты</a>
+            <a href="index.html#artist" aria-current="page">О художнице</a>
+            <a href="index.html#shop">Магазин</a>
         </div>
-        <div class="header-lang">
-            <span class="lang-toggle" aria-label="Русская версия сайта">RU</span>
+        <button class="header-burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-menu" data-nav-toggle>
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="header-lang" aria-label="Язык сайта">
+            <a class="lang-toggle is-active" href="about.html" lang="ru" aria-current="true" aria-label="Русская версия сайта">RU</a>
+            <button class="lang-toggle" type="button" lang="en" data-lang-pending aria-label="English version in progress">EN</button>
         </div>
-    </div>
+    </header>
 
     <!-- MAIN CONTENT -->
-    <div class="main-content">
+    <main class="main-content">
         <div class="container">
             <!-- TWO COLUMN LAYOUT 50/50 -->
             <div class="two-column-layout">
                 <!-- LEFT: PHOTO 16:9 В ОВАЛЕ -->
                 <div class="photo-column">
                     <div class="photo-container">
-                        <img src="ava_1.jpg" alt="Наташа Пастухова">
+                        <img src="ava_1.jpg" alt="Наташа Пастухова" decoding="async">
                     </div>
                 </div>
 
@@ -41,13 +48,22 @@
                     <div class="cv-section">
                         <h1 class="about-title">Наташа Пастухова</h1>
                         <div class="cv-bio">
-                            Наташа Пастухова (р. 1985, Свердловск) — художница паблик-арта из Екатеринбурга. С 2003 года делает муралы, объекты и росписи для городской среды; в основе практики — животные, орнамент и геометрия. Окончила УралГАХА по промышленному дизайну и получила степень бакалавра дизайна в Университете Хаддерсфилда.
+                            <p>Наташа Пастухова (р. 1985, Свердловск) — художница паблик-арта из Екатеринбурга. С 2003 года делает муралы, объекты и росписи для городской среды; в основе практики — животные, орнамент и геометрия.</p>
+                            <p>Окончила УралГАХА по промышленному дизайну и получила степень бакалавра дизайна в Университете Хаддерсфилда.</p>
                         </div>
-                        <div class="about-actions" aria-label="Контакты и CV">
-                            <a href="assets/docs/natalia-pastukhova-cv.pdf" download>Скачать CV</a>
-                            <a href="mailto:hipastukhova@gmail.com">Написать</a>
-                            <a href="https://www.behance.net/hellopepe" target="_blank" rel="noopener">Behance</a>
-                            <a href="https://www.instagram.com/hellopepe" target="_blank" rel="noopener">Instagram</a>
+                        <div class="contact-chips about-actions" aria-label="Контакты и CV">
+                            <a class="contact-chip contact-chip-document" href="assets/docs/natalia-pastukhova-cv.pdf" download>
+                                <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M12 18v-6"></path><path d="m9 15 3 3 3-3"></path></svg>
+                                CV
+                            </a>
+                            <a class="contact-chip contact-chip-social" href="https://www.behance.net/hellopepe" target="_blank" rel="noopener">Behance</a>
+                            <a class="contact-chip contact-chip-social" href="https://www.instagram.com/hellopepe" target="_blank" rel="noopener">Instagram</a>
+                            <button class="contact-chip contact-mail contact-chip-mail" type="button" data-copy-mail="hipastukhova@gmail.com" aria-expanded="false">
+                                <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                                <span class="contact-mail-label">Почта</span>
+                                <span class="contact-mail-value">hipastukhova@gmail.com</span>
+                                <span class="contact-mail-copy">Копировать</span>
+                            </button>
                         </div>
                     </div>
 
@@ -67,8 +83,15 @@
                         <div class="sections-container">
                             <!-- SECTION 1: МУРАЛЫ -->
                             <div class="section active" id="section-1">
-                                <div class="subsection-title">Фестивали</div>
-                                <table>
+                                <div class="cv-archive" data-cv-archive>
+                                    <div class="cv-subtabs" role="tablist" aria-label="Типы муралов">
+                                        <button class="cv-subtab active" type="button" role="tab" aria-selected="true" aria-controls="murals-festivals" data-cv-group-trigger="festivals">Фестивали <span>28</span></button>
+                                        <button class="cv-subtab" type="button" role="tab" aria-selected="false" aria-controls="murals-projects" data-cv-group-trigger="projects">Проекты <span>17</span></button>
+                                    </div>
+
+                                    <div class="cv-group active" id="murals-festivals" role="tabpanel" data-cv-group="festivals">
+                                        <div class="subsection-title">Фестивали</div>
+                                        <table data-preview-limit="10">
                                     <tr><td class="col-year">2024</td><td class="col-content"><span class="work-title">«Все мои друзья»</span><span class="work-location">Екатеринбург</span><span class="work-details">«Стенограффия»</span></td><td class="col-location">Екатеринбург</td></tr>
                                     <tr><td class="col-year">2022</td><td class="col-content"><span class="work-title">«Деревянные идолы»</span><span class="work-location">Екатеринбург</span><span class="work-details">инсталляция, паблик-арт «ЧО»</span></td><td class="col-location">Екатеринбург</td></tr>
                                     <tr><td class="col-year">2021</td><td class="col-content"><span class="work-title">Троллейбус «Июль»</span><span class="work-location">Екатеринбург</span><span class="work-details">«Стенограффия»</span></td><td class="col-location">Екатеринбург</td></tr>
@@ -97,10 +120,13 @@
                                     <tr><td class="col-year">2006</td><td class="col-content"><span class="work-title">«4 годовщины»</span><span class="work-location">Екатеринбург</span><span class="work-details">«Длинные истории Екатеринбурга 4»</span></td><td class="col-location">Екатеринбург</td></tr>
                                     <tr><td class="col-year">2004</td><td class="col-content"><span class="work-title">«Communal»</span><span class="work-location">Екатеринбург</span><span class="work-details">«Длинные истории Екатеринбурга 2»</span></td><td class="col-location">Екатеринбург</td></tr>
                                     <tr><td class="col-year">2003</td><td class="col-content"><span class="work-title">«Захват 4 овощебазы»</span><span class="work-location">Екатеринбург</span><span class="work-details">«Длинные истории Екатеринбурга»</span></td><td class="col-location">Екатеринбург</td></tr>
-                                </table>
+                                        </table>
+                                        <button class="cv-show-more" type="button" data-cv-show-more data-collapsed-label="Показать все фестивали" data-expanded-label="Свернуть фестивали">Показать все фестивали</button>
+                                    </div>
 
-                                <div class="subsection-title">Проекты</div>
-                                <table>
+                                    <div class="cv-group" id="murals-projects" role="tabpanel" data-cv-group="projects" hidden>
+                                        <div class="subsection-title">Проекты</div>
+                                        <table data-preview-limit="10">
                                     <tr><td class="col-year">2022</td><td class="col-content"><span class="work-title">«Морошка»</span><span class="work-location">Анадырь</span></td><td class="col-location">Анадырь</td></tr>
                                     <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Морские камушки»</span><span class="work-location">Анадырь</span></td><td class="col-location">Анадырь</td></tr>
                                     <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Цикл Луны»</span><span class="work-location">Певек</span><span class="work-details">триптих</span></td><td class="col-location">Певек</td></tr>
@@ -118,7 +144,10 @@
                                     <tr><td class="col-year">2017</td><td class="col-content"><span class="work-title">Фасад девятиэтажки</span><span class="work-location">Новотроицк</span><span class="work-details">без названия</span></td><td class="col-location">Новотроицк</td></tr>
                                     <tr><td class="col-year">2011</td><td class="col-content"><span class="work-title">«Сказочный лес»</span><span class="work-location">Москва</span><span class="work-details">проект «The wall»</span></td><td class="col-location">Москва</td></tr>
                                     <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Заповедник»</span><span class="work-location">Кудымкар</span></td><td class="col-location">Кудымкар</td></tr>
-                                </table>
+                                        </table>
+                                        <button class="cv-show-more" type="button" data-cv-show-more data-collapsed-label="Показать все проекты" data-expanded-label="Свернуть проекты">Показать все проекты</button>
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- Остальные секции сокращены -->
@@ -169,34 +198,29 @@
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <!-- FOOTER С ЕКАТЕРИНБУРГОМ -->
-    <div class="footer">
+    <footer class="footer">
         <div class="footer-content">
-            <div class="footer-col footer-brand">
-                <span>Наташа Пастухова</span>
-                <span>Паблик-арт</span>
-                <span>2026</span>
-            </div>
-            <div class="footer-col footer-contact">
-                <a class="footer-link" href="mailto:hipastukhova@gmail.com">Написать на почту</a>
-            </div>
-            <div class="footer-col footer-socials" aria-label="Соцсети">
+            <div class="footer-service" aria-label="Контакты и профессиональные ссылки">
+                <button class="footer-link footer-link-primary footer-mail" type="button" data-copy-mail="hipastukhova@gmail.com" aria-expanded="false">
+                    <svg class="footer-icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                    <span class="contact-mail-label">Почта</span>
+                    <span class="contact-mail-value">hipastukhova@gmail.com</span>
+                    <span class="contact-mail-copy">Копировать</span>
+                </button>
+                <a class="footer-link footer-link-document" href="assets/docs/natalia-pastukhova-cv.pdf" download><svg class="footer-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M12 18v-6"></path><path d="m9 15 3 3 3-3"></path></svg>CV</a>
                 <a class="footer-link" href="https://www.behance.net/hellopepe" target="_blank" rel="noopener">Behance</a>
                 <a class="footer-link" href="https://www.instagram.com/hellopepe" target="_blank" rel="noopener">Instagram</a>
+                <button class="footer-link footer-privacy" type="button" data-privacy-open>О данных</button>
             </div>
-            <div class="footer-col footer-cv">
-                <a class="footer-link" href="assets/docs/natalia-pastukhova-cv.pdf" download>Скачать CV</a>
-            </div>
-            <div class="footer-col footer-local" aria-label="Екатеринбург">
-                <span>Екатеринбург</span>
-                <span class="ekb-time" id="ekb-time">00:00:00</span>
-                <span class="ekb-weather" id="weather-temp"></span>
+            <div class="footer-context" aria-label="Екатеринбург: локальное время и погода">
+                <span class="footer-live">В Екатеринбурге <span class="ekb-time" id="ekb-time">00:00</span><span class="ekb-weather" id="weather-temp"></span></span>
             </div>
         </div>
-    </div>
+    </footer>
 
-    <script defer src="js/main.js?v=site-v1-9"></script>
+    <script defer src="js/main.js?v=site-v1-19"></script>
 </body>
 </html>

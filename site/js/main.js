@@ -6,8 +6,7 @@ function updateEkbTime() {
     const ekbTime = new Date().toLocaleTimeString('ru-RU', {
         timeZone: 'Asia/Yekaterinburg',
         hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
+        minute: '2-digit'
     });
 
     timeElements.forEach(element => {
@@ -27,7 +26,7 @@ async function updateEkbWeather() {
     const cacheDuration = 24 * 60 * 60 * 1000; // 24 часа
     const setWeatherTemp = temp => {
         weatherElements.forEach(element => {
-            element.textContent = temp;
+            element.textContent = element.closest('.footer-live') ? `, ${temp}` : temp;
             element.hidden = false;
         });
     };
@@ -75,6 +74,8 @@ const siteHeader = document.querySelector('.header');
 if (siteHeader) {
     let headerCompact = false;
     let headerTicking = false;
+    const navToggle = siteHeader.querySelector('[data-nav-toggle]');
+    const mobileNavQuery = window.matchMedia('(max-width: 760px)');
 
     function updateHeaderState() {
         const shouldCompact = window.scrollY > 32;
@@ -94,7 +95,236 @@ if (siteHeader) {
 
     updateHeaderState();
     window.addEventListener('scroll', requestHeaderState, { passive: true });
+
+    function setHeaderMenu(open) {
+        siteHeader.classList.toggle('nav-open', open);
+        if (navToggle) {
+            navToggle.setAttribute('aria-expanded', String(open));
+            navToggle.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+        }
+    }
+
+    if (navToggle) {
+        navToggle.addEventListener('click', event => {
+            event.stopPropagation();
+            setHeaderMenu(!siteHeader.classList.contains('nav-open'));
+        });
+
+        siteHeader.querySelectorAll('.header-menu a').forEach(link => {
+            link.addEventListener('click', () => setHeaderMenu(false));
+        });
+
+        document.addEventListener('click', event => {
+            if (!siteHeader.classList.contains('nav-open')) return;
+            if (siteHeader.contains(event.target)) return;
+            setHeaderMenu(false);
+        });
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') setHeaderMenu(false);
+        });
+
+        mobileNavQuery.addEventListener('change', event => {
+            if (!event.matches) setHeaderMenu(false);
+        });
+    }
 }
+
+// ========== SHARED: CONTACT MAIL CHIPS ==========
+function initMailChips() {
+    const mailChips = document.querySelectorAll('[data-copy-mail]');
+    if (!mailChips.length) return;
+
+    async function copyText(value) {
+        if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(value);
+            return true;
+        }
+
+        const textarea = document.createElement('textarea');
+        textarea.value = value;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.select();
+        const copied = document.execCommand('copy');
+        textarea.remove();
+        return copied;
+    }
+
+    mailChips.forEach(chip => {
+        const mail = chip.dataset.copyMail || '';
+        const copyLabel = chip.querySelector('.contact-mail-copy');
+        let resetTimer = null;
+
+        chip.addEventListener('click', async () => {
+            if (!chip.classList.contains('is-expanded')) {
+                chip.classList.add('is-expanded');
+                chip.setAttribute('aria-expanded', 'true');
+                return;
+            }
+
+            try {
+                await copyText(mail);
+                chip.classList.add('is-copied');
+                if (copyLabel) copyLabel.textContent = 'Скопировано';
+                window.clearTimeout(resetTimer);
+                resetTimer = window.setTimeout(() => {
+                    chip.classList.remove('is-copied');
+                    if (copyLabel) copyLabel.textContent = 'Копировать';
+                }, 1700);
+            } catch (e) {
+                window.location.href = `mailto:${mail}`;
+            }
+        });
+    });
+}
+
+initMailChips();
+
+// ========== SHARED: PRIVACY MODAL ==========
+function initPrivacyModal() {
+    const triggers = document.querySelectorAll('[data-privacy-open]');
+    if (!triggers.length) return;
+
+    const modal = document.createElement('div');
+    modal.className = 'privacy-modal';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-labelledby', 'privacy-modal-title');
+    modal.hidden = true;
+    modal.innerHTML = `
+        <div class="privacy-modal-panel" role="document">
+            <button class="privacy-modal-close" type="button" aria-label="Закрыть">×</button>
+            <span class="privacy-modal-label">О данных</span>
+            <h2 id="privacy-modal-title">Cookies и данные</h2>
+            <p>Сайт не ставит рекламные cookies и не подключает аналитику.</p>
+            <p>Погода Екатеринбурга берется из Open-Meteo. Температура сохраняется в браузере на 24 часа, чтобы не запрашивать ее при каждом открытии.</p>
+            <p>Письма открываются в вашем почтовом приложении. Сайт не хранит заявки, платежные данные и переписку.</p>
+            <button class="privacy-modal-ok" type="button">Понятно</button>
+        </div>`;
+    document.body.appendChild(modal);
+
+    const panel = modal.querySelector('.privacy-modal-panel');
+    const closeButtons = modal.querySelectorAll('.privacy-modal-close, .privacy-modal-ok');
+    let previousFocus = null;
+
+    function openModal() {
+        previousFocus = document.activeElement;
+        modal.hidden = false;
+        document.body.classList.add('privacy-modal-open');
+        requestAnimationFrame(() => {
+            modal.classList.add('is-open');
+            const closeButton = modal.querySelector('.privacy-modal-close');
+            if (closeButton) closeButton.focus();
+        });
+    }
+
+    function closeModal() {
+        modal.classList.remove('is-open');
+        document.body.classList.remove('privacy-modal-open');
+        window.setTimeout(() => {
+            modal.hidden = true;
+            if (previousFocus && typeof previousFocus.focus === 'function') {
+                previousFocus.focus();
+            }
+        }, 160);
+    }
+
+    triggers.forEach(trigger => {
+        trigger.addEventListener('click', openModal);
+    });
+
+    closeButtons.forEach(button => {
+        button.addEventListener('click', closeModal);
+    });
+
+    modal.addEventListener('click', event => {
+        if (!panel || panel.contains(event.target)) return;
+        closeModal();
+    });
+
+    document.addEventListener('keydown', event => {
+        if (modal.hidden) return;
+        if (event.key === 'Escape') closeModal();
+    });
+}
+
+initPrivacyModal();
+
+// ========== SHARED: READABLE TYPOGRAPHY ==========
+function initReadableTypography(root = document) {
+    const textBlocks = root.querySelectorAll([
+        '.hero-summary',
+        '.cv-bio p',
+        '.shop-heading p',
+        '.shop-item p',
+        '.project-description',
+        '.project-facts-notes',
+        '.project-detail-copy p',
+        '.project-detail-credits p',
+        '.privacy-content p',
+        '.privacy-modal-panel p'
+    ].join(','));
+
+    if (!textBlocks.length) return;
+
+    const shortWordPattern = /(^|[\s(«"„])((?:в|во|к|ко|с|со|у|о|об|обо|и|а|но|на|за|из|от|до|по|не|ни|же|ли|бы|для|над|под|при|про))\s+/giu;
+
+    textBlocks.forEach(block => {
+        const walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+
+        while (walker.nextNode()) {
+            textNodes.push(walker.currentNode);
+        }
+
+        textNodes.forEach(node => {
+            node.nodeValue = node.nodeValue.replace(shortWordPattern, '$1$2\u00a0');
+        });
+    });
+}
+
+initReadableTypography();
+
+// ========== SHARED: LANGUAGE SWITCH PLACEHOLDER ==========
+function initLanguageSwitch() {
+    const pendingButtons = document.querySelectorAll('[data-lang-pending]');
+    if (!pendingButtons.length) return;
+
+    let toast = null;
+    let toastTimer = null;
+
+    function showToast(message) {
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.className = 'lang-toast';
+            toast.setAttribute('role', 'status');
+            toast.setAttribute('aria-live', 'polite');
+            document.body.appendChild(toast);
+        }
+
+        toast.textContent = message;
+        toast.classList.add('is-visible');
+        window.clearTimeout(toastTimer);
+        toastTimer = window.setTimeout(() => {
+            toast.classList.remove('is-visible');
+        }, 1700);
+    }
+
+    pendingButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            button.classList.add('is-pending');
+            showToast('English version is being prepared');
+            window.setTimeout(() => {
+                button.classList.remove('is-pending');
+            }, 1700);
+        });
+    });
+}
+
+initLanguageSwitch();
 
 // ========== PROJECT: LIGHTBOX MODULE ==========
 const Lightbox = (function() {
@@ -292,26 +522,126 @@ const FALLBACK_PROJECTS = [
         category: "Мурал",
         pageReady: true,
         cover: "assets/images/projects/dushi-ne-chayu-yaroslavl/cover.jpg",
+        images: [
+            "assets/images/projects/dushi-ne-chayu-yaroslavl/story-01.jpg",
+            "assets/images/projects/dushi-ne-chayu-yaroslavl/story-02.jpg",
+            "assets/images/projects/dushi-ne-chayu-yaroslavl/story-03.jpg",
+            "assets/images/projects/dushi-ne-chayu-yaroslavl/story-04.jpg",
+            "assets/images/projects/dushi-ne-chayu-yaroslavl/story-05.jpg",
+            "assets/images/projects/dushi-ne-chayu-yaroslavl/story-06.jpg"
+        ],
         location: "Ярославль",
-        desc: "Мурал для проекта «Души не чаю».",
+        desc: "Мурал для проекта «Души не чаю» в Ярославле. Работа разворачивается вдоль городской поверхности как протяженная цветная сцена: крупные персонажи, бытовые детали и декоративные формы собирают фасад в цельный визуальный рассказ.",
         rotation: 0.11
+    },
+    {
+        id: "dushi-ne-chayu-ivanovo",
+        name: "Души не чаю: Иваново",
+        year: 2023,
+        category: "Мурал",
+        cover: "assets/images/projects/dushi-ne-chayu-ivanovo/cover.jpg",
+        location: "Иваново",
+        desc: "Мурал для проекта «Души не чаю» в Иваново. Длинная горизонтальная композиция работает с ритмом фасада: окна, цветовые блоки, растительные мотивы и мягкие фигуры связывают архитектуру с повседневным городским движением.",
+        rotation: -0.05
+    },
+    {
+        id: "dushi-ne-chayu-vologda",
+        name: "Души не чаю: Вологда",
+        year: 2023,
+        category: "Мурал",
+        cover: "assets/images/projects/dushi-ne-chayu-vologda/cover.jpg",
+        location: "Вологда",
+        desc: "Мурал для проекта «Души не чаю» в Вологде. Роспись вытянута вдоль городской стены и собирает узнаваемые бытовые образы в яркую декоративную ленту, которую можно считывать и издалека, и при движении вдоль объекта.",
+        rotation: 0.08
+    },
+    {
+        id: "moon-cycle",
+        name: "Цикл Луны",
+        year: 2022,
+        category: "Мурал",
+        cover: "assets/images/projects/moon-cycle/cover.jpg",
+        location: "Певек",
+        desc: "Муральный триптих в Певеке. Три фасада объединены мотивами ночного неба, животных и циклического движения; работа связывает северный городской пейзаж с ярким орнаментальным рассказом.",
+        rotation: -0.13
+    },
+    {
+        id: "moroshka",
+        name: "Морошка",
+        year: 2022,
+        category: "Мурал",
+        cover: "assets/images/projects/moroshka/cover.jpg",
+        location: "Анадырь",
+        desc: "Мурал в Анадыре. Композиция построена на северных растительных мотивах: крупные ягоды, мягкие цветовые пятна и слоистые формы превращают фасад в спокойный, но заметный городской знак.",
+        rotation: 0.05
+    },
+    {
+        id: "sea-stones",
+        name: "Морские камушки",
+        year: 2022,
+        category: "Мурал",
+        cover: "assets/images/projects/sea-stones/cover.jpg",
+        location: "Анадырь",
+        desc: "Мурал в Анадыре. Фасад заполняют крупные округлые формы, напоминающие морские камни и живые природные паттерны; работа добавляет в городскую среду яркий, почти тактильный слой.",
+        rotation: -0.06
+    },
+    {
+        id: "neighbors",
+        name: "Соседи",
+        year: 2020,
+        category: "Мурал",
+        cover: "assets/images/projects/neighbors/cover.jpg",
+        location: "Екатеринбург",
+        desc: "Мурал для фестиваля «Стенограффия XI» в Екатеринбурге. Работа занимает торец жилого дома и смотрит во двор как большой цветной персонаж; тема соседства здесь буквально встроена в городскую повседневность.",
+        rotation: 0.06
     },
     {
         id: "mayak",
         name: "Маяк",
-        year: 2024,
+        year: 2025,
         category: "Роспись",
         pageReady: true,
         cover: "assets/images/projects/mayak/cover.jpg",
+        images: [
+            "assets/images/projects/mayak/story-01.jpg",
+            "assets/images/projects/mayak/story-02.jpg",
+            "assets/images/projects/mayak/story-03.jpg",
+            "assets/images/projects/mayak/story-04.jpg",
+            "assets/images/projects/mayak/story-05.jpg",
+            "assets/images/projects/mayak/story-06.jpg"
+        ],
         location: "Екатеринбург",
-        desc: "Роспись объекта в Екатеринбурге.",
+        desc: "Роспись объекта в Екатеринбурге. Вертикальная форма работает как городской ориентир: яркие красно-голубые блоки и простые фигуры меняют ощущение места в разное время года.",
         rotation: 0.04
+    },
+    {
+        id: "wooden-idols",
+        name: "Деревянные идолы",
+        year: 2022,
+        category: "Объект",
+        cover: "assets/images/projects/wooden-idols/cover.jpg",
+        location: "Екатеринбург",
+        desc: "Серия деревянных объектов для фестиваля паблик-арта ЧО. Скульптуры сохраняют след ручной работы и выглядят как группа вертикальных персонажей, встроенных в природный ландшафт и меняющих масштаб прогулочного пространства.",
+        rotation: 0.07
+    },
+    {
+        id: "july",
+        name: "Июль",
+        year: 2021,
+        category: "Роспись",
+        cover: "assets/images/projects/july/cover.jpg",
+        location: "Екатеринбург",
+        desc: "Роспись троллейбуса для фестиваля «Стенограффия». Работа переносит художественный язык Наташи на движущийся городской объект: цветные формы, растения и персонажи становятся частью маршрута и повседневного транспорта.",
+        rotation: 0.12
     }
 ];
 
 async function loadProjectsData() {
+    if (location.protocol === 'file:') {
+        return FALLBACK_PROJECTS;
+    }
+
     try {
-        const response = await fetch('assets/data/projects.json?v=site-v1-6', { cache: 'no-store' });
+        const response = await fetch('assets/data/projects.json?v=site-v1-10');
         if (!response.ok) throw new Error('Network error');
         return await response.json();
     } catch (e) {
@@ -334,13 +664,139 @@ function escapeHtml(value) {
         .replace(/'/g, '&#39;');
 }
 
+function escapeHtmlWithBreaks(value) {
+    return escapeHtml(value).replace(/&lt;br\s*\/?&gt;/gi, '<br>');
+}
+
+function renderMetaParts(parts, className = 'meta-list') {
+    const cleanParts = parts.filter(Boolean).map(escapeHtml);
+    if (!cleanParts.length) return '';
+    return `<span class="${className}">${cleanParts.map(part => `<span>${part}</span>`).join('')}</span>`;
+}
+
+function renderProjectCardMeta(project, includeCategory = false) {
+    const parts = [];
+
+    if (project.location) {
+        parts.push(`<span class="card-meta-location">${escapeHtml(project.location)}</span>`);
+    }
+
+    if (project.year) {
+        parts.push(`<span class="card-meta-year">${escapeHtml(project.year)}</span>`);
+    }
+
+    if (includeCategory && project.category) {
+        parts.push(`<span class="card-meta-category">${escapeHtml(project.category)}</span>`);
+    }
+
+    return parts.length ? `<span class="card-meta-list card-meta-list--place">${parts.join(' ')}</span>` : '';
+}
+
+function renderProjectDetailMeta(project) {
+    const parts = [];
+
+    if (project.location) {
+        parts.push(`<span class="project-detail-meta-location">${escapeHtml(project.location)}</span>`);
+    }
+
+    if (project.year) {
+        parts.push(`<span class="project-detail-meta-year">${escapeHtml(project.year)}</span>`);
+    }
+
+    return parts.length ? `<span class="project-detail-meta-list project-detail-meta-list--place">${parts.join(' ')}</span>` : '';
+}
+
 function hasProjectDetailPage(project) {
     return Boolean(project && !project.hidden && project.id);
 }
 
+function getCurrentPageName() {
+    return (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+}
+
+function isOnePagePage() {
+    return Boolean(document.querySelector('.onepage-main'));
+}
+
+function hasOnePageSource(params = new URLSearchParams(window.location.search)) {
+    return params.get('from') === 'onepage';
+}
+
+function onePageProjectHash(project) {
+    return project && project.id ? `#work-${encodeURIComponent(project.id)}` : '#projects';
+}
+
+function onePageFilterKey(project) {
+    if (!project || !project.category) return '';
+    if (project.category === 'Мурал') return 'murals';
+    if (['Инсталляция', 'Роспись', 'Объект', 'Скульптура'].includes(project.category)) return 'objects-paintings';
+    return '';
+}
+
+function onePageProjectBackUrl(project) {
+    const params = new URLSearchParams();
+    const filter = onePageFilterKey(project);
+    if (filter) params.set('filter', filter);
+    if (project && project.id) params.set('work', project.id);
+    const query = params.toString();
+    return `index.html${query ? `?${query}` : ''}${onePageProjectHash(project)}`;
+}
+
+function projectBackUrl(project) {
+    return hasOnePageSource() ? onePageProjectBackUrl(project) : 'index.html#cards-start';
+}
+
+function addOnePageSource(url, project) {
+    if (!url || !/(^|\/)project\.html(?:[?#]|$)/i.test(url)) return url;
+
+    const hashIndex = url.indexOf('#');
+    const base = hashIndex === -1 ? url : url.slice(0, hashIndex);
+    const hash = hashIndex === -1 ? '' : url.slice(hashIndex);
+    const queryIndex = base.indexOf('?');
+    const path = queryIndex === -1 ? base : base.slice(0, queryIndex);
+    const query = queryIndex === -1 ? '' : base.slice(queryIndex + 1);
+    const params = new URLSearchParams(query);
+
+    if (project && project.id && !params.has('id')) {
+        params.set('id', project.id);
+    }
+    params.set('from', 'onepage');
+    if (project && project.id) params.set('work', project.id);
+    const filter = onePageFilterKey(project);
+    if (filter) params.set('filter', filter);
+
+    return `${path}?${params.toString()}${hash}`;
+}
+
+function shouldKeepOnePageSource() {
+    return isOnePagePage() || hasOnePageSource();
+}
+
+function getOnePageHashProjectId() {
+    const match = window.location.hash.match(/^#work-(.+)$/);
+    if (!match) return '';
+
+    try {
+        return decodeURIComponent(match[1]);
+    } catch (e) {
+        return match[1];
+    }
+}
+
+function scrollToOnePageHashProject() {
+    const projectId = getOnePageHashProjectId();
+    if (!isOnePagePage() || !projectId) return;
+
+    window.requestAnimationFrame(() => {
+        const target = document.getElementById(`work-${projectId}`);
+        if (target) target.scrollIntoView({ block: 'start' });
+    });
+}
+
 function projectUrl(project) {
     if (!project || !project.id || !hasProjectDetailPage(project)) return '';
-    return fixPath(project.url || `project.html?id=${encodeURIComponent(project.id)}`);
+    const url = fixPath(project.url || `project.html?id=${encodeURIComponent(project.id)}`);
+    return shouldKeepOnePageSource() ? addOnePageSource(url, project) : url;
 }
 
 function projectImages(project) {
@@ -353,6 +809,8 @@ function projectImages(project) {
 const projectsGrid = document.getElementById('cards-start');
 
 if (projectsGrid) {
+    let projectDisclosureController = null;
+
     function heroCandidates(projects) {
         const preferred = [
             'mayak',
@@ -371,11 +829,11 @@ if (projectsGrid) {
     }
 
     function renderHeroWorks(projects) {
-        const heroImage = document.querySelector('[data-hero-image]');
+        const heroImages = document.querySelectorAll('[data-hero-image]');
         const heroLink = document.querySelector('[data-hero-link]');
         const heroCaption = document.querySelector('[data-hero-caption]');
         const heroWorks = document.querySelector('[data-hero-works]');
-        if (!heroImage) return;
+        if (!heroImages.length) return;
 
         const items = heroCandidates(projects);
         if (!items.length) return;
@@ -383,16 +841,19 @@ if (projectsGrid) {
         function show(project, index) {
             const title = project.name || project.title || '';
             const src = fixPath(project.cover || projectImages(project)[0] || '');
-            const meta = [project.year, project.location, project.category].filter(Boolean).join(' · ');
+            const meta = project.location || project.category || '';
             const cardAnchor = project.id ? `#work-${project.id}` : '#cards-start';
             const detailUrl = projectUrl(project);
 
-            if (src) heroImage.src = src;
-            heroImage.alt = title;
+            heroImages.forEach(image => {
+                if (src) image.src = src;
+                image.alt = title;
+            });
             if (heroCaption) heroCaption.textContent = [title, meta].filter(Boolean).join(' · ');
             if (heroLink) {
-                heroLink.href = detailUrl || cardAnchor;
-                heroLink.setAttribute('aria-label', detailUrl ? `Открыть проект ${title}` : `Перейти к карточке проекта ${title}`);
+                const heroTarget = isOnePagePage() ? onePageProjectBackUrl(project) : (detailUrl || cardAnchor);
+                heroLink.href = heroTarget;
+                heroLink.setAttribute('aria-label', isOnePagePage() ? `Перейти к проекту ${title}` : (detailUrl ? `Открыть проект ${title}` : `Перейти к карточке проекта ${title}`));
             }
             if (heroWorks) {
                 heroWorks.querySelectorAll('.hero-work').forEach((button, buttonIndex) => {
@@ -423,9 +884,22 @@ if (projectsGrid) {
         return desc;
     }
 
+    function projectStoryPreviewImages(project) {
+        const seen = new Set();
+        return [project.previewImage, ...projectImages(project)]
+            .map(fixPath)
+            .filter(Boolean)
+            .filter(src => {
+                if (seen.has(src)) return false;
+                seen.add(src);
+                return true;
+            });
+    }
+
     function renderProjects(projects, options = {}) {
         projects = (projects || []).filter(project => !project.hidden);
         const showCategoryInMeta = options.showCategoryInMeta !== false;
+        const useInlineDetail = isOnePagePage();
 
         if (!projects || !projects.length) {
             projectsGrid.innerHTML = '<p style="padding:40px;color:#666;">Проекты не найдены.</p>';
@@ -455,27 +929,33 @@ if (projectsGrid) {
         projects.forEach((p, index) => {
             const sourceRotation = typeof p.rotation === 'number' ? p.rotation : 0;
             const rot = Math.max(-0.06, Math.min(0.06, sourceRotation)).toFixed(4);
-            const title = p.name || p.title || '';
-            const img   = fixPath(p.cover || p.image || '');
+            const rawTitle = p.name || p.title || '';
+            const title = escapeHtml(rawTitle);
+            const img   = escapeHtml(fixPath(p.cover || p.image || ''));
             const url   = projectUrl(p);
-            const desc  = getPublicDescription(p);
-            const metaParts = [p.year, p.location];
-            if (showCategoryInMeta) metaParts.push(p.category);
-            const meta  = metaParts.filter(Boolean).join(' · ');
+            const safeUrl = escapeHtml(url);
+            const desc  = escapeHtml(getPublicDescription(p));
+            const meta  = renderProjectCardMeta(p, showCategoryInMeta);
             const layoutClass = layoutPattern[index % layoutPattern.length];
-            const storyImages = projectImages(p);
+            const storyImages = projectStoryPreviewImages(p).map(escapeHtml);
             const isStory = p.story && storyImages.length > 1;
-            const cardClass = `card ${layoutClass}${url || isStory ? '' : ' card-disabled'}${isStory ? ' story-card' : ''}`;
+            const hasInlineDetail = useInlineDetail && p.id;
+            const hasAction = hasInlineDetail || url || isStory;
+            const cardClass = `card ${layoutClass}${hasAction ? '' : ' card-disabled'}${isStory ? ' story-card' : ''}${useInlineDetail ? ' project-card-inline' : ''}`;
+            const projectId = escapeHtml(p.id || '');
 
             const anchorId = p.id ? ` id="work-${escapeHtml(p.id)}"` : '';
+            const titleMarkup = hasInlineDetail
+                ? `<button class="project-title-button" type="button" data-project-open="${projectId}" aria-expanded="false">${title}</button>`
+                : title;
 
             if (isStory) {
                 html += `
-            <article class="${cardClass}"${anchorId} data-project-id="${p.id}">
+            <article class="${cardClass}"${anchorId} data-project-id="${projectId}">
                 <div class="story-media" style="--base-rotation: ${rot}deg;">
-                    ${url ? `<a class="story-photo-link" href="${url}" aria-label="Открыть проект ${title}">` : ''}
-                        <img src="${storyImages[0]}" alt="${title}">
-                    ${url ? '</a>' : ''}
+                    ${url && !useInlineDetail ? `<a class="story-photo-link" href="${safeUrl}" aria-label="Открыть проект ${title}">` : ''}
+                        <img src="${storyImages[0]}" alt="${title}" loading="lazy" decoding="async">
+                    ${url && !useInlineDetail ? '</a>' : ''}
                     <div class="story-progress">
                         ${storyImages.map((_, dotIndex) => `<span class="${dotIndex === 0 ? 'active' : ''}"></span>`).join('')}
                     </div>
@@ -484,8 +964,8 @@ if (projectsGrid) {
                     <div class="story-counter visually-hidden" aria-live="polite">1 из ${storyImages.length}</div>
                 </div>
                 <div class="story-copy">
-                    <h3>${url ? `<a href="${url}">${title}</a>` : title}</h3>
                     <div class="card-meta">${meta}</div>
+                    <h3>${url && !useInlineDetail ? `<a href="${safeUrl}">${title}</a>` : titleMarkup}</h3>
                     ${desc ? `<p class="card-desc">${desc}</p>` : ''}
                 </div>
             </article>`;
@@ -494,20 +974,28 @@ if (projectsGrid) {
 
             const cardInner = `
                 <div class="card-img" style="--base-rotation: ${rot}deg;">
-                    <img src="${img}" alt="${title}">
+                    <img src="${img}" alt="${title}" loading="lazy" decoding="async">
                 </div>
-                <h3>${title}</h3>
                 <div class="card-meta">${meta}</div>
+                <h3>${titleMarkup}</h3>
                 ${desc ? `<p class="card-desc">${desc}</p>` : ''}`;
 
+            if (useInlineDetail && p.id) {
+                html += `
+            <article class="${cardClass}"${anchorId} data-project-id="${projectId}">${cardInner}</article>`;
+                return;
+            }
+
             html += url ? `
-            <a href="${url}" class="${cardClass}"${anchorId}>${cardInner}</a>` : `
+            <a href="${safeUrl}" class="${cardClass}"${anchorId}>${cardInner}</a>` : `
             <div class="${cardClass}"${anchorId} aria-disabled="true">${cardInner}</div>`;
         });
         html += '</div>';
 
+        document.body.classList.remove('project-overlay-open');
         projectsGrid.innerHTML = html;
         initStoryCards(projects);
+        initProjectDisclosure(projects);
     }
 
     function initStoryCards(projects) {
@@ -515,7 +1003,7 @@ if (projectsGrid) {
 
         projectsGrid.querySelectorAll('.story-card').forEach(card => {
             const project = byId.get(card.dataset.projectId);
-            const images = ((project && (project.storyImages || project.images)) || []).map(fixPath).filter(Boolean);
+            const images = project ? projectStoryPreviewImages(project) : [];
             if (images.length < 2) return;
 
             let current = 0;
@@ -535,32 +1023,322 @@ if (projectsGrid) {
         });
     }
 
+    function projectDetailText(project) {
+        return getPublicDescription(project) || project.detail || project.inside || project.longDescription || project.process || project.context || '';
+    }
+
+    function projectDetailFacts(project) {
+        return [
+            ['Проект', project.series || project.program || project.festival],
+            ['Роль', project.role],
+            ['Материал', project.material || project.materials],
+            ['Размер', project.size],
+            ['Куратор', project.curator],
+            ['Фото', project.photographer || project.photo]
+        ].filter(([, value]) => value);
+    }
+
+    function projectCreditBlocks(project) {
+        const credits = project && project.credits;
+        const creditBlocks = credits ? (Array.isArray(credits) ? credits : [credits]).filter(Boolean) : [];
+        return creditBlocks;
+    }
+
+    function renderProjectCredit(value) {
+        return escapeHtmlWithBreaks(String(value).replace(/<br\s*\/?>/gi, '\n'));
+    }
+
+    function renderProjectInlineDetail(project) {
+        const images = projectStoryPreviewImages(project).slice(0, 10);
+        const title = escapeHtml(project.name || project.title || '');
+        const titleId = `project-detail-title-${escapeHtml(project.id || 'current')}`;
+        const detailText = projectDetailText(project);
+        const facts = projectDetailFacts(project);
+        const credits = projectCreditBlocks(project);
+        const meta = renderProjectDetailMeta(project);
+        const projectId = escapeHtml(project.id || '');
+
+        return `
+            <div class="project-detail-card project-detail-card--entity" data-project-id="${projectId}" aria-live="polite">
+                <button class="project-detail-close" type="button" aria-label="Закрыть проект">×</button>
+                <div class="project-detail-copy">
+                    ${meta ? `<div class="project-detail-meta">${meta}</div>` : ''}
+                    ${title ? `<h3 id="${titleId}">${title}</h3>` : ''}
+                    ${detailText ? `
+                        <section class="project-detail-section">
+                            <div class="project-detail-section-label">О проекте</div>
+                            <p>${escapeHtmlWithBreaks(detailText)}</p>
+                        </section>` : ''}
+                    ${facts.length ? `
+                        <dl class="project-detail-facts">
+                            ${facts.map(([label, value]) => `
+                                <div>
+                                    <dt>${escapeHtml(label)}</dt>
+                                    <dd>${Array.isArray(value) ? value.map(escapeHtml).join(', ') : escapeHtmlWithBreaks(value)}</dd>
+                                </div>`).join('')}
+                        </dl>` : ''}
+                    ${credits.length ? `
+                        <section class="project-detail-credits">
+                            <div class="project-detail-credits-label">Кредиты</div>
+                            ${credits.map(value => `<p>${renderProjectCredit(value)}</p>`).join('')}
+                        </section>` : ''}
+                </div>
+                ${images.length ? `
+                    <div class="project-detail-gallery">
+                        ${images.map((src, index) => `<img src="${escapeHtml(src)}" alt="${title ? `Проект ${title}` : 'Проект'} — изображение ${index + 1}" loading="lazy" decoding="async">`).join('')}
+                    </div>` : ''}
+            </div>`;
+    }
+
+    function initProjectDisclosure(projects) {
+        if (!isOnePagePage()) return;
+
+        let detail = document.getElementById('project-inline-detail');
+        if (!detail) {
+            detail = document.createElement('div');
+            detail.className = 'project-inline-detail project-inline-overlay';
+            detail.id = 'project-inline-detail';
+            detail.hidden = true;
+        }
+
+        const byId = new Map(projects.map(project => [project.id, project]));
+        const layout = projectsGrid.querySelector('.projects-layout');
+        const overlayHost = document.querySelector('.onepage-main') || layout || document.body;
+        let restoreFocus = null;
+        let hiddenProjectBackground = [];
+
+        function setProjectBackgroundHidden(isHidden) {
+            if (!isHidden) {
+                hiddenProjectBackground.forEach(({ element, ariaHidden, inert }) => {
+                    if (ariaHidden === null) {
+                        element.removeAttribute('aria-hidden');
+                    } else {
+                        element.setAttribute('aria-hidden', ariaHidden);
+                    }
+                    element.inert = inert;
+                });
+                hiddenProjectBackground = [];
+                return;
+            }
+
+            hiddenProjectBackground = [];
+            const targets = [
+                ...Array.from(document.body.children).filter(element => element !== overlayHost && element.tagName !== 'SCRIPT'),
+                ...Array.from(overlayHost.children).filter(element => element !== detail)
+            ];
+
+            targets.forEach(element => {
+                hiddenProjectBackground.push({
+                    element,
+                    ariaHidden: element.getAttribute('aria-hidden'),
+                    inert: Boolean(element.inert)
+                });
+                element.setAttribute('aria-hidden', 'true');
+                element.inert = true;
+            });
+        }
+
+        function keepProjectFocus(event) {
+            if (event.key !== 'Tab' || detail.hidden) return;
+            const focusable = Array.from(detail.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'))
+                .filter(element => element.offsetParent !== null);
+            if (!focusable.length) {
+                event.preventDefault();
+                detail.focus();
+                return;
+            }
+
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
+        }
+
+        function openProject(projectId) {
+            const project = byId.get(projectId);
+            if (!project) return;
+            const card = Array.from(projectsGrid.querySelectorAll('.project-card-inline')).find(item => item.dataset.projectId === projectId);
+            if (!card || !layout) return;
+
+            const alreadyOpen = card.classList.contains('is-overlay-source') && !detail.hidden && detail.parentElement === overlayHost;
+
+            if (alreadyOpen) {
+                closeProject();
+                return;
+            }
+
+            restoreFocus = document.activeElement;
+            detail.hidden = true;
+            detail.innerHTML = '';
+            if (detail.parentElement) detail.remove();
+
+            projectsGrid.querySelectorAll('.project-card-inline').forEach(card => {
+                card.classList.toggle('is-overlay-source', card.dataset.projectId === projectId);
+            });
+            projectsGrid.querySelectorAll('[data-project-open]').forEach(button => {
+                button.setAttribute('aria-expanded', String(button.dataset.projectOpen === projectId));
+            });
+
+            const cardRect = card.getBoundingClientRect();
+            const layoutRect = layout.getBoundingClientRect();
+            const overlayTop = Math.max(0, cardRect.top - layoutRect.top);
+
+            detail.className = 'project-inline-detail project-inline-overlay';
+            detail.style.setProperty('--project-overlay-top', `${overlayTop}px`);
+            overlayHost.appendChild(detail);
+            detail.innerHTML = renderProjectInlineDetail(project);
+            const titleElement = detail.querySelector('.project-detail-copy h3');
+            detail.setAttribute('role', 'dialog');
+            detail.setAttribute('aria-modal', 'true');
+            detail.setAttribute('tabindex', '-1');
+            if (titleElement?.id) {
+                detail.setAttribute('aria-labelledby', titleElement.id);
+                detail.removeAttribute('aria-label');
+            } else {
+                detail.setAttribute('aria-label', 'Проект');
+                detail.removeAttribute('aria-labelledby');
+            }
+            detail.hidden = false;
+            setProjectBackgroundHidden(true);
+            document.documentElement.classList.add('project-overlay-open');
+            document.body.classList.add('project-overlay-open');
+            detail.querySelector('.project-detail-close')?.addEventListener('click', event => {
+                event.stopPropagation();
+                closeProject();
+            });
+            requestAnimationFrame(() => {
+                detail.querySelector('.project-detail-close')?.focus();
+            });
+            initReadableTypography(detail);
+        }
+
+        function closeProject() {
+            projectsGrid.querySelectorAll('.project-card-inline.is-overlay-source').forEach(card => card.classList.remove('is-overlay-source'));
+            projectsGrid.querySelectorAll('[data-project-open]').forEach(button => {
+                button.setAttribute('aria-expanded', 'false');
+            });
+            detail.hidden = true;
+            detail.innerHTML = '';
+            detail.style.removeProperty('--project-overlay-top');
+            detail.removeAttribute('role');
+            detail.removeAttribute('aria-modal');
+            detail.removeAttribute('aria-labelledby');
+            detail.removeAttribute('aria-label');
+            detail.removeAttribute('tabindex');
+            if (detail.parentElement) detail.remove();
+            setProjectBackgroundHidden(false);
+            document.documentElement.classList.remove('project-overlay-open');
+            document.body.classList.remove('project-overlay-open');
+            if (restoreFocus && typeof restoreFocus.focus === 'function') {
+                restoreFocus.focus();
+            }
+            restoreFocus = null;
+        }
+
+        if (projectDisclosureController) projectDisclosureController.abort();
+        projectDisclosureController = new AbortController();
+
+        projectsGrid.addEventListener('click', event => {
+            const button = event.target.closest('[data-project-open]');
+            if (button && projectsGrid.contains(button)) {
+                event.preventDefault();
+                event.stopPropagation();
+                openProject(button.dataset.projectOpen);
+                return;
+            }
+
+            if (event.target.closest('.project-detail-close, .story-btn, a')) return;
+
+            const card = event.target.closest('.project-card-inline');
+            if (card && projectsGrid.contains(card)) openProject(card.dataset.projectId);
+        }, { signal: projectDisclosureController.signal });
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && !detail.hidden) closeProject();
+            keepProjectFocus(event);
+        }, { signal: projectDisclosureController.signal });
+    }
+
     function initFilters(allProjects) {
         const filterContainer = document.querySelector('.project-filters .filters');
         if (!filterContainer) return;
 
-        const visibleProjects = (allProjects || []).filter(project => !project.hidden);
+        const editorialOrder = [
+            'dushi-ne-chayu-yaroslavl',
+            'mayak',
+            'wooden-idols',
+            'moon-cycle',
+            'dushi-ne-chayu-ivanovo',
+            'moroshka',
+            'sea-stones',
+            'dushi-ne-chayu-vologda',
+            'july',
+            'neighbors'
+        ];
+        const visibleProjects = (allProjects || [])
+            .filter(project => !project.hidden)
+            .slice()
+            .sort((a, b) => {
+                const aIndex = editorialOrder.indexOf(a.id);
+                const bIndex = editorialOrder.indexOf(b.id);
+                if (aIndex === -1 && bIndex === -1) return 0;
+                if (aIndex === -1) return 1;
+                if (bIndex === -1) return -1;
+                return aIndex - bIndex;
+            });
         const buttons = filterContainer.querySelectorAll('.filter-btn');
         const categoryMap = {
+            all: null,
             murals: ['Мурал'],
-            'objects-paintings': ['Инсталляция', 'Роспись']
+            'objects-paintings': ['Инсталляция', 'Роспись', 'Объект', 'Скульптура']
         };
 
-        function applyFilter(btn) {
-            buttons.forEach(b => b.classList.remove('active'));
+        function buttonForReturnContext() {
+            const params = new URLSearchParams(window.location.search);
+            const filterFromParams = params.get('filter');
+            if (filterFromParams) {
+                const button = filterContainer.querySelector(`.filter-btn[data-filter="${filterFromParams}"]`);
+                if (button) return button;
+            }
+
+            const projectId = getOnePageHashProjectId();
+            if (!isOnePagePage() || !projectId) return null;
+
+            const project = visibleProjects.find(item => item.id === projectId);
+            if (!project) return null;
+
+            const filterKey = Object.keys(categoryMap).find(key => {
+                const categories = categoryMap[key];
+                return Array.isArray(categories) && categories.includes(project.category);
+            });
+            return filterKey ? filterContainer.querySelector(`.filter-btn[data-filter="${filterKey}"]`) : null;
+        }
+
+        function applyFilter(btn, options = {}) {
+            buttons.forEach(b => {
+                const isActive = b === btn;
+                b.classList.toggle('active', isActive);
+                b.setAttribute('aria-pressed', String(isActive));
+            });
             btn.classList.add('active');
 
-            const categoryFilter = categoryMap[btn.dataset.filter || 'murals'];
+            const categoryFilter = categoryMap[btn.dataset.filter || 'all'];
             const filteredProjects = categoryFilter ? visibleProjects.filter(p => categoryFilter.includes(p.category)) : visibleProjects;
             renderProjects(filteredProjects, { showCategoryInMeta: !categoryFilter });
+            if (options.scrollToHash) scrollToOnePageHashProject();
         }
 
         buttons.forEach(btn => {
             btn.addEventListener('click', () => applyFilter(btn));
         });
 
-        const initialButton = filterContainer.querySelector('.filter-btn.active') || buttons[0];
-        if (initialButton) applyFilter(initialButton);
+        const initialButton = buttonForReturnContext() || filterContainer.querySelector('.filter-btn.active') || buttons[0];
+        if (initialButton) applyFilter(initialButton, { scrollToHash: true });
     }
 
     loadProjectsData().then(projects => {
@@ -573,30 +1351,46 @@ if (projectsGrid) {
 const projectPage = document.getElementById('project-page');
 
 if (projectPage) {
-    function renderCredits(project) {
-        if (project.credits && project.credits.length) {
-            return project.credits.map(item => `<p>${item}</p>`).join('');
+    function renderProjectFacts(project) {
+        const rows = [
+            ['Год', project.year],
+            ['Город', project.location],
+            ['Формат', project.category],
+            ['Проект', project.series || project.program || project.festival],
+            ['Материал', project.material || project.materials],
+            ['Размер', project.size],
+            ['Куратор', project.curator],
+            ['Фото', project.photographer || project.photo]
+        ].filter(([, value]) => value);
+
+        if (rows.length) {
+            return `
+                <dl class="project-facts">
+                    ${rows.map(([label, value]) => `
+                        <div class="project-fact">
+                            <dt>${escapeHtml(label)}</dt>
+                            <dd>${Array.isArray(value) ? value.map(escapeHtml).join(', ') : escapeHtmlWithBreaks(value)}</dd>
+                        </div>`).join('')}
+                </dl>`;
         }
 
-        const rows = [
-            project.year,
-            project.location,
-            project.category
-        ].filter(Boolean);
+        if (project.credits && project.credits.length) {
+            return `<div class="project-facts project-facts-notes">${project.credits.map(item => `<p>${escapeHtmlWithBreaks(item)}</p>`).join('')}</div>`;
+        }
 
-        return rows.length ? `<p>${rows.map(escapeHtml).join('<br>')}</p>` : '';
+        return '';
     }
 
     function renderProjectCard(project) {
         const title = escapeHtml(project.name || project.title || '');
-        const meta = [project.year, project.location, project.category].filter(Boolean).join(' · ');
+        const meta = renderProjectCardMeta(project);
         const url = projectUrl(project);
         const inner = `
                 <div class="card-img">
-                    <img src="${fixPath(project.cover || project.image || '')}" alt="${title}">
+                    <img src="${escapeHtml(fixPath(project.cover || project.image || ''))}" alt="${title}" loading="lazy" decoding="async">
                 </div>
                 <h3>${title}</h3>
-                <div class="card-meta">${escapeHtml(meta)}</div>`;
+                <div class="card-meta">${meta}</div>`;
 
         if (!url) {
             return `<div class="card card-disabled" aria-disabled="true">${inner}</div>`;
@@ -609,10 +1403,10 @@ if (projectPage) {
     function renderProject(projects, project) {
         const images = projectImages(project);
         const title = escapeHtml(project.name || project.title || 'Проект');
-        const meta = [project.year, project.location, project.category].filter(Boolean).join(' · ');
+        const backUrl = escapeHtml(projectBackUrl(project));
         const otherProjects = projects
             .filter(item => !item.hidden && item.id !== project.id)
-            .slice(0, 4);
+            .slice(0, 3);
 
         document.title = `Наташа Пастухова — ${title}`;
 
@@ -623,7 +1417,7 @@ if (projectPage) {
                         <div class="slider-track" id="slider-track">
                             ${images.map((src, index) => `
                                 <div class="slider-slide">
-                                    <img src="${src}" alt="${title} — ${index + 1}">
+                                    <img src="${src}" alt="${title} — ${index + 1}" ${index === 0 ? 'loading="eager"' : 'loading="lazy"'} decoding="async">
                                 </div>`).join('')}
                         </div>
                         ${images.length > 1 ? `
@@ -636,13 +1430,11 @@ if (projectPage) {
                 </div>
 
                 <div class="project-info-col">
-                    <a class="project-back" href="index.html#cards-start">← Все работы</a>
+                    <a class="project-back" href="${backUrl}">← Все работы</a>
                     <h1 class="project-title">${title}</h1>
                     <div class="project-body">
                         <p class="project-description">${escapeHtml(project.desc || project.description || 'Описание проекта будет добавлено позже.')}</p>
-                        <div class="project-credits">
-                            ${renderCredits(project)}
-                        </div>
+                        ${renderProjectFacts(project)}
                     </div>
                 </div>
             </article>
@@ -651,6 +1443,8 @@ if (projectPage) {
                 <div class="next-label">Другие работы</div>
                 <div class="next-grid">${otherProjects.map(renderProjectCard).join('')}</div>
             </section>`;
+
+        initReadableTypography(projectPage);
 
         initProjectSlider({
             containerId: 'slider',
@@ -671,7 +1465,7 @@ if (projectPage) {
         const project = detailProjects.find(item => item.id === id);
 
         if (!project) {
-            window.location.replace('index.html#cards-start');
+            window.location.replace(hasOnePageSource(params) ? 'index.html#projects' : 'index.html#cards-start');
             return;
         }
 
@@ -697,4 +1491,233 @@ function showSection(num) {
     });
 }
 
+function initCvArchive() {
+    const archives = document.querySelectorAll('[data-cv-archive]');
+    if (!archives.length) return;
+
+    archives.forEach(archive => {
+        const triggers = Array.from(archive.querySelectorAll('[data-cv-group-trigger]'));
+        const groups = Array.from(archive.querySelectorAll('[data-cv-group]'));
+
+        function setActiveGroup(groupName) {
+            triggers.forEach(trigger => {
+                const isActive = trigger.dataset.cvGroupTrigger === groupName;
+                trigger.classList.toggle('active', isActive);
+                trigger.setAttribute('aria-selected', String(isActive));
+                trigger.setAttribute('tabindex', isActive ? '0' : '-1');
+            });
+
+            groups.forEach(group => {
+                const isActive = group.dataset.cvGroup === groupName;
+                group.classList.toggle('active', isActive);
+                group.hidden = !isActive;
+            });
+        }
+
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                setActiveGroup(trigger.dataset.cvGroupTrigger);
+            });
+
+            trigger.addEventListener('keydown', event => {
+                const currentIndex = triggers.indexOf(trigger);
+                let nextIndex = currentIndex;
+                if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (currentIndex + 1) % triggers.length;
+                if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (currentIndex - 1 + triggers.length) % triggers.length;
+                if (event.key === 'Home') nextIndex = 0;
+                if (event.key === 'End') nextIndex = triggers.length - 1;
+                if (nextIndex === currentIndex) return;
+                event.preventDefault();
+                const nextTrigger = triggers[nextIndex];
+                setActiveGroup(nextTrigger.dataset.cvGroupTrigger);
+                nextTrigger.focus();
+            });
+        });
+
+        groups.forEach(group => {
+            const table = group.querySelector('table[data-preview-limit]');
+            const button = group.querySelector('[data-cv-show-more]');
+            if (!table || !button) return;
+
+            const rows = Array.from(table.querySelectorAll('tr'));
+            const previewLimit = Number(table.dataset.previewLimit) || 10;
+            const collapsedLabel = button.dataset.collapsedLabel || 'Показать все';
+            const expandedLabel = button.dataset.expandedLabel || 'Свернуть';
+
+            if (rows.length <= previewLimit) {
+                button.hidden = true;
+                return;
+            }
+
+            button.hidden = false;
+            button.setAttribute('aria-controls', table.id || `${group.id}-table`);
+            if (!table.id) table.id = `${group.id}-table`;
+
+            function setExpanded(isExpanded) {
+                rows.forEach((row, index) => {
+                    row.hidden = !isExpanded && index >= previewLimit;
+                });
+                button.textContent = isExpanded ? expandedLabel : collapsedLabel;
+                button.setAttribute('aria-expanded', String(isExpanded));
+            }
+
+            button.addEventListener('click', () => {
+                const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                setExpanded(!isExpanded);
+            });
+
+            setExpanded(false);
+        });
+
+        const initiallyActive = triggers.find(trigger => trigger.classList.contains('active')) || triggers[0];
+        if (initiallyActive) {
+            setActiveGroup(initiallyActive.dataset.cvGroupTrigger);
+        }
+    });
+}
+
 showSection(1);
+initCvArchive();
+
+function initShopStories() {
+    document.querySelectorAll('[data-shop-story]').forEach(story => {
+        const images = Array.from(story.querySelectorAll('img'));
+        const dots = Array.from(story.querySelectorAll('.shop-story-progress span'));
+        const prev = story.querySelector('.shop-story-prev');
+        const next = story.querySelector('.shop-story-next');
+        const status = document.createElement('div');
+        status.className = 'shop-story-status visually-hidden';
+        status.setAttribute('aria-live', 'polite');
+        story.appendChild(status);
+
+        if (images.length <= 1) {
+            story.classList.add('is-static');
+            status.textContent = '1 из 1';
+            return;
+        }
+
+        let current = 0;
+
+        function show(nextIndex) {
+            current = (nextIndex + images.length) % images.length;
+            images.forEach((image, index) => {
+                const isActive = index === current;
+                image.classList.toggle('active', isActive);
+                image.setAttribute('aria-hidden', String(!isActive));
+            });
+            dots.forEach((dot, index) => dot.classList.toggle('active', index === current));
+            status.textContent = `${current + 1} из ${images.length}`;
+        }
+
+        prev?.addEventListener('click', event => {
+            event.preventDefault();
+            show(current - 1);
+        });
+
+        next?.addEventListener('click', event => {
+            event.preventDefault();
+            show(current + 1);
+        });
+
+        show(0);
+    });
+}
+
+initShopStories();
+
+function initShopOrderModal() {
+    const triggers = document.querySelectorAll('.shop-order[href^="mailto:"]');
+    if (!triggers.length) return;
+    const shopMail = 'hipastukhova@gmail.com';
+
+    const modal = document.createElement('div');
+    modal.className = 'shop-order-modal';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-labelledby', 'shop-order-modal-title');
+    modal.hidden = true;
+    modal.innerHTML = `
+        <div class="shop-order-modal-panel" role="document">
+            <button class="shop-order-modal-close" type="button" aria-label="Закрыть">×</button>
+            <span class="shop-order-modal-label">Покупка</span>
+            <h2 id="shop-order-modal-title">Уточнить наличие</h2>
+            <p class="shop-order-modal-item"></p>
+            <p class="shop-order-modal-note">Письмо уже подготовлено: останется добавить имя и удобный способ связи.</p>
+            <div class="shop-order-modal-actions">
+                <a class="shop-order-modal-mail" href="mailto:hipastukhova@gmail.com">Написать на почту</a>
+                <button class="shop-order-modal-cancel" type="button">Закрыть</button>
+            </div>
+        </div>`;
+    document.body.appendChild(modal);
+
+    const panel = modal.querySelector('.shop-order-modal-panel');
+    const closeButtons = modal.querySelectorAll('.shop-order-modal-close, .shop-order-modal-cancel');
+    const itemText = modal.querySelector('.shop-order-modal-item');
+    const mailLink = modal.querySelector('.shop-order-modal-mail');
+    let previousFocus = null;
+
+    function openModal(trigger) {
+        const item = trigger.closest('.shop-item');
+        const title = item?.querySelector('h4, h3')?.textContent?.trim() || 'Работа';
+        const price = item?.querySelector('.shop-price')?.textContent?.trim() || '';
+        const meta = Array.from(item?.querySelectorAll('.shop-item-meta span') || [])
+            .map(element => element.textContent.trim())
+            .filter(Boolean)
+            .join(' · ');
+        const note = item?.querySelector('.shop-item-note, p')?.textContent?.trim() || '';
+        const subject = `Уточнить наличие: барельеф ${title}`;
+        const body = [
+            `Здравствуйте! Хочу уточнить наличие работы «${title}».`,
+            meta ? `Детали: ${meta}.` : '',
+            note ? `Комментарий на сайте: ${note}` : '',
+            price ? `Стоимость: ${price}.` : '',
+            'Подскажите, пожалуйста, размер, крепление, оформление и доставку.',
+            '',
+            'Имя:',
+            'Город:',
+            'Контакт для связи:'
+        ].filter(Boolean).join('\n');
+
+        previousFocus = document.activeElement;
+        itemText.textContent = [title, meta, price].filter(Boolean).join(' · ');
+        mailLink.href = `mailto:${shopMail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        modal.hidden = false;
+        document.body.classList.add('shop-order-modal-open');
+        requestAnimationFrame(() => {
+            modal.classList.add('is-open');
+            mailLink.focus();
+        });
+    }
+
+    function closeModal() {
+        modal.classList.remove('is-open');
+        document.body.classList.remove('shop-order-modal-open');
+        window.setTimeout(() => {
+            modal.hidden = true;
+            if (previousFocus && typeof previousFocus.focus === 'function') previousFocus.focus();
+        }, 160);
+    }
+
+    triggers.forEach(trigger => {
+        trigger.addEventListener('click', event => {
+            event.preventDefault();
+            openModal(trigger);
+        });
+    });
+
+    closeButtons.forEach(button => {
+        button.addEventListener('click', closeModal);
+    });
+
+    modal.addEventListener('click', event => {
+        if (!panel || panel.contains(event.target)) return;
+        closeModal();
+    });
+
+    document.addEventListener('keydown', event => {
+        if (modal.hidden) return;
+        if (event.key === 'Escape') closeModal();
+    });
+}
+
+initShopOrderModal();

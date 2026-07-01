@@ -3,105 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Магазин Наташи Пастуховой: гипсовые барельефы по мотивам персонажей и городских проектов, заказ через почту.">
     <title>Наташа Пастухова — Магазин</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="css/style.css?v=site-v1-19">
+    <link rel="stylesheet" href="css/style.css?v=site-v1-55">
 </head>
 <body>
 
-    <div class="header">
+    <header class="header">
         <a href="index.html" class="header-logo">
-            Наташа Пастухова<span class="heart" aria-hidden="true">♥</span>
+            <span class="brand-full">Наташа Пастухова</span><span class="brand-short">Пастухова</span><span class="heart" aria-hidden="true">♥</span>
         </a>
-        <div class="header-menu">
-            <a href="index.html#cards-start">Работы</a>
-            <a href="about.html">Био</a>
-            <a href="shop.html">Магазин</a>
+        <div class="header-menu" id="site-menu">
+            <a href="index.html#projects">Проекты</a>
+            <a href="index.html#artist">О художнице</a>
+            <a href="index.html#shop" aria-current="page">Магазин</a>
         </div>
-        <div class="header-lang">
-            <span class="lang-toggle" aria-label="Русская версия сайта">RU</span>
+        <button class="header-burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-menu" data-nav-toggle>
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="header-lang" aria-label="Язык сайта">
+            <a class="lang-toggle is-active" href="shop.html" lang="ru" aria-current="true" aria-label="Русская версия сайта">RU</a>
+            <button class="lang-toggle" type="button" lang="en" data-lang-pending aria-label="English version in progress">EN</button>
         </div>
-    </div>
+    </header>
 
     <main class="shop-page">
         <section class="shop-preview">
             <div class="shop-preview-inner">
-                <h1 class="visually-hidden">Магазин</h1>
-                <div class="shop-grid" aria-label="Товары">
-                    <article class="shop-item">
-                        <div class="shop-item-image">
-                            <img src="assets/images/projects/mayak/cover.jpg" alt="Принт Маяк">
-                        </div>
-                        <div class="shop-item-meta">
-                            <span>40 × 50 см</span>
-                        </div>
-                        <h3>Маяк</h3>
-                        <p>Пигментная печать на архивной бумаге, без рамы.</p>
-                        <div class="shop-buy">
-                            <span class="shop-price">12 000 ₽</span>
-                            <a class="shop-order" href="mailto:hipastukhova@gmail.com?subject=Заказ%20принта%20Маяк">Купить</a>
-                        </div>
-                    </article>
+                <header class="shop-heading">
+                    <div>
+                        <span>Доступные работы</span>
+                        <h1>Магазин</h1>
+                        <p>Небольшая витрина барельефов из гипса. Наличие, оформление и доставка уточняются в переписке.</p>
+                    </div>
+                </header>
+                <div class="shop-catalog" aria-label="Товары">
+                    <section class="shop-group" aria-labelledby="shop-reliefs-title">
+                        <h2 class="shop-group-title" id="shop-reliefs-title">Барельефы</h2>
+                        <div class="shop-grid shop-grid--reliefs">
+                            <article class="shop-item shop-item--cat-relief is-available">
+                                <div class="shop-item-image shop-item-story" data-shop-story>
+                                    <img class="active" src="assets/images/shop/reliefs/cat-main.jpg" alt="Барельеф Кот" loading="lazy" decoding="async">
+                                    <img src="assets/images/shop/reliefs/cat-detail.jpg" alt="Барельеф Кот, деталь" loading="lazy" decoding="async">
+                                    <div class="shop-story-progress" aria-hidden="true"><span class="active"></span><span></span></div>
+                                    <button class="shop-story-btn shop-story-prev" type="button" aria-label="Предыдущий кадр"></button>
+                                    <button class="shop-story-btn shop-story-next" type="button" aria-label="Следующий кадр"></button>
+                                </div>
+                                <div class="shop-item-meta">
+                                    <span>гипс</span>
+                                    <span>единичный объект</span>
+                                    <span>в наличии</span>
+                                </div>
+                                <h3>Кот</h3>
+                                <p>Белый гипсовый барельеф с ручной фактурой и рельефными деталями. Размер и крепление уточняются перед заказом.</p>
+                                <div class="shop-buy">
+                                    <span class="shop-price">По запросу</span>
+                                    <a class="shop-order" href="mailto:hipastukhova@gmail.com?subject=Уточнить%20наличие%3A%20барельеф%20Кот">Уточнить</a>
+                                </div>
+                            </article>
 
-                    <article class="shop-item">
-                        <div class="shop-item-image">
-                            <img src="assets/images/projects/moroshka/cover.jpg" alt="Принт Морошка">
-                        </div>
-                        <div class="shop-item-meta">
-                            <span>30 × 40 см</span>
-                        </div>
-                        <h3>Морошка</h3>
-                        <p>Пигментная печать на архивной бумаге, без рамы.</p>
-                        <div class="shop-buy">
-                            <span class="shop-price">9 000 ₽</span>
-                            <a class="shop-order" href="mailto:hipastukhova@gmail.com?subject=Заказ%20принта%20Морошка">Купить</a>
-                        </div>
-                    </article>
+                            <article class="shop-item shop-item--dog-relief is-available">
+                                <div class="shop-item-image shop-item-story" data-shop-story>
+                                    <img class="active" src="assets/images/shop/reliefs/dog-main.jpg" alt="Барельеф Собака" loading="lazy" decoding="async">
+                                    <img src="assets/images/shop/reliefs/dog-detail.jpg" alt="Барельеф Собака, деталь" loading="lazy" decoding="async">
+                                    <div class="shop-story-progress" aria-hidden="true"><span class="active"></span><span></span></div>
+                                    <button class="shop-story-btn shop-story-prev" type="button" aria-label="Предыдущий кадр"></button>
+                                    <button class="shop-story-btn shop-story-next" type="button" aria-label="Следующий кадр"></button>
+                                </div>
+                                <div class="shop-item-meta">
+                                    <span>гипс</span>
+                                    <span>единичный объект</span>
+                                    <span>в наличии</span>
+                                </div>
+                                <h3>Собака</h3>
+                                <p>Белый гипсовый барельеф в той же серии, с мягким объёмом и красным фоном. Размер и крепление уточняются перед заказом.</p>
+                                <div class="shop-buy">
+                                    <span class="shop-price">По запросу</span>
+                                    <a class="shop-order" href="mailto:hipastukhova@gmail.com?subject=Уточнить%20наличие%3A%20барельеф%20Собака">Уточнить</a>
+                                </div>
+                            </article>
 
-                    <article class="shop-item">
-                        <div class="shop-item-image">
-                            <img src="assets/images/projects/wooden-idols/cover.jpg" alt="Принт Деревянные идолы">
+                            <article class="shop-item shop-item--long-flower-relief is-available">
+                                <div class="shop-item-image shop-item-story" data-shop-story>
+                                    <img class="active" src="assets/images/shop/reliefs/flower-long-main.jpg" alt="Барельеф Вытянутый цветок" loading="lazy" decoding="async">
+                                    <img src="assets/images/shop/reliefs/flower-long-detail.jpg" alt="Барельеф Вытянутый цветок, деталь" loading="lazy" decoding="async">
+                                    <div class="shop-story-progress" aria-hidden="true"><span class="active"></span><span></span></div>
+                                    <button class="shop-story-btn shop-story-prev" type="button" aria-label="Предыдущий кадр"></button>
+                                    <button class="shop-story-btn shop-story-next" type="button" aria-label="Следующий кадр"></button>
+                                </div>
+                                <div class="shop-item-meta">
+                                    <span>гипс</span>
+                                    <span>единичный объект</span>
+                                    <span>в наличии</span>
+                                </div>
+                                <h3>Вытянутый цветок</h3>
+                                <p>Вертикальный белый барельеф с мягкой пластикой лепестков и листьев. Размер и крепление уточняются перед заказом.</p>
+                                <div class="shop-buy">
+                                    <span class="shop-price">По запросу</span>
+                                    <a class="shop-order" href="mailto:hipastukhova@gmail.com?subject=Уточнить%20наличие%3A%20барельеф%20Вытянутый%20цветок">Уточнить</a>
+                                </div>
+                            </article>
+
+                            <article class="shop-item shop-item--bud-flower-relief is-available">
+                                <div class="shop-item-image shop-item-story" data-shop-story>
+                                    <img class="active" src="assets/images/shop/reliefs/flower-bud-main.jpg" alt="Барельеф Цветок с бутоном" loading="lazy" decoding="async">
+                                    <img src="assets/images/shop/reliefs/flower-bud-detail.jpg" alt="Барельеф Цветок с бутоном, деталь" loading="lazy" decoding="async">
+                                    <div class="shop-story-progress" aria-hidden="true"><span class="active"></span><span></span></div>
+                                    <button class="shop-story-btn shop-story-prev" type="button" aria-label="Предыдущий кадр"></button>
+                                    <button class="shop-story-btn shop-story-next" type="button" aria-label="Следующий кадр"></button>
+                                </div>
+                                <div class="shop-item-meta">
+                                    <span>гипс</span>
+                                    <span>единичный объект</span>
+                                    <span>в наличии</span>
+                                </div>
+                                <h3>Цветок с бутоном</h3>
+                                <p>Белый гипсовый цветок с крупным бутоном в той же красной серии. Размер и крепление уточняются перед заказом.</p>
+                                <div class="shop-buy">
+                                    <span class="shop-price">По запросу</span>
+                                    <a class="shop-order" href="mailto:hipastukhova@gmail.com?subject=Уточнить%20наличие%3A%20барельеф%20Цветок%20с%20бутоном">Уточнить</a>
+                                </div>
+                            </article>
                         </div>
-                        <div class="shop-item-meta">
-                            <span>50 × 70 см</span>
-                        </div>
-                        <h3>Деревянные идолы</h3>
-                        <p>Пигментная печать на архивной бумаге, без рамы.</p>
-                        <div class="shop-buy">
-                            <span class="shop-price">15 000 ₽</span>
-                            <a class="shop-order" href="mailto:hipastukhova@gmail.com?subject=Заказ%20принта%20Деревянные%20идолы">Купить</a>
-                        </div>
-                    </article>
+                    </section>
                 </div>
             </div>
         </section>
     </main>
 
-    <div class="footer">
+    <footer class="footer">
         <div class="footer-content">
-            <div class="footer-col footer-brand">
-                <span>Наташа Пастухова</span>
-                <span>Паблик-арт</span>
-                <span>2026</span>
-            </div>
-            <div class="footer-col footer-contact">
-                <a class="footer-link" href="mailto:hipastukhova@gmail.com">Написать на почту</a>
-            </div>
-            <div class="footer-col footer-socials" aria-label="Соцсети">
+            <div class="footer-service" aria-label="Контакты и профессиональные ссылки">
+                <button class="footer-link footer-link-primary footer-mail" type="button" data-copy-mail="hipastukhova@gmail.com" aria-expanded="false">
+                    <svg class="footer-icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                    <span class="contact-mail-label">Почта</span>
+                    <span class="contact-mail-value">hipastukhova@gmail.com</span>
+                    <span class="contact-mail-copy">Копировать</span>
+                </button>
+                <a class="footer-link footer-link-document" href="assets/docs/natalia-pastukhova-cv.pdf" download><svg class="footer-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M12 18v-6"></path><path d="m9 15 3 3 3-3"></path></svg>CV</a>
                 <a class="footer-link" href="https://www.behance.net/hellopepe" target="_blank" rel="noopener">Behance</a>
                 <a class="footer-link" href="https://www.instagram.com/hellopepe" target="_blank" rel="noopener">Instagram</a>
+                <button class="footer-link footer-privacy" type="button" data-privacy-open>О данных</button>
             </div>
-            <div class="footer-col footer-cv">
-                <a class="footer-link" href="assets/docs/natalia-pastukhova-cv.pdf" download>Скачать CV</a>
-            </div>
-            <div class="footer-col footer-local" aria-label="Екатеринбург">
-                <span>Екатеринбург</span>
-                <span class="ekb-time" id="ekb-time">00:00:00</span>
-                <span class="ekb-weather" id="weather-temp"></span>
+            <div class="footer-context" aria-label="Екатеринбург: локальное время и погода">
+                <span class="footer-live">В Екатеринбурге <span class="ekb-time" id="ekb-time">00:00</span><span class="ekb-weather" id="weather-temp"></span></span>
             </div>
         </div>
-    </div>
+    </footer>
 
-    <script defer src="js/main.js?v=site-v1-9"></script>
+    <script defer src="js/main.js?v=site-v1-22"></script>
 </body>
 </html>

@@ -3,77 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Наташа Пастухова: паблик-арт, городские проекты, биография художницы и работы в продаже.">
     <title>Наташа Пастухова</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="css/style.css?v=site-v1-19">
+    <link rel="stylesheet" href="css/style.css?v=site-v1-115">
 </head>
 <body>
-
-    <div class="header">
+    <header class="header">
         <a href="index.html" class="header-logo">
-            Наташа Пастухова<span class="heart" aria-hidden="true">♥</span>
+            <span class="brand-full">Наташа Пастухова</span><span class="brand-short">Пастухова</span><span class="heart" aria-hidden="true">♥</span>
         </a>
-        <div class="header-menu">
-            <a href="#cards-start">Работы</a>
-            <a href="about.html">Био</a>
-            <a href="shop.html">Магазин</a>
+        <div class="header-menu" id="site-menu">
+            <a href="#projects">Проекты</a>
+            <a href="#artist">О художнице</a>
+            <a href="#shop">Магазин</a>
         </div>
-        <div class="header-lang">
-            <span class="lang-toggle" aria-label="Русская версия сайта">RU</span>
+        <button class="header-burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-menu" data-nav-toggle>
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="header-lang" aria-label="Язык сайта">
+            <a class="lang-toggle is-active" href="index.html" lang="ru" aria-current="true" aria-label="Русская версия сайта">RU</a>
+            <button class="lang-toggle" type="button" lang="en" data-lang-pending aria-label="English version in progress">EN</button>
         </div>
-    </div>
+    </header>
 
-    <section class="hero" aria-labelledby="hero-title">
-        <figure class="hero-visual-frame">
-            <a class="hero-visual-link" href="project.html?id=mayak" data-hero-link aria-label="Открыть выбранный проект">
-                <img src="assets/images/projects/mayak/cover.jpg" alt="Маяк" data-hero-image>
-            </a>
-            <figcaption class="hero-image-caption" data-hero-caption>Маяк · 2024 · Екатеринбург · Роспись</figcaption>
-        </figure>
-        <div class="hero-copy">
-            <div class="hero-kicker">Паблик-арт / Урал</div>
-            <h1 id="hero-title" aria-label="Наташа Пастухова">Наташа<br>Пастухова</h1>
-            <p class="hero-summary">42 мурала с 2003 года. Екатеринбург, Пермь, Анадырь, Певек, Москва, Баку, Бишкек, Тампере.</p>
-        </div>
-    </section>
+    <main class="onepage-main">
+        <section class="onepage-projects" id="projects" aria-labelledby="hero-title">
+            <section class="hero hero-editorial">
+                <a class="hero-visual-link" href="#cards-start" data-hero-link aria-label="Перейти к выбранному проекту">
+                    <img src="assets/images/projects/mayak/cover.jpg" alt="Маяк" decoding="async" data-hero-image>
+                </a>
+                <div class="hero-copy">
+                    <div class="hero-kicker">Паблик-арт / Урал</div>
+                    <h1 id="hero-title">Наташа<br>Пастухова</h1>
+                    <p class="hero-summary">Художница из Екатеринбурга. Муралы, объекты и росписи в городской среде с 2003 года.</p>
+                </div>
+                <div class="hero-image-caption" data-hero-caption>Маяк · Екатеринбург</div>
+            </section>
 
-    <nav class="project-filters" aria-label="Фильтры работ">
-        <div class="filters">
-            <button class="filter-btn active" data-filter="murals">Муралы</button>
-            <button class="filter-btn" data-filter="objects-paintings">Объекты и росписи</button>
-        </div>
-    </nav>
+            <div class="onepage-section-inner onepage-section-inner--projects">
+                <nav class="project-filters" aria-label="Фильтры проектов">
+                    <div class="filters">
+                        <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true" aria-label="Все работы, 10 проектов">Все <span aria-hidden="true">10</span></button>
+                        <button class="filter-btn" type="button" data-filter="murals" aria-pressed="false" aria-label="Муралы, 7 проектов">Муралы <span aria-hidden="true">7</span></button>
+                        <button class="filter-btn" type="button" data-filter="objects-paintings" aria-pressed="false" aria-label="Объекты и росписи, 3 проекта">Объекты и росписи <span aria-hidden="true">3</span></button>
+                    </div>
+                </nav>
+            </div>
 
-    <div class="container" id="cards-start">
-        <!-- Карточки проектов будут отрендерены здесь через JS -->
-    </div>
+            <div class="container" id="cards-start">
+                <!-- Карточки проектов будут отрендерены здесь через JS -->
+            </div>
+            <div class="onepage-section-inner">
+                <div class="project-inline-detail" id="project-inline-detail" hidden></div>
+            </div>
+        </section>
 
-    <div class="footer">
+        <section class="onepage-section" id="artist" aria-labelledby="artist-title">
+            <div class="onepage-section-inner">
+                <div class="two-column-layout">
+                    <div class="photo-column">
+                        <div class="photo-container">
+                            <img src="ava_1.jpg" alt="Наташа Пастухова" decoding="async">
+                        </div>
+                    </div>
+
+                    <div class="content-column">
+                        <div class="cv-section">
+                            <h2 class="about-title" id="artist-title">О художнице</h2>
+                            <div class="cv-bio">
+                                <p>Наташа Пастухова (р. 1985, Свердловск) — художница паблик-арта из Екатеринбурга. С 2003 года делает муралы, объекты и росписи для городской среды; в основе практики — животные, орнамент и геометрия.</p>
+                                <p>Окончила УралГАХА по промышленному дизайну и получила степень бакалавра дизайна в Университете Хаддерсфилда.</p>
+                            </div>
+                            <div class="contact-chips about-actions" aria-label="Контакты и CV">
+                                <button class="contact-chip contact-mail contact-chip-mail" type="button" data-copy-mail="hipastukhova@gmail.com" aria-label="Почта художницы" aria-expanded="false">
+                                    <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                                    <span class="contact-mail-label">Почта</span>
+                                    <span class="contact-mail-value">hipastukhova@gmail.com</span>
+                                    <span class="contact-mail-copy">Копировать</span>
+                                </button>
+                                <a class="contact-chip contact-chip-document" href="assets/docs/natalia-pastukhova-cv.pdf" download>
+                                    <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M12 18v-6"></path><path d="m9 15 3 3 3-3"></path></svg>
+                                    CV
+                                </a>
+                                <a class="contact-chip contact-chip-social" href="https://www.instagram.com/hellopepe" target="_blank" rel="noopener">Instagram</a>
+                                <a class="contact-chip contact-chip-social" href="https://www.behance.net/hellopepe" target="_blank" rel="noopener">Behance</a>
+                            </div>
+                        </div>
+
+                        <div class="content-wrapper">
+                            <div class="menu-sidebar" role="tablist" aria-label="Разделы CV">
+                                <button class="menu-item active" type="button" role="tab" aria-selected="true" aria-controls="section-1" aria-label="Муралы, 42 работы" onclick="showSection(1)">Муралы <span aria-hidden="true">42</span></button>
+                                <button class="menu-item" type="button" role="tab" aria-selected="false" aria-controls="section-2" aria-label="Инсталляции, 5 работ" onclick="showSection(2)">Инсталляции <span aria-hidden="true">5</span></button>
+                                <button class="menu-item" type="button" role="tab" aria-selected="false" aria-controls="section-3" aria-label="Выставки, 23 участия" onclick="showSection(3)">Выставки <span aria-hidden="true">23</span></button>
+                                <button class="menu-item" type="button" role="tab" aria-selected="false" aria-controls="section-4" aria-label="Коллаборации, 6 работ" onclick="showSection(4)">Коллаборации <span aria-hidden="true">6</span></button>
+                                <button class="menu-item" type="button" role="tab" aria-selected="false" aria-controls="section-5" aria-label="Кураторство, 3 проекта" onclick="showSection(5)">Кураторство <span aria-hidden="true">3</span></button>
+                                <button class="menu-item" type="button" role="tab" aria-selected="false" aria-controls="section-6" aria-label="Мастер-классы, 15 событий" onclick="showSection(6)">Мастер-классы <span aria-hidden="true">15</span></button>
+                            </div>
+
+                            <div class="sections-container">
+                                <div class="section active" id="section-1">
+                                    <div class="cv-archive" data-cv-archive>
+                                        <div class="cv-subtabs" role="tablist" aria-label="Типы муралов">
+                                            <button class="cv-subtab active" id="murals-festivals-tab" type="button" role="tab" aria-selected="true" aria-controls="murals-festivals" aria-label="Фестивали, 28 работ" tabindex="0" data-cv-group-trigger="festivals">Фестивали <span aria-hidden="true">28</span></button>
+                                            <button class="cv-subtab" id="murals-projects-tab" type="button" role="tab" aria-selected="false" aria-controls="murals-projects" aria-label="Проекты, 17 работ" tabindex="-1" data-cv-group-trigger="projects">Проекты <span aria-hidden="true">17</span></button>
+                                        </div>
+
+                                        <div class="cv-group active" id="murals-festivals" role="tabpanel" aria-labelledby="murals-festivals-tab" data-cv-group="festivals">
+                                            <table data-preview-limit="10">
+                                                <tr><td class="col-year">2024</td><td class="col-content"><span class="work-title">«Все мои друзья»</span><span class="work-location">Екатеринбург</span><span class="work-details">«Стенограффия»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                                <tr><td class="col-year">2022</td><td class="col-content"><span class="work-title">«Деревянные идолы»</span><span class="work-location">Екатеринбург</span><span class="work-details">инсталляция, паблик-арт «ЧО»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                                <tr><td class="col-year">2021</td><td class="col-content"><span class="work-title">Троллейбус «Июль»</span><span class="work-location">Екатеринбург</span><span class="work-details">«Стенограффия»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                                <tr><td class="col-year">2020</td><td class="col-content"><span class="work-title">«Соседи»</span><span class="work-location">Екатеринбург</span><span class="work-details">«Стенограффия XI»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                                <tr><td class="col-year">2019</td><td class="col-content"><span class="work-title">«Кошка в высокой траве»</span><span class="work-location">Екатеринбург</span><span class="work-details">«Стенограффия X»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                                <tr><td class="col-year">2017</td><td class="col-content"><span class="work-title">«Перекрестки»</span><span class="work-location">Пермь</span><span class="work-details">«Длинные истории Перми»</span></td><td class="col-location">Пермь</td></tr>
+                                                <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Доместикация лис»</span><span class="work-location">Новосибирск</span><span class="work-details">«Графит науки»</span></td><td class="col-location">Новосибирск</td></tr>
+                                                <tr><td class="col-year">2016</td><td class="col-content"><span class="work-title">«Привет, ты кто»</span><span class="work-location">Ноябрьск</span><span class="work-details">«Стенограффия»</span></td><td class="col-location">Ноябрьск</td></tr>
+                                                <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Голуби»</span><span class="work-location">Екатеринбург</span><span class="work-details">«Стенограффия»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                                <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«На дне бассейна»</span><span class="work-location">Тампере</span><span class="work-details">Российско-Финский культурный форум</span></td><td class="col-location">Тампере</td></tr>
+                                            </table>
+                                            <button class="cv-show-more" type="button" hidden data-cv-show-more data-collapsed-label="Все фестивали" data-expanded-label="Свернуть">Все фестивали</button>
+                                        </div>
+
+                                        <div class="cv-group" id="murals-projects" role="tabpanel" aria-labelledby="murals-projects-tab" data-cv-group="projects" hidden>
+                                            <table data-preview-limit="10">
+                                                <tr><td class="col-year">2022</td><td class="col-content"><span class="work-title">«Морошка»</span><span class="work-location">Анадырь</span></td><td class="col-location">Анадырь</td></tr>
+                                                <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Морские камушки»</span><span class="work-location">Анадырь</span></td><td class="col-location">Анадырь</td></tr>
+                                                <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Цикл Луны»</span><span class="work-location">Певек</span><span class="work-details">триптих</span></td><td class="col-location">Певек</td></tr>
+                                                <tr><td class="col-year"></td><td class="col-content"><span class="work-title">«Встреча»</span><span class="work-location">Альметьевск</span></td><td class="col-location">Альметьевск</td></tr>
+                                                <tr><td class="col-year">2021</td><td class="col-content"><span class="work-title">«Поцелуй»</span><span class="work-location">Анадырь</span></td><td class="col-location">Анадырь</td></tr>
+                                            </table>
+                                            <button class="cv-show-more" type="button" hidden data-cv-show-more data-collapsed-label="Все проекты" data-expanded-label="Свернуть">Все проекты</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="section" id="section-2">
+                                    <table>
+                                        <tr><td class="col-year">2022</td><td class="col-content"><span class="work-title">«Деревянные идолы»</span><span class="work-location">Екатеринбург</span><span class="work-details">инсталляция, паблик-арт «ЧО»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                        <tr><td class="col-year">2021</td><td class="col-content"><span class="work-title">Троллейбус «Июль»</span><span class="work-location">Екатеринбург</span><span class="work-details">«Стенограффия»</span></td><td class="col-location">Екатеринбург</td></tr>
+                                    </table>
+                                </div>
+
+                                <div class="section" id="section-3">
+                                    <div class="subsection-title">Персональные выставки</div>
+                                    <table>
+                                        <tr><td class="col-year">2020</td><td class="col-content"><span class="work-title">«Город зорких»</span><span class="work-location">Екатеринбург</span><span class="work-details">Бар Негодяи</span></td><td class="col-location">Екатеринбург</td></tr>
+                                    </table>
+                                </div>
+
+                                <div class="section" id="section-4">
+                                    <table>
+                                        <tr><td class="col-year">2023</td><td class="col-content"><span class="work-title">«Кот, пчела и дракон»</span><span class="work-location">Санкт-Петербург</span><span class="work-details">Билайн и Севкабель Порт</span></td><td class="col-location">Санкт-Петербург</td></tr>
+                                    </table>
+                                </div>
+
+                                <div class="section" id="section-5">
+                                    <table>
+                                        <tr><td class="col-year">2024</td><td class="col-content"><span class="work-title">Кураторский проект «Месторождения»</span><span class="work-location">Краснокаменск</span></td><td class="col-location">Краснокаменск</td></tr>
+                                    </table>
+                                </div>
+
+                                <div class="section" id="section-6">
+                                    <table>
+                                        <tr><td class="col-year">2024</td><td class="col-content"><span class="work-title">Лаборатория «Фантастический Сад»</span><span class="work-location">Екатеринбург</span><span class="work-details">Инклюзивная художественная студия, Ельцин Центр</span></td><td class="col-location">Екатеринбург</td></tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="onepage-section" id="shop" aria-labelledby="shop-title">
+            <div class="onepage-section-inner">
+                <header class="shop-heading">
+                    <div>
+                        <h2 id="shop-title">Магазин</h2>
+                        <p>Барельефы из гипса по мотивам персонажей и городских работ. Наличие и оформление уточняются в переписке.</p>
+                    </div>
+                </header>
+                <div class="shop-catalog" aria-label="Товары">
+                    <section class="shop-group" aria-labelledby="shop-reliefs-title">
+                        <h3 class="shop-group-title" id="shop-reliefs-title">Барельефы</h3>
+                        <div class="shop-grid shop-grid--reliefs">
+                            <article class="shop-item shop-item--cat-relief is-available">
+                                <div class="shop-item-image shop-item-story" data-shop-story>
+                                    <img class="active" src="assets/images/shop/reliefs/cat-main.jpg" alt="Барельеф Кот" loading="eager" decoding="async">
+                                    <img src="assets/images/shop/reliefs/cat-detail.jpg" alt="Барельеф Кот, деталь" loading="lazy" decoding="async">
+                                    <div class="shop-story-progress" aria-hidden="true"><span class="active"></span><span></span></div>
+                                    <button class="shop-story-btn shop-story-prev" type="button" aria-label="Предыдущий кадр"></button>
+                                    <button class="shop-story-btn shop-story-next" type="button" aria-label="Следующий кадр"></button>
+                                </div>
+                                <h4>Кот</h4>
+                                <div class="shop-item-meta">
+                                    <span>барельеф · гипс</span>
+                                    <span>единичный объект</span>
+                                    <span>в наличии</span>
+                                </div>
+                                <p class="shop-item-note">Размер и крепление уточняются перед заказом.</p>
+                                <div class="shop-buy">
+                                    <span class="shop-price">По запросу</span>
+                                    <a class="shop-order" href="mailto:hipastukhova@gmail.com?subject=Уточнить%20наличие%3A%20барельеф%20Кот">Уточнить</a>
+                                </div>
+                            </article>
+
+                            <article class="shop-item shop-item--dog-relief is-available">
+                                <div class="shop-item-image shop-item-story" data-shop-story>
+                                    <img class="active" src="assets/images/shop/reliefs/dog-main.jpg" alt="Барельеф Собака" loading="eager" decoding="async">
+                                    <img src="assets/images/shop/reliefs/dog-detail.jpg" alt="Барельеф Собака, деталь" loading="lazy" decoding="async">
+                                    <div class="shop-story-progress" aria-hidden="true"><span class="active"></span><span></span></div>
+                                    <button class="shop-story-btn shop-story-prev" type="button" aria-label="Предыдущий кадр"></button>
+                                    <button class="shop-story-btn shop-story-next" type="button" aria-label="Следующий кадр"></button>
+                                </div>
+                                <h4>Собака</h4>
+                                <div class="shop-item-meta">
+                                    <span>барельеф · гипс</span>
+                                    <span>единичный объект</span>
+                                    <span>в наличии</span>
+                                </div>
+                                <p class="shop-item-note">Размер и крепление уточняются перед заказом.</p>
+                                <div class="shop-buy">
+                                    <span class="shop-price">По запросу</span>
+                                    <a class="shop-order" href="mailto:hipastukhova@gmail.com?subject=Уточнить%20наличие%3A%20барельеф%20Собака">Уточнить</a>
+                                </div>
+                            </article>
+
+                            <article class="shop-item shop-item--long-flower-relief is-available">
+                                <div class="shop-item-image shop-item-story" data-shop-story>
+                                    <img class="active" src="assets/images/shop/reliefs/flower-long-main.jpg" alt="Барельеф Вытянутый цветок" loading="lazy" decoding="async">
+                                    <img src="assets/images/shop/reliefs/flower-long-detail.jpg" alt="Барельеф Вытянутый цветок, деталь" loading="lazy" decoding="async">
+                                    <div class="shop-story-progress" aria-hidden="true"><span class="active"></span><span></span></div>
+                                    <button class="shop-story-btn shop-story-prev" type="button" aria-label="Предыдущий кадр"></button>
+                                    <button class="shop-story-btn shop-story-next" type="button" aria-label="Следующий кадр"></button>
+                                </div>
+                                <h4>Вытянутый цветок</h4>
+                                <div class="shop-item-meta">
+                                    <span>барельеф · гипс</span>
+                                    <span>единичный объект</span>
+                                    <span>в наличии</span>
+                                </div>
+                                <p class="shop-item-note">Вертикальный объект. Размер и крепление уточняются.</p>
+                                <div class="shop-buy">
+                                    <span class="shop-price">По запросу</span>
+                                    <a class="shop-order" href="mailto:hipastukhova@gmail.com?subject=Уточнить%20наличие%3A%20барельеф%20Вытянутый%20цветок">Уточнить</a>
+                                </div>
+                            </article>
+
+                            <article class="shop-item shop-item--bud-flower-relief is-available">
+                                <div class="shop-item-image shop-item-story" data-shop-story>
+                                    <img class="active" src="assets/images/shop/reliefs/flower-bud-main.jpg" alt="Барельеф Цветок с бутоном" loading="lazy" decoding="async">
+                                    <img src="assets/images/shop/reliefs/flower-bud-detail.jpg" alt="Барельеф Цветок с бутоном, деталь" loading="lazy" decoding="async">
+                                    <div class="shop-story-progress" aria-hidden="true"><span class="active"></span><span></span></div>
+                                    <button class="shop-story-btn shop-story-prev" type="button" aria-label="Предыдущий кадр"></button>
+                                    <button class="shop-story-btn shop-story-next" type="button" aria-label="Следующий кадр"></button>
+                                </div>
+                                <h4>Цветок с бутоном</h4>
+                                <div class="shop-item-meta">
+                                    <span>барельеф · гипс</span>
+                                    <span>единичный объект</span>
+                                    <span>в наличии</span>
+                                </div>
+                                <p class="shop-item-note">Объект с крупным бутоном. Размер уточняется.</p>
+                                <div class="shop-buy">
+                                    <span class="shop-price">По запросу</span>
+                                    <a class="shop-order" href="mailto:hipastukhova@gmail.com?subject=Уточнить%20наличие%3A%20барельеф%20Цветок%20с%20бутоном">Уточнить</a>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
         <div class="footer-content">
-            <div class="footer-col footer-brand">
-                <span>Наташа Пастухова</span>
-                <span>Паблик-арт</span>
-                <span>2026</span>
+            <div class="footer-service" aria-label="Контакты и служебные ссылки">
+                <a class="footer-link footer-link-primary footer-mail" href="mailto:hipastukhova@gmail.com" aria-label="Написать на почту">
+                    <svg class="footer-icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                    <span>Написать</span>
+                </a>
+                <a class="footer-link footer-link-document" href="assets/docs/natalia-pastukhova-cv.pdf" download>CV</a>
+                <button class="footer-link footer-privacy" type="button" data-privacy-open aria-label="О данных сайта">О данных</button>
             </div>
-            <div class="footer-col footer-contact">
-                <a class="footer-link" href="mailto:hipastukhova@gmail.com">Написать на почту</a>
-            </div>
-            <div class="footer-col footer-socials" aria-label="Соцсети">
-                <a class="footer-link" href="https://www.behance.net/hellopepe" target="_blank" rel="noopener">Behance</a>
-                <a class="footer-link" href="https://www.instagram.com/hellopepe" target="_blank" rel="noopener">Instagram</a>
-            </div>
-            <div class="footer-col footer-cv">
-                <a class="footer-link" href="assets/docs/natalia-pastukhova-cv.pdf" download>Скачать CV</a>
-            </div>
-            <div class="footer-col footer-local" aria-label="Екатеринбург">
-                <span>Екатеринбург</span>
-                <span class="ekb-time" id="ekb-time">00:00:00</span>
-                <span class="ekb-weather" id="weather-temp"></span>
+            <div class="footer-context" aria-label="Екатеринбург: локальное время и погода">
+                <span class="footer-live">В Екатеринбурге <span class="ekb-time" id="ekb-time">00:00</span><span class="ekb-weather" id="weather-temp"></span></span>
             </div>
         </div>
-    </div>
+    </footer>
 
-    <script defer src="js/main.js?v=site-v1-9"></script>
-
+    <script defer src="js/main.js?v=site-v1-44"></script>
 </body>
 </html>
