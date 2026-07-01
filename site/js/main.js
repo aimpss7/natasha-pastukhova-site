@@ -997,28 +997,37 @@ if (projectsGrid) {
 
     function heroCandidates(projects) {
         const visible = (projects || []).filter(project => !project.hidden && (project.cover || (project.images && project.images.length)));
-        const items = [];
-
-        visible.forEach(project => {
+        const projectPools = visible.map(project => {
             const preferredImages = Array.isArray(project.heroImages) && project.heroImages.length
                 ? project.heroImages
                 : [project.cover, ...(project.images || [])];
-            preferredImages
-                .map(fixPath)
-                .filter(Boolean)
-                .forEach((src, index) => {
-                    items.push({
-                        project,
-                        src,
-                        rank: Number.isFinite(project.heroRank) ? project.heroRank : 50,
-                        index
-                    });
-                });
-        });
+            return {
+                project,
+                rank: Number.isFinite(project.heroRank) ? project.heroRank : 50,
+                images: preferredImages
+                    .map(fixPath)
+                    .filter(Boolean)
+            };
+        }).filter(item => item.images.length)
+            .sort((a, b) => a.rank - b.rank);
 
-        return items
-            .sort((a, b) => (a.rank - b.rank) || (a.index - b.index))
-            .slice(0, 18);
+        const items = [];
+        const maxImages = Math.max(0, ...projectPools.map(item => item.images.length));
+
+        for (let imageIndex = 0; imageIndex < maxImages; imageIndex += 1) {
+            projectPools.forEach(pool => {
+                const src = pool.images[imageIndex];
+                if (!src) return;
+                items.push({
+                    project: pool.project,
+                    src,
+                    rank: pool.rank,
+                    index: imageIndex
+                });
+            });
+        }
+
+        return items.slice(0, 24);
     }
 
     function renderHeroWorks(projects) {
@@ -1318,7 +1327,7 @@ if (projectsGrid) {
 
         return `
             <div class="project-detail-card project-detail-card--entity" data-project-id="${projectId}" aria-live="polite">
-                <button class="project-detail-close" type="button" aria-label="Закрыть проект">×</button>
+                <button class="project-detail-close" type="button" aria-label="Назад к проектам">← Назад к проектам</button>
                 <div class="project-detail-copy">
                     ${meta ? `<div class="project-detail-meta">${meta}</div>` : ''}
                     ${title ? `<h3 id="${titleId}">${title}</h3>` : ''}
