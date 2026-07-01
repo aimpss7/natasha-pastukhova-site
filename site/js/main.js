@@ -255,13 +255,45 @@ initPrivacyModal();
 
 // ========== SHARED: READABLE TYPOGRAPHY ==========
 function initReadableTypography(root = document) {
-    const textBlocks = root.querySelectorAll([
+            const selector = [
+        '.about-title',
+        '.hero-kicker',
         '.hero-summary',
+        '.hero-image-caption',
+        '.hero-caption-title',
+        '.hero-caption-details',
+        '.card-meta',
+        '.card-desc',
+        '.project-filters .filter-btn',
         '.cv-bio p',
+        '.cv-show-more',
+        '.cv-subtab',
+        '.menu-item',
+        '.work-title',
+        '.work-location',
+        '.work-details',
+        '.subsection-title',
         '.shop-heading p',
+        '.shop-heading h1',
+        '.shop-heading h2',
+        '.shop-terms li',
+        '.shop-item h3',
+        '.shop-item h4',
+        '.shop-item-meta',
+        '.shop-price',
+        '.shop-order',
         '.shop-item p',
         '.project-description',
         '.project-facts-notes',
+        '.project-back',
+        '.next-label',
+        '.footer-live',
+        '.footer-link',
+        '.project-detail-meta',
+        '.project-detail-facts dt',
+        '.project-detail-facts dd',
+        '.project-detail-section-label',
+        '.project-detail-close',
         '.project-title',
         '.project-title-button',
         '.project-card-inline h3',
@@ -269,13 +301,26 @@ function initReadableTypography(root = document) {
         '.project-detail-copy h3',
         '.project-detail-copy p',
         '.project-detail-credits p',
+        '.privacy-modal-label',
+        '.privacy-modal-panel h2',
         '.privacy-content p',
-        '.privacy-modal-panel p'
-    ].join(','));
+        '.privacy-modal-panel p',
+        '.privacy-modal-ok',
+        '.shop-order-modal-label',
+        '.shop-order-modal-panel h2',
+        '.shop-order-modal-item',
+        '.shop-order-modal-note',
+        '.shop-order-modal-actions a',
+        '.shop-order-modal-actions button'
+    ].join(',');
+    const textBlocks = [
+        ...(root.matches && root.matches(selector) ? [root] : []),
+        ...root.querySelectorAll(selector)
+    ];
 
     if (!textBlocks.length) return;
 
-    const shortWordPattern = /(^|[\s(«"„])((?:в|во|к|ко|с|со|у|о|об|обо|и|а|но|на|за|из|от|до|по|не|ни|же|ли|бы|для|над|под|при|про))\s+/giu;
+    const shortWordPattern = /(^|[\s(«"„])((?:в|во|к|ко|с|со|у|о|об|обо|и|а|но|на|за|из|от|до|по|не|ни|же|ли|бы|для|над|под|при|про|без|как|что|это|или))\s+/giu;
 
     textBlocks.forEach(block => {
         const walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT);
@@ -721,7 +766,7 @@ const FALLBACK_PROJECTS = [
         category: "Роспись",
         cover: "assets/images/projects/july/cover.jpg",
         location: "Екатеринбург",
-        desc: "Роспись троллейбуса для фестиваля «Стенограффия». Работа переносит художественный язык Наташи на движущийся городской объект: цветные формы, растения и персонажи становятся частью маршрута и повседневного транспорта.",
+        desc: "Роспись троллейбуса для фестиваля «Стенограффия». Работа переносит художественный язык Натальи на движущийся городской объект: цветные формы, растения и персонажи становятся частью маршрута и повседневного транспорта.",
         rotation: 0.12
     }
 ];
@@ -762,10 +807,10 @@ function escapeHtmlWithBreaks(value) {
 const SITE_LANG = (document.documentElement.lang || 'ru').toLowerCase().startsWith('en') ? 'en' : 'ru';
 const IS_EN = SITE_LANG === 'en';
 const UI_TEXT = {
-    ru: {
-        projectsEmpty: 'Проекты не найдены.',
-        openProject: 'Открыть проект',
-        goToProject: 'Перейти к проекту',
+        ru: {
+            projectsEmpty: 'Проекты не найдены.',
+            openProject: 'Открыть проект',
+            goToProject: 'Перейти к проекту',
         goToCard: 'Перейти к карточке проекта',
         prevPhoto: 'Предыдущее фото',
         nextPhoto: 'Следующее фото',
@@ -781,7 +826,10 @@ const UI_TEXT = {
             curator: 'Куратор',
             photo: 'Фото'
         },
-        back: '← Все работы',
+        sectionAbout: 'О проекте',
+        projectDialog: 'Проект',
+        closeProject: '← К работам',
+        back: '← К работам',
         otherWorks: 'Другие работы',
         missingDescription: 'Описание проекта будет добавлено позже.'
     },
@@ -804,7 +852,10 @@ const UI_TEXT = {
             curator: 'Curator',
             photo: 'Photo'
         },
-        back: '← All works',
+        sectionAbout: 'About',
+        projectDialog: 'Project',
+        closeProject: '← Back to works',
+        back: '← Back to works',
         otherWorks: 'Other works',
         missingDescription: 'Project description will be added later.'
     }
@@ -821,6 +872,33 @@ function localizedProjectField(project, key) {
         if (project[enKey]) return project[enKey];
     }
     return project[key] || '';
+}
+
+const FIELD_TRANSLATIONS_EN = {
+    'Души не чаю': 'Dushi Ne Chayu',
+    'паблик-арт программа ЧО': 'CHO public art programme',
+    'фестиваль уличного искусства «Стенограффия»': 'Stenograffia street art festival',
+    'Российско-Финский культурный форум': 'Russian-Finnish Cultural Forum',
+    'концепция и роспись': 'concept and painting',
+    'эскиз, адаптация под фасад, роспись': 'sketch, facade adaptation and painting',
+    'эскиз и роспись': 'sketch and painting',
+    'концепция, эскиз, объект': 'concept, sketch and object',
+    'фасадная краска, аэрозоль': 'facade paint, aerosol',
+    'акрил, аэрозоль, фасадные материалы': 'acrylic, aerosol, facade materials',
+    'дерево, резьба, защитная обработка': 'wood, carving, protective finish',
+    'краска для транспорта, защитное покрытие': 'transport paint, protective coating',
+    'длинная фасадная роспись': 'long facade mural',
+    'протяжённая фасадная композиция': 'extended facade composition',
+    'серия деревянных объектов': 'series of wooden objects',
+    'роспись на транспортном объекте': 'painting on a transport object',
+    'настенная роспись': 'wall painting',
+    'фасадная композиция': 'facade composition'
+};
+
+function translatedFieldValue(value) {
+    if (!IS_EN || !value) return value;
+    if (Array.isArray(value)) return value.map(translatedFieldValue);
+    return FIELD_TRANSLATIONS_EN[String(value).trim()] || value;
 }
 
 function projectTitle(project) {
@@ -854,21 +932,17 @@ function renderMetaParts(parts, className = 'meta-list') {
     return `<span class="${className}">${cleanParts.map(part => `<span>${part}</span>`).join('')}</span>`;
 }
 
-function renderProjectCardMeta(project, includeCategory = false) {
+function renderProjectCardMeta(project) {
     const parts = [];
     const location = projectLocation(project);
-    const category = projectCategory(project);
+    const shortYear = project.year ? String(project.year).slice(-2) : '';
 
     if (location) {
         parts.push(`<span class="card-meta-location">${escapeHtml(location)}</span>`);
     }
 
-    if (project.year) {
-        parts.push(`<span class="card-meta-year">${escapeHtml(project.year)}</span>`);
-    }
-
-    if (includeCategory && category) {
-        parts.push(`<span class="card-meta-category">${escapeHtml(category)}</span>`);
+    if (shortYear) {
+        parts.push(`<span class="card-meta-year" aria-label="${escapeHtml(project.year)}">${escapeHtml(shortYear)}</span>`);
     }
 
     return parts.length ? `<span class="card-meta-list card-meta-list--place">${parts.join(' ')}</span>` : '';
@@ -1060,6 +1134,7 @@ if (projectsGrid) {
                         captionTitle ? `<span class="hero-caption-title">${escapeHtml(captionTitle)}</span>` : '',
                         captionDetails ? `<span class="hero-caption-details">${escapeHtml(captionDetails)}</span>` : ''
                     ].filter(Boolean).join('');
+                    initReadableTypography(heroCaption);
                 }
                 if (heroLink) {
                     const heroTarget = isOnePagePage() ? onePageProjectBackUrl(project) : (detailUrl || cardAnchor);
@@ -1079,13 +1154,27 @@ if (projectsGrid) {
                 return;
             }
 
+            const activeImage = heroImages[0];
+            const crossfadeImage = activeImage?.cloneNode(false);
+            if (crossfadeImage && src) {
+                crossfadeImage.className = 'hero-crossfade-image';
+                crossfadeImage.src = src;
+                crossfadeImage.alt = '';
+                crossfadeImage.setAttribute('aria-hidden', 'true');
+                heroLink?.appendChild(crossfadeImage);
+                window.requestAnimationFrame(() => {
+                    crossfadeImage.classList.add('is-visible');
+                });
+            }
+
             heroSection.classList.add('is-switching');
             window.setTimeout(() => {
                 applyHero();
                 window.requestAnimationFrame(() => {
                     heroSection.classList.remove('is-switching');
                 });
-            }, 180);
+                window.setTimeout(() => crossfadeImage?.remove(), 900);
+            }, 520);
         }
 
         if (heroWorks) {
@@ -1300,13 +1389,16 @@ if (projectsGrid) {
     function projectDetailFacts(project) {
         const labels = UI_TEXT[SITE_LANG].facts;
         return [
-            [labels.project, project.series || project.program || project.festival],
-            [labels.role, project.role],
-            [labels.material, project.material || project.materials],
-            [labels.size, project.size],
-            [labels.curator, project.curator],
-            [labels.photo, project.photographer || project.photo]
-        ].filter(([, value]) => value);
+            [labels.project, localizedProjectField(project, 'series') || localizedProjectField(project, 'program') || localizedProjectField(project, 'festival')],
+            [labels.role, localizedProjectField(project, 'role')],
+            [labels.material, localizedProjectField(project, 'material') || localizedProjectField(project, 'materials')],
+            [labels.size, localizedProjectField(project, 'size')],
+            [labels.curator, localizedProjectField(project, 'curator')],
+            [labels.photo, localizedProjectField(project, 'photographer') || localizedProjectField(project, 'photo')]
+        ].map(([label, value]) => [
+            label,
+            translatedFieldValue(value)
+        ]).filter(([, value]) => value);
     }
 
     function projectCreditBlocks(project) {
@@ -1333,7 +1425,7 @@ if (projectsGrid) {
 
     function renderProjectInlineDetail(project) {
         const images = projectStoryPreviewImages(project).slice(0, 10);
-        const title = escapeHtml(project.name || project.title || '');
+        const title = escapeHtml(projectTitle(project) || project.name || project.title || '');
         const titleId = `project-detail-title-${escapeHtml(project.id || 'current')}`;
         const detailText = projectDetailText(project);
         const facts = projectDetailFacts(project);
@@ -1343,13 +1435,13 @@ if (projectsGrid) {
 
         return `
             <div class="project-detail-card project-detail-card--entity" data-project-id="${projectId}" aria-live="polite">
-                <button class="project-detail-close" type="button" aria-label="Назад к проектам">← Назад к проектам</button>
+                <button class="project-detail-close" type="button" aria-label="${escapeHtml(uiText('closeProject'))}">${escapeHtml(uiText('closeProject'))}</button>
                 <div class="project-detail-copy">
                     ${meta ? `<div class="project-detail-meta">${meta}</div>` : ''}
                     ${title ? `<h3 id="${titleId}">${title}</h3>` : ''}
                     ${detailText ? `
                         <section class="project-detail-section">
-                            <div class="project-detail-section-label">О проекте</div>
+                            <div class="project-detail-section-label">${escapeHtml(uiText('sectionAbout'))}</div>
                             <p>${escapeHtmlWithBreaks(detailText)}</p>
                         </section>` : ''}
                     ${facts.length ? `
@@ -1513,6 +1605,7 @@ if (projectsGrid) {
             detail.style.setProperty('--project-overlay-top', `${overlayTop}px`);
             overlayHost.appendChild(detail);
             detail.innerHTML = renderProjectInlineDetail(project);
+            initReadableTypography(detail);
             const titleElement = detail.querySelector('.project-detail-copy h3');
             detail.setAttribute('role', 'dialog');
             detail.setAttribute('aria-modal', 'true');
@@ -1768,7 +1861,7 @@ if (projectPage) {
             .filter(item => !item.hidden && item.id !== project.id)
             .slice(0, 3);
 
-        document.title = IS_EN ? `Natasha Pastukhova — ${title}` : `Наташа Пастухова — ${title}`;
+        document.title = IS_EN ? `Natalia Pastukhova — ${title}` : `Наталья Пастухова — ${title}`;
 
         projectPage.innerHTML = `
             <article class="project-top">
