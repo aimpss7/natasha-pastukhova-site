@@ -78,7 +78,7 @@ if (siteHeader) {
     const mobileNavQuery = window.matchMedia('(max-width: 760px)');
 
     function updateHeaderState() {
-        const shouldCompact = window.scrollY > 32;
+        const shouldCompact = false;
         if (shouldCompact === headerCompact) return;
         headerCompact = shouldCompact;
         siteHeader.classList.toggle('is-compact', shouldCompact);
@@ -1040,7 +1040,7 @@ if (projectsGrid) {
         const items = heroCandidates(projects);
         if (!items.length) return;
 
-        function show(item, index) {
+        function show(item, index, animate = false) {
             const project = item.project || item;
             const title = projectTitle(project);
             const src = fixPath(item.src || project.cover || projectImages(project)[0] || '');
@@ -1048,28 +1048,44 @@ if (projectsGrid) {
             const captionDetails = [projectLocation(project), project.year].filter(Boolean).join(', ');
             const cardAnchor = project.id ? `#work-${project.id}` : '#cards-start';
             const detailUrl = projectUrl(project);
+            const heroSection = heroImages[0].closest('.hero-editorial');
 
-            heroImages.forEach(image => {
-                if (src) image.src = src;
-                image.alt = title;
-            });
-            if (heroCaption) {
-                heroCaption.innerHTML = [
-                    captionTitle ? `<span class="hero-caption-title">${escapeHtml(captionTitle)}</span>` : '',
-                    captionDetails ? `<span class="hero-caption-details">${escapeHtml(captionDetails)}</span>` : ''
-                ].filter(Boolean).join('');
-            }
-            if (heroLink) {
-                const heroTarget = isOnePagePage() ? onePageProjectBackUrl(project) : (detailUrl || cardAnchor);
-                heroLink.href = heroTarget;
-                heroLink.setAttribute('aria-label', isOnePagePage() ? `${uiText('goToProject')} ${title}` : (detailUrl ? `${uiText('openProject')} ${title}` : `${uiText('goToCard')} ${title}`));
-            }
-            if (heroWorks) {
-                heroWorks.querySelectorAll('.hero-work').forEach((button, buttonIndex) => {
-                    button.classList.toggle('active', buttonIndex === index);
-                    button.setAttribute('aria-pressed', String(buttonIndex === index));
+            const applyHero = () => {
+                heroImages.forEach(image => {
+                    if (src) image.src = src;
+                    image.alt = title;
                 });
+                if (heroCaption) {
+                    heroCaption.innerHTML = [
+                        captionTitle ? `<span class="hero-caption-title">${escapeHtml(captionTitle)}</span>` : '',
+                        captionDetails ? `<span class="hero-caption-details">${escapeHtml(captionDetails)}</span>` : ''
+                    ].filter(Boolean).join('');
+                }
+                if (heroLink) {
+                    const heroTarget = isOnePagePage() ? onePageProjectBackUrl(project) : (detailUrl || cardAnchor);
+                    heroLink.href = heroTarget;
+                    heroLink.setAttribute('aria-label', isOnePagePage() ? `${uiText('goToProject')} ${title}` : (detailUrl ? `${uiText('openProject')} ${title}` : `${uiText('goToCard')} ${title}`));
+                }
+                if (heroWorks) {
+                    heroWorks.querySelectorAll('.hero-work').forEach((button, buttonIndex) => {
+                        button.classList.toggle('active', buttonIndex === index);
+                        button.setAttribute('aria-pressed', String(buttonIndex === index));
+                    });
+                }
+            };
+
+            if (!animate || !heroSection) {
+                applyHero();
+                return;
             }
+
+            heroSection.classList.add('is-switching');
+            window.setTimeout(() => {
+                applyHero();
+                window.requestAnimationFrame(() => {
+                    heroSection.classList.remove('is-switching');
+                });
+            }, 180);
         }
 
         if (heroWorks) {
@@ -1083,7 +1099,7 @@ if (projectsGrid) {
             let current = initialIndex;
             window.setInterval(() => {
                 current = (current + 1) % items.length;
-                show(items[current], current);
+                show(items[current], current, true);
             }, 6000);
         }
     }
