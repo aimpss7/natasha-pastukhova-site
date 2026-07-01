@@ -14681,3 +14681,107 @@ button,
         font-size: 14px;
     }
 }
+
+/* ========== CYCLE 39: SHOP RHYTHM QA ========== */
+.onepage-main #shop .shop-heading,
+.onepage-main #shop .shop-terms,
+.onepage-main #shop .shop-catalog,
+.shop-page .shop-heading,
+.shop-page .shop-terms,
+.shop-page .shop-catalog {
+    width: min(100%, 1120px) !important;
+    max-width: 1120px !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+
+.onepage-main #shop .shop-group > h3,
+.shop-page .shop-group > h2 {
+    width: 100% !important;
+    max-width: none !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+.onepage-main #shop .shop-terms,
+.shop-page .shop-terms {
+    margin-top: clamp(18px, 2.2vw, 28px) !important;
+    margin-bottom: clamp(30px, 3vw, 40px) !important;
+}
+
+@media (max-width: 620px) {
+    .onepage-main #shop .shop-heading,
+    .shop-page .shop-heading {
+        margin-bottom: 18px !important;
+    }
+
+    .onepage-main #shop .shop-terms,
+    .shop-page .shop-terms {
+        gap: 10px !important;
+        margin-top: 14px !important;
+        margin-bottom: 24px !important;
+    }
+
+    .shop-terms li {
+        display: grid !important;
+        grid-template-columns: 74px minmax(0, 1fr) !important;
+        column-gap: 12px !important;
+        min-height: 0 !important;
+        padding-top: 10px !important;
+        font-size: 13px !important;
+        line-height: 1.18 !important;
+    }
+
+    .shop-terms strong {
+        margin-bottom: 0 !important;
+        font-size: 13px !important;
+        line-height: 1.18 !important;
+    }
+
+    .shop-grid--reliefs {
+        gap: 24px !important;
+        max-width: 390px !important;
+    }
+
+    .shop-item--cat-relief .shop-item-image,
+    .shop-item--dog-relief .shop-item-image,
+    .shop-item--long-flower-relief .shop-item-image,
+    .shop-item--bud-flower-relief .shop-item-image {
+        aspect-ratio: 1 / 1.08 !important;
+        margin-bottom: 10px !important;
+    }
+
+    .shop-grid--reliefs .shop-item {
+        grid-template-rows: auto auto auto auto !important;
+    }
+
+    .shop-grid--reliefs .shop-buy {
+        margin-top: 8px !important;
+    }
+
+    .shop-grid--reliefs .shop-item h3,
+    .shop-grid--reliefs .shop-item h4 {
+        margin-bottom: 3px !important;
+        min-height: 0 !important;
+    }
+
+    .shop-item-meta {
+        gap: 3px !important;
+        min-height: 0 !important;
+        font-size: 12px !important;
+        line-height: 1.18 !important;
+    }
+
+    .shop-item-note {
+        margin-top: 4px !important;
+        font-size: 13px !important;
+        line-height: 1.2 !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .shop-terms li {
+        grid-template-columns: minmax(0, 1fr) !important;
+        row-gap: 2px !important;
+    }
+}
