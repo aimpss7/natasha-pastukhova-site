@@ -19546,6 +19546,16 @@ body.site-home .sections-container .work-location + .work-details::before {
     line-height: 0.9 !important;
 }
 
+@media (max-width: 1280px) {
+    .onepage-main .project-detail-card--entity .project-detail-facts {
+        grid-template-columns: minmax(0, 1fr) !important;
+    }
+
+    .onepage-main .project-detail-card--entity .project-detail-facts div {
+        grid-template-columns: minmax(92px, 0.28fr) minmax(0, 1fr) !important;
+    }
+}
+
 @media (max-width: 760px) {
     .onepage-main .project-inline-detail.project-inline-overlay,
     .onepage-main .project-inline-detail.project-inline-overlay.from-layout-third,
@@ -19604,6 +19614,7 @@ body.site-home .sections-container .work-location + .work-details::before {
 .shop-grid--reliefs .shop-price {
     flex: 0 1 auto !important;
     padding: 0 !important;
+    justify-content: flex-start !important;
     text-align: left !important;
     white-space: normal !important;
 }
@@ -19614,6 +19625,7 @@ body.site-home .sections-container .work-location + .work-details::before {
 
 @media (max-width: 520px) {
     .shop-grid--reliefs .shop-buy {
+        align-items: flex-start !important;
         gap: 8px !important;
     }
 }
