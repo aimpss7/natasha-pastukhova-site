@@ -18962,12 +18962,13 @@ body.site-home .sections-container .work-location + .work-details::before {
 .header-logo .heart,
 .header.is-compact .header-logo .heart,
 .site-home .header:not(.is-compact):not(.nav-open) .header-logo .heart {
-    width: 0.64em !important;
+    width: 0.86em !important;
     height: 1em !important;
-    margin-left: 0.14em !important;
-    font-size: 0.68em !important;
+    margin-left: 0.12em !important;
+    font-size: 0.86em !important;
     line-height: 1 !important;
-    transform: translateY(-0.035em) !important;
+    color: #111 !important;
+    transform: translateY(-0.02em) !important;
 }
 
 /* ========== CYCLE 74: FINAL RHYTHM QA PASS ========== */
