@@ -20884,3 +20884,114 @@ body.site-night .onepage-main .project-detail-gallery-thumb:focus-visible {
         min-height: 36px !important;
     }
 }
+
+/* ========== CYCLE 86: SHOP CARD TYPOGRAPHY TIGHTENING ========== */
+.onepage-main #shop .shop-grid--reliefs .shop-item {
+    grid-template-rows: auto auto auto auto !important;
+}
+
+.onepage-main #shop .shop-grid--reliefs .shop-item h4 {
+    margin: clamp(12px, 0.9vw, 16px) 0 0 !important;
+    max-width: 11em !important;
+    font-size: clamp(24px, 1.55vw, 31px) !important;
+    font-weight: 430 !important;
+    line-height: 0.98 !important;
+    letter-spacing: 0 !important;
+}
+
+.onepage-main #shop .shop-grid--reliefs .shop-item-note {
+    margin: clamp(8px, 0.7vw, 12px) 0 0 !important;
+    max-width: 18.5em !important;
+    font-size: clamp(15px, 0.92vw, 17px) !important;
+    font-weight: 390 !important;
+    line-height: 1.12 !important;
+}
+
+.onepage-main #shop .shop-grid--reliefs .shop-buy {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    gap: 16px !important;
+    margin: clamp(12px, 0.85vw, 16px) 0 0 !important;
+    padding: 0 !important;
+}
+
+.onepage-main #shop .shop-grid--reliefs .shop-price {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    color: rgba(0, 0, 0, 0.58) !important;
+    font-size: clamp(15px, 0.92vw, 17px) !important;
+    font-weight: 390 !important;
+    line-height: 1.05 !important;
+    text-align: left !important;
+}
+
+.onepage-main #shop .shop-grid--reliefs .shop-item .shop-order:not(.shop-order-disabled) {
+    flex: 0 0 auto !important;
+    min-height: 40px !important;
+    padding: 0 22px !important;
+    font-size: clamp(15px, 0.92vw, 17px) !important;
+    line-height: 1 !important;
+}
+
+body.site-night .onepage-main #shop .shop-grid--reliefs .shop-price {
+    color: rgba(244, 240, 232, 0.62) !important;
+}
+
+@media (max-width: 520px) {
+    .onepage-main #shop .shop-grid--reliefs .shop-item h4 {
+        margin-top: 14px !important;
+        max-width: 9.5em !important;
+        font-size: 28px !important;
+        line-height: 0.98 !important;
+    }
+
+    .onepage-main #shop .shop-grid--reliefs .shop-item-note {
+        margin-top: 9px !important;
+        max-width: 16.5em !important;
+        font-size: 16px !important;
+        line-height: 1.14 !important;
+    }
+
+    .onepage-main #shop .shop-grid--reliefs .shop-buy {
+        margin-top: 14px !important;
+        gap: 14px !important;
+    }
+
+    .onepage-main #shop .shop-grid--reliefs .shop-price {
+        font-size: 15px !important;
+        line-height: 1.05 !important;
+    }
+
+    .onepage-main #shop .shop-grid--reliefs .shop-item .shop-order:not(.shop-order-disabled) {
+        min-height: 38px !important;
+        padding: 0 20px !important;
+        font-size: 15px !important;
+    }
+}
+
+/* ========== CYCLE 87: MOBILE ARTIST OVAL FULL BLEED ========== */
+@media (max-width: 620px) {
+    .onepage-main #artist .photo-column {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        margin-left: calc(50% - 50vw) !important;
+        margin-right: calc(50% - 50vw) !important;
+        padding: 0 !important;
+    }
+
+    .onepage-main #artist .photo-container {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        margin: 0 !important;
+        aspect-ratio: 16 / 9 !important;
+        max-height: none !important;
+        clip-path: ellipse(54% 45% at 50% 50%) !important;
+        border-radius: 54% / 45% !important;
+    }
+
+    .onepage-main #artist .photo-container img {
+        object-position: center 39% !important;
+    }
+}
