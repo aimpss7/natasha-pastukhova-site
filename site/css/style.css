@@ -20738,3 +20738,149 @@ body.site-night .onepage-main .project-detail-gallery-thumb:focus-visible {
         aspect-ratio: 4 / 3 !important;
     }
 }
+
+/* ========== CYCLE 85: GRID-LOCKED HEADER AND COMPACT SHOP CARDS ========== */
+@media (min-width: 900px) {
+    .header,
+    .site-home .header:not(.is-compact):not(.nav-open),
+    .header.is-compact {
+        left: max(69px, calc((100vw - 1600px) / 2)) !important;
+        right: auto !important;
+        width: min(1600px, calc(100vw - 138px)) !important;
+        max-width: none !important;
+        transform: none !important;
+    }
+
+    .header-logo,
+    .header.is-compact .header-logo,
+    .site-home .header:not(.is-compact):not(.nav-open) .header-logo {
+        grid-column: 1 !important;
+        justify-self: start !important;
+    }
+
+    .header-menu,
+    .header.is-compact .header-menu,
+    .site-home .header:not(.is-compact):not(.nav-open) .header-menu {
+        grid-column: 2 !important;
+        justify-self: center !important;
+    }
+
+    .header > .header-lang,
+    .header.is-compact > .header-lang,
+    .site-home .header:not(.is-compact):not(.nav-open) > .header-lang {
+        grid-column: 3 !important;
+        justify-self: end !important;
+    }
+}
+
+.shop-grid--reliefs .shop-item {
+    display: grid !important;
+    grid-template-rows: auto auto auto auto auto !important;
+    align-content: start !important;
+}
+
+.shop-grid--reliefs .shop-item-image {
+    margin-bottom: 0 !important;
+}
+
+.shop-grid--reliefs .shop-item h4 {
+    margin: clamp(10px, 0.7vw, 14px) 0 0 !important;
+    font-size: clamp(21px, 1.35vw, 27px) !important;
+    line-height: 1.02 !important;
+}
+
+.shop-grid--reliefs .shop-item-meta {
+    margin: 4px 0 0 !important;
+    font-size: clamp(13px, 0.82vw, 15px) !important;
+    line-height: 1.08 !important;
+}
+
+.shop-grid--reliefs .shop-item-note {
+    margin: clamp(8px, 0.6vw, 12px) 0 0 !important;
+    max-width: 20em !important;
+    font-size: clamp(14px, 0.88vw, 16px) !important;
+    line-height: 1.14 !important;
+}
+
+.shop-grid--reliefs .shop-buy {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 14px !important;
+    margin: clamp(10px, 0.75vw, 14px) 0 0 !important;
+    min-height: 0 !important;
+}
+
+.shop-grid--reliefs .shop-price {
+    flex: 0 0 auto !important;
+    font-size: clamp(14px, 0.86vw, 15px) !important;
+    line-height: 1 !important;
+}
+
+.shop-grid--reliefs .shop-item .shop-order:not(.shop-order-disabled) {
+    min-height: 36px !important;
+    padding: 0 18px !important;
+    font-size: clamp(14px, 0.86vw, 15px) !important;
+}
+
+@media (max-width: 520px) {
+    .shop-grid--reliefs .shop-item-image {
+        aspect-ratio: 1 / 1 !important;
+    }
+
+    .shop-grid--reliefs .shop-item h4 {
+        margin-top: 10px !important;
+        font-size: 24px !important;
+        line-height: 1 !important;
+    }
+
+    .shop-grid--reliefs .shop-item-meta {
+        margin-top: 4px !important;
+        font-size: 14px !important;
+    }
+
+    .shop-grid--reliefs .shop-item-note {
+        margin-top: 8px !important;
+        max-width: 21em !important;
+        font-size: 14px !important;
+        line-height: 1.12 !important;
+    }
+
+    .shop-grid--reliefs .shop-buy {
+        margin-top: 10px !important;
+        gap: 12px !important;
+    }
+
+    .shop-grid--reliefs .shop-price {
+        font-size: 14px !important;
+    }
+
+    .shop-grid--reliefs .shop-item .shop-order:not(.shop-order-disabled) {
+        min-height: 36px !important;
+        padding: 0 18px !important;
+        font-size: 14px !important;
+    }
+}
+
+@media (max-width: 520px) {
+    body.site-night .onepage-main #shop .shop-grid--reliefs .shop-item .shop-item-meta,
+    .onepage-main #shop .shop-grid--reliefs .shop-item .shop-item-meta {
+        margin-top: 4px !important;
+        font-size: 14px !important;
+        line-height: 1.08 !important;
+    }
+
+    body.site-night .onepage-main #shop .shop-grid--reliefs .shop-item .shop-item-note,
+    .onepage-main #shop .shop-grid--reliefs .shop-item .shop-item-note {
+        margin: 8px 0 0 !important;
+        max-width: 21em !important;
+        font-size: 14px !important;
+        line-height: 1.14 !important;
+    }
+
+    body.site-night .onepage-main #shop .shop-grid--reliefs .shop-item .shop-buy,
+    .onepage-main #shop .shop-grid--reliefs .shop-item .shop-buy {
+        margin-top: 10px !important;
+        min-height: 36px !important;
+    }
+}
