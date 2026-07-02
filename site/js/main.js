@@ -281,94 +281,6 @@ function initMailChips() {
 
 initMailChips();
 
-// ========== SHARED: PRIVACY MODAL ==========
-function initPrivacyModal() {
-    const triggers = document.querySelectorAll('[data-privacy-open]');
-    if (!triggers.length) return;
-    const isEnglishPage = (document.documentElement.lang || '').toLowerCase().startsWith('en');
-    const copy = isEnglishPage ? {
-        close: 'Close',
-        label: 'About site',
-        title: 'Site data',
-        p1: 'The site does not use advertising cookies or analytics.',
-        p2: 'Yekaterinburg weather is loaded from Open-Meteo. The temperature is cached in the browser for 24 hours.',
-        p3: 'Email links open in your mail app. The site does not store requests, payments or correspondence.',
-        ok: 'OK'
-    } : {
-        close: 'Закрыть',
-        label: 'О сайте',
-        title: 'Данные сайта',
-        p1: 'Сайт не ставит рекламные cookies и не подключает аналитику.',
-        p2: 'Погода Екатеринбурга берется из Open-Meteo. Температура сохраняется в браузере на 24 часа, чтобы не запрашивать ее при каждом открытии.',
-        p3: 'Письма открываются в вашем почтовом приложении. Сайт не хранит заявки, платежные данные и переписку.',
-        ok: 'Понятно'
-    };
-
-    const modal = document.createElement('div');
-    modal.className = 'privacy-modal';
-    modal.setAttribute('role', 'dialog');
-    modal.setAttribute('aria-modal', 'true');
-    modal.setAttribute('aria-labelledby', 'privacy-modal-title');
-    modal.hidden = true;
-    modal.innerHTML = `
-        <div class="privacy-modal-panel" role="document">
-            <button class="privacy-modal-close" type="button" aria-label="${copy.close}">×</button>
-            <span class="privacy-modal-label">${copy.label}</span>
-            <h2 id="privacy-modal-title">${copy.title}</h2>
-            <p>${copy.p1}</p>
-            <p>${copy.p2}</p>
-            <p>${copy.p3}</p>
-            <button class="privacy-modal-ok" type="button">${copy.ok}</button>
-        </div>`;
-    document.body.appendChild(modal);
-
-    const panel = modal.querySelector('.privacy-modal-panel');
-    const closeButtons = modal.querySelectorAll('.privacy-modal-close, .privacy-modal-ok');
-    let previousFocus = null;
-
-    function openModal() {
-        previousFocus = document.activeElement;
-        modal.hidden = false;
-        document.body.classList.add('privacy-modal-open');
-        requestAnimationFrame(() => {
-            modal.classList.add('is-open');
-            const closeButton = modal.querySelector('.privacy-modal-close');
-            if (closeButton) closeButton.focus();
-        });
-    }
-
-    function closeModal() {
-        modal.classList.remove('is-open');
-        document.body.classList.remove('privacy-modal-open');
-        window.setTimeout(() => {
-            modal.hidden = true;
-            if (previousFocus && typeof previousFocus.focus === 'function') {
-                previousFocus.focus();
-            }
-        }, 160);
-    }
-
-    triggers.forEach(trigger => {
-        trigger.addEventListener('click', openModal);
-    });
-
-    closeButtons.forEach(button => {
-        button.addEventListener('click', closeModal);
-    });
-
-    modal.addEventListener('click', event => {
-        if (!panel || panel.contains(event.target)) return;
-        closeModal();
-    });
-
-    document.addEventListener('keydown', event => {
-        if (modal.hidden) return;
-        if (event.key === 'Escape') closeModal();
-    });
-}
-
-initPrivacyModal();
-
 // ========== SHARED: READABLE TYPOGRAPHY ==========
 function initReadableTypography(root = document) {
             const selector = [
@@ -417,11 +329,6 @@ function initReadableTypography(root = document) {
         '.project-detail-copy h3',
         '.project-detail-copy p',
         '.project-detail-credits p',
-        '.privacy-modal-label',
-        '.privacy-modal-panel h2',
-        '.privacy-content p',
-        '.privacy-modal-panel p',
-        '.privacy-modal-ok',
         '.shop-order-modal-label',
         '.shop-order-modal-panel h2',
         '.shop-order-modal-item',

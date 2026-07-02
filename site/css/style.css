@@ -5793,152 +5793,6 @@ td {
     }
 }
 
-/* ========== PRIVACY MODAL ========== */
-.privacy-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 1200;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    padding: 28px;
-    background: rgba(252, 251, 247, 0.28);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.18s ease;
-}
-
-.privacy-modal[hidden] {
-    display: none;
-}
-
-.privacy-modal.is-open {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.privacy-modal-panel {
-    position: relative;
-    width: min(440px, calc(100vw - 56px));
-    padding: 24px 24px 22px;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.86);
-    box-shadow: 0 18px 70px rgba(0, 0, 0, 0.16);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    transform: translateY(10px);
-    transition: transform 0.18s ease;
-}
-
-.privacy-modal.is-open .privacy-modal-panel {
-    transform: translateY(0);
-}
-
-.privacy-modal-label {
-    display: block;
-    margin-bottom: 12px;
-    color: rgba(0, 0, 0, 0.5);
-    font-size: 13px;
-    line-height: 1.2;
-}
-
-.privacy-modal h2 {
-    max-width: 340px;
-    margin: 0 42px 16px 0;
-    font-size: clamp(30px, 3vw, 42px);
-    font-weight: normal;
-    line-height: 0.98;
-}
-
-.privacy-modal p {
-    margin: 0;
-    color: rgba(0, 0, 0, 0.68);
-    font-size: 15px;
-    line-height: 1.38;
-}
-
-.privacy-modal p + p {
-    margin-top: 10px;
-}
-
-.privacy-modal-close,
-.privacy-modal-ok {
-    appearance: none;
-    border: 0;
-    font: inherit;
-    cursor: var(--heart-cursor-pointer);
-}
-
-.privacy-modal-close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.07);
-    color: #000;
-    font-size: 20px;
-    line-height: 1;
-}
-
-.privacy-modal-ok {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 40px;
-    margin-top: 18px;
-    padding: 0 16px;
-    border-radius: 14px;
-    background: rgba(0, 0, 0, 0.07);
-    color: #000;
-    font-size: 15px;
-    line-height: 1;
-}
-
-.privacy-modal-close:hover,
-.privacy-modal-close:focus-visible,
-.privacy-modal-ok:hover,
-.privacy-modal-ok:focus-visible {
-    background: rgba(0, 0, 0, 0.18);
-}
-
-.privacy-modal-open {
-    overflow: hidden;
-}
-
-button.footer-privacy {
-    appearance: none;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    font: inherit;
-    text-align: inherit;
-}
-
-@media (max-width: 620px) {
-    .privacy-modal {
-        padding: 14px;
-    }
-
-    .privacy-modal-panel {
-        width: 100%;
-        padding: 22px 20px 20px;
-        border-radius: 18px;
-    }
-
-    .privacy-modal h2 {
-        font-size: 34px;
-    }
-
-    .privacy-modal-ok {
-        width: 100%;
-    }
-}
-
 /* ========== FOOTER MOBILE RHYTHM FIX ========== */
 .footer {
     margin-top: clamp(34px, 4.4vw, 54px);
@@ -6839,9 +6693,7 @@ button.footer-privacy {
 .shop-heading p,
 .shop-item p,
 .project-description,
-.project-facts-notes,
-.privacy-content p,
-.privacy-modal-panel p {
+.project-facts-notes {
     text-wrap: pretty;
 }
 
@@ -9591,21 +9443,18 @@ body,
 }
 
 .project-detail-card,
-.privacy-modal-panel,
 .shop-order-modal-panel {
     scrollbar-width: thin;
     scrollbar-color: rgba(0, 0, 0, 0.22) transparent;
 }
 
 .project-detail-card::-webkit-scrollbar,
-.privacy-modal-panel::-webkit-scrollbar,
 .shop-order-modal-panel::-webkit-scrollbar {
     width: 12px;
     height: 12px;
 }
 
 .project-detail-card::-webkit-scrollbar-thumb,
-.privacy-modal-panel::-webkit-scrollbar-thumb,
 .shop-order-modal-panel::-webkit-scrollbar-thumb {
     border-width: 3px;
     background: rgba(0, 0, 0, 0.24);
@@ -9621,7 +9470,6 @@ body,
 .shop-order,
 .shop-preview .shop-order,
 .shop-item--mayak-reflect .shop-order,
-.privacy-modal-ok,
 .shop-order-modal-mail,
 .shop-order-modal-copy,
 .shop-order-modal-cancel {
@@ -9649,8 +9497,6 @@ body,
 .shop-preview .shop-order:focus-visible,
 .shop-item--mayak-reflect .shop-order:hover,
 .shop-item--mayak-reflect .shop-order:focus-visible,
-.privacy-modal-ok:hover,
-.privacy-modal-ok:focus-visible,
 .shop-order-modal-mail:hover,
 .shop-order-modal-mail:focus-visible,
 .shop-order-modal-copy:hover,
@@ -9766,7 +9612,6 @@ body {
 }
 
 .onepage-main .project-inline-detail.project-inline-overlay .project-detail-card.project-detail-card--entity,
-.privacy-modal-panel,
 .shop-order-modal-panel {
     background: var(--glass-paper) !important;
 }
@@ -10894,23 +10739,16 @@ html {
         align-items: center !important;
     }
 
-    .privacy-modal-close,
     .shop-order-modal-close,
     .onepage-main .project-detail-close {
         width: 44px !important;
         height: 44px !important;
     }
 
-    .privacy-modal-ok,
     .shop-order-modal-mail,
     .shop-order-modal-copy,
     .shop-order-modal-cancel {
         min-height: 44px !important;
-    }
-
-    .privacy-modal-close {
-        top: 12px;
-        right: 12px;
     }
 }
 
