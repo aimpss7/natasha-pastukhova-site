@@ -187,6 +187,24 @@ initMailChips();
 function initPrivacyModal() {
     const triggers = document.querySelectorAll('[data-privacy-open]');
     if (!triggers.length) return;
+    const isEnglishPage = (document.documentElement.lang || '').toLowerCase().startsWith('en');
+    const copy = isEnglishPage ? {
+        close: 'Close',
+        label: 'About site',
+        title: 'Site data',
+        p1: 'The site does not use advertising cookies or analytics.',
+        p2: 'Yekaterinburg weather is loaded from Open-Meteo. The temperature is cached in the browser for 24 hours.',
+        p3: 'Email links open in your mail app. The site does not store requests, payments or correspondence.',
+        ok: 'OK'
+    } : {
+        close: 'Закрыть',
+        label: 'О сайте',
+        title: 'Данные сайта',
+        p1: 'Сайт не ставит рекламные cookies и не подключает аналитику.',
+        p2: 'Погода Екатеринбурга берется из Open-Meteo. Температура сохраняется в браузере на 24 часа, чтобы не запрашивать ее при каждом открытии.',
+        p3: 'Письма открываются в вашем почтовом приложении. Сайт не хранит заявки, платежные данные и переписку.',
+        ok: 'Понятно'
+    };
 
     const modal = document.createElement('div');
     modal.className = 'privacy-modal';
@@ -196,13 +214,13 @@ function initPrivacyModal() {
     modal.hidden = true;
     modal.innerHTML = `
         <div class="privacy-modal-panel" role="document">
-            <button class="privacy-modal-close" type="button" aria-label="Закрыть">×</button>
-            <span class="privacy-modal-label">О данных</span>
-            <h2 id="privacy-modal-title">Cookies и данные</h2>
-            <p>Сайт не ставит рекламные cookies и не подключает аналитику.</p>
-            <p>Погода Екатеринбурга берется из Open-Meteo. Температура сохраняется в браузере на 24 часа, чтобы не запрашивать ее при каждом открытии.</p>
-            <p>Письма открываются в вашем почтовом приложении. Сайт не хранит заявки, платежные данные и переписку.</p>
-            <button class="privacy-modal-ok" type="button">Понятно</button>
+            <button class="privacy-modal-close" type="button" aria-label="${copy.close}">×</button>
+            <span class="privacy-modal-label">${copy.label}</span>
+            <h2 id="privacy-modal-title">${copy.title}</h2>
+            <p>${copy.p1}</p>
+            <p>${copy.p2}</p>
+            <p>${copy.p3}</p>
+            <button class="privacy-modal-ok" type="button">${copy.ok}</button>
         </div>`;
     document.body.appendChild(modal);
 

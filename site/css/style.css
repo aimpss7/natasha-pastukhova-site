@@ -19407,3 +19407,256 @@ body.site-home .sections-container .work-location + .work-details::before {
         min-width: 0 !important;
     }
 }
+
+/* ========== CYCLE 77: BATCH QA - HERO BASELINE, WORK DETAIL, SHOP COPY, FOOTER ========== */
+.onepage-main .hero-editorial .hero-copy {
+    position: absolute !important;
+    top: auto !important;
+}
+
+@media (min-width: 761px) {
+    .onepage-main .hero-editorial .hero-copy {
+        left: var(--site-edge) !important;
+        right: var(--site-edge) !important;
+        bottom: clamp(66px, 6.2vw, 98px) !important;
+        max-width: min(1020px, calc(100vw - (2 * var(--site-edge)))) !important;
+    }
+
+    .onepage-main #hero-title {
+        font-size: clamp(104px, 9.2vw, 164px) !important;
+        line-height: 0.8 !important;
+    }
+
+    .onepage-main .hero-editorial .hero-summary {
+        max-width: min(760px, 58vw) !important;
+        margin-top: clamp(18px, 1.6vw, 28px) !important;
+        font-size: clamp(26px, 2vw, 38px) !important;
+        line-height: 1.04 !important;
+    }
+
+    .onepage-main .hero-editorial .hero-image-caption {
+        right: var(--site-edge) !important;
+        bottom: clamp(66px, 6.2vw, 98px) !important;
+        left: auto !important;
+        width: min(360px, 26vw) !important;
+        max-width: min(360px, 26vw) !important;
+        margin-bottom: 0 !important;
+        text-align: right !important;
+    }
+}
+
+@media (min-width: 761px) and (max-width: 1080px) {
+    .onepage-main .hero-editorial .hero-copy {
+        bottom: clamp(96px, 9.5vw, 132px) !important;
+    }
+
+    .onepage-main .hero-editorial .hero-image-caption {
+        right: auto !important;
+        left: var(--site-edge) !important;
+        bottom: clamp(34px, 4vw, 54px) !important;
+        width: min(520px, calc(100vw - (2 * var(--site-edge)))) !important;
+        max-width: min(520px, calc(100vw - (2 * var(--site-edge)))) !important;
+        text-align: left !important;
+    }
+}
+
+@media (max-width: 760px) {
+    .onepage-main .hero-editorial .hero-copy {
+        bottom: clamp(96px, 18vh, 142px) !important;
+    }
+
+    .onepage-main .hero-editorial .hero-image-caption {
+        bottom: 24px !important;
+    }
+}
+
+@media (min-width: 900px) {
+    .onepage-main .projects-layout {
+        display: grid !important;
+        grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+        gap: clamp(34px, 3vw, 58px) clamp(24px, 2.5vw, 46px) !important;
+        align-items: start !important;
+        grid-auto-flow: dense !important;
+    }
+
+    .onepage-main .projects-layout .project-card-inline,
+    .onepage-main .projects-layout .project-card-inline.layout-third,
+    .onepage-main .projects-layout .project-card-inline.layout-half,
+    .onepage-main .projects-layout .project-card-inline.layout-large,
+    .onepage-main .projects-layout .project-card-inline.story-card {
+        grid-column: span 4 !important;
+        width: auto !important;
+        max-width: none !important;
+    }
+
+    .onepage-main .projects-layout .project-card-inline:nth-child(5n + 4),
+    .onepage-main .projects-layout .project-card-inline:nth-child(5n + 5) {
+        grid-column: span 6 !important;
+    }
+
+    .onepage-main .projects-layout .project-card-inline .card-img,
+    .onepage-main .projects-layout .project-card-inline .story-media,
+    .onepage-main .projects-layout .project-card-inline.story-card .story-media,
+    .onepage-main .projects-layout .project-card-inline.layout-half .card-img,
+    .onepage-main .projects-layout .project-card-inline.layout-half .story-media,
+    .onepage-main .projects-layout .project-card-inline.layout-large .card-img,
+    .onepage-main .projects-layout .project-card-inline.layout-large .story-media,
+    .onepage-main .projects-layout .project-card-inline.layout-third .card-img,
+    .onepage-main .projects-layout .project-card-inline.layout-third .story-media {
+        height: auto !important;
+        min-height: 0 !important;
+        aspect-ratio: 4 / 5 !important;
+        --project-media-pad: 125% !important;
+    }
+
+    .onepage-main .projects-layout .project-card-inline:nth-child(5n + 1) .card-img,
+    .onepage-main .projects-layout .project-card-inline:nth-child(5n + 1) .story-media,
+    .onepage-main .projects-layout .project-card-inline:nth-child(5n + 4) .card-img,
+    .onepage-main .projects-layout .project-card-inline:nth-child(5n + 4) .story-media,
+    .onepage-main .projects-layout .project-card-inline:nth-child(5n + 5) .card-img,
+    .onepage-main .projects-layout .project-card-inline:nth-child(5n + 5) .story-media {
+        aspect-ratio: 4 / 3 !important;
+        --project-media-pad: 75% !important;
+    }
+}
+
+.onepage-main .project-inline-detail.project-inline-overlay,
+.onepage-main .project-inline-detail.project-inline-overlay.from-layout-third,
+.onepage-main .project-inline-detail.project-inline-overlay.from-layout-large,
+.onepage-main .project-inline-detail.project-inline-overlay.from-layout-wide,
+.onepage-main .project-inline-detail.project-inline-overlay.from-layout-full {
+    padding-top: clamp(108px, 8vw, 148px) !important;
+}
+
+.onepage-main .project-inline-detail.project-inline-overlay .project-detail-card.project-detail-card--entity > .project-detail-close,
+.onepage-main .project-detail-close {
+    position: static !important;
+    grid-column: 1 / -1 !important;
+    justify-self: start !important;
+    margin: 0 0 clamp(10px, 1.4vw, 18px) !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    z-index: 120 !important;
+}
+
+.onepage-main .project-detail-card--entity .project-detail-copy h3 {
+    max-width: 9.4em !important;
+    font-size: clamp(54px, 5.8vw, 98px) !important;
+    line-height: 0.9 !important;
+}
+
+@media (max-width: 760px) {
+    .onepage-main .project-inline-detail.project-inline-overlay,
+    .onepage-main .project-inline-detail.project-inline-overlay.from-layout-third,
+    .onepage-main .project-inline-detail.project-inline-overlay.from-layout-large,
+    .onepage-main .project-inline-detail.project-inline-overlay.from-layout-wide,
+    .onepage-main .project-inline-detail.project-inline-overlay.from-layout-full {
+        padding-top: 82px !important;
+    }
+
+    .onepage-main .project-detail-card--entity .project-detail-copy h3 {
+        font-size: clamp(40px, 12.5vw, 62px) !important;
+    }
+}
+
+.shop-heading {
+    margin-bottom: clamp(30px, 3.8vw, 58px) !important;
+}
+
+.shop-heading p {
+    max-width: min(850px, 70vw) !important;
+}
+
+.shop-terms.shop-terms-compact,
+.onepage-main #shop .shop-terms.shop-terms-compact,
+.shop-page .shop-terms.shop-terms-compact {
+    display: none !important;
+}
+
+.shop-grid--reliefs .shop-item-meta {
+    display: block !important;
+    margin-top: clamp(4px, 0.45vw, 8px) !important;
+    color: rgba(0, 0, 0, 0.52) !important;
+    font-family: var(--font-body) !important;
+    font-size: clamp(15px, 1.02vw, 18px) !important;
+    line-height: 1.12 !important;
+}
+
+.shop-grid--reliefs .shop-item-note {
+    margin-top: clamp(12px, 1.1vw, 18px) !important;
+    max-width: 22em !important;
+    color: rgba(0, 0, 0, 0.58) !important;
+    line-height: 1.18 !important;
+}
+
+.shop-grid--reliefs .shop-buy {
+    display: flex !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 12px !important;
+    margin-top: auto !important;
+    padding-top: clamp(16px, 1.5vw, 24px) !important;
+}
+
+.shop-grid--reliefs .shop-price {
+    flex: 0 1 auto !important;
+    padding: 0 !important;
+    text-align: left !important;
+    white-space: normal !important;
+}
+
+.shop-grid--reliefs .shop-order {
+    flex: 0 0 auto !important;
+}
+
+@media (max-width: 520px) {
+    .shop-grid--reliefs .shop-buy {
+        gap: 8px !important;
+    }
+}
+
+.footer-service .footer-link,
+.footer-service .footer-privacy {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.38em !important;
+    line-height: 1 !important;
+}
+
+.footer-service .footer-link .footer-icon {
+    margin-right: 0 !important;
+    flex: 0 0 0.9em !important;
+}
+
+.footer-link-document .footer-icon-doc {
+    width: 0.88em !important;
+    height: 0.88em !important;
+}
+
+/* ========== CYCLE 78: DESKTOP CARD ROW HEIGHT LOCK AFTER VERTICAL RHYTHM PASS ========== */
+@media (min-width: 900px) {
+    .onepage-main .projects-layout .project-card-inline .card-img,
+    .onepage-main .projects-layout .project-card-inline .story-media,
+    .onepage-main .projects-layout .project-card-inline.story-card .story-media,
+    .onepage-main .projects-layout .project-card-inline.layout-third .card-img,
+    .onepage-main .projects-layout .project-card-inline.layout-third .story-media,
+    .onepage-main .projects-layout .project-card-inline.layout-half .card-img,
+    .onepage-main .projects-layout .project-card-inline.layout-half .story-media,
+    .onepage-main .projects-layout .project-card-inline.layout-large .card-img,
+    .onepage-main .projects-layout .project-card-inline.layout-large .story-media,
+    .onepage-main .projects-layout .project-card-inline:nth-child(5n + 1) .card-img,
+    .onepage-main .projects-layout .project-card-inline:nth-child(5n + 1) .story-media,
+    .onepage-main .projects-layout .project-card-inline:nth-child(5n + 4) .card-img,
+    .onepage-main .projects-layout .project-card-inline:nth-child(5n + 4) .story-media,
+    .onepage-main .projects-layout .project-card-inline:nth-child(5n + 5) .card-img,
+    .onepage-main .projects-layout .project-card-inline:nth-child(5n + 5) .story-media {
+        height: clamp(320px, 29vw, 500px) !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        aspect-ratio: auto !important;
+        --project-media-pad: 0 !important;
+    }
+}
