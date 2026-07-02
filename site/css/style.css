@@ -20995,3 +20995,24 @@ body.site-night .onepage-main #shop .shop-grid--reliefs .shop-price {
         object-position: center 39% !important;
     }
 }
+
+/* ========== CYCLE 88: SHOP ROW IMAGE HEIGHT LOCK ========== */
+.onepage-main #shop .shop-grid--reliefs {
+    align-items: start !important;
+}
+
+.onepage-main #shop .shop-grid--reliefs .shop-item-image,
+.onepage-main #shop .shop-item--cat-relief .shop-item-image,
+.onepage-main #shop .shop-item--dog-relief .shop-item-image,
+.onepage-main #shop .shop-item--long-flower-relief .shop-item-image,
+.onepage-main #shop .shop-item--bud-flower-relief .shop-item-image {
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
+    min-height: 0 !important;
+}
+
+.onepage-main #shop .shop-grid--reliefs .shop-item-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
