@@ -20191,3 +20191,109 @@ body.site-night .shop-grid--reliefs .shop-price {
         padding: 0 14px !important;
     }
 }
+
+/* ========== CYCLE 81: NIGHT MOBILE MENU AND GLOBAL CONTRAST LOCK ========== */
+body.site-night .onepage-main,
+body.site-night .onepage-main h1,
+body.site-night .onepage-main h2,
+body.site-night .onepage-main h3,
+body.site-night .onepage-main h4,
+body.site-night .onepage-main p,
+body.site-night .onepage-main a,
+body.site-night .onepage-main button,
+body.site-night .onepage-main td,
+body.site-night .onepage-main th,
+body.site-night .onepage-main li,
+body.site-night .onepage-main dt,
+body.site-night .onepage-main dd,
+body.site-night .onepage-main label,
+body.site-night .sections-container,
+body.site-night .sections-container *,
+body.site-night .cv-section,
+body.site-night .cv-section *,
+body.site-night .project-card-inline,
+body.site-night .project-card-inline *,
+body.site-night .story-copy,
+body.site-night .story-copy *,
+body.site-night .artist-copy,
+body.site-night .artist-copy * {
+    color: var(--night-ink) !important;
+}
+
+body.site-night .onepage-main .card-meta,
+body.site-night .onepage-main .card-meta *,
+body.site-night .onepage-main .card-desc,
+body.site-night .onepage-main .project-detail-label,
+body.site-night .onepage-main .project-detail-facts,
+body.site-night .onepage-main .project-detail-credits,
+body.site-night .onepage-main .work-location,
+body.site-night .onepage-main .work-details,
+body.site-night .onepage-main .menu-sidebar .menu-item:not(.active),
+body.site-night .onepage-main .cv-subtab:not(.active),
+body.site-night .onepage-main .filter-btn:not(.active):not([aria-pressed="true"]) {
+    color: var(--night-muted) !important;
+}
+
+body.site-night.project-overlay-open::before {
+    background: rgba(18, 17, 15, 0.72) !important;
+    -webkit-backdrop-filter: blur(8px) saturate(86%) !important;
+    backdrop-filter: blur(8px) saturate(86%) !important;
+}
+
+body.site-night .onepage-main .project-inline-detail.project-inline-overlay .project-detail-card.project-detail-card--entity {
+    background: rgba(27, 25, 22, 0.985) !important;
+    border-color: var(--night-line) !important;
+    box-shadow:
+        0 26px 74px rgba(0, 0, 0, 0.42),
+        0 0 0 1px rgba(244, 239, 229, 0.07) inset !important;
+}
+
+body.site-night .onepage-main .project-detail-close {
+    background: rgba(34, 32, 28, 0.94) !important;
+    border-color: rgba(244, 239, 229, 0.22) !important;
+    color: var(--night-ink) !important;
+}
+
+body.site-night .onepage-main .project-detail-close:hover,
+body.site-night .onepage-main .project-detail-close:focus-visible {
+    background: rgba(48, 45, 39, 0.96) !important;
+    border-color: rgba(244, 239, 229, 0.34) !important;
+}
+
+@media (max-width: 899px) {
+    body.site-night .header.nav-open .header-menu {
+        background: rgba(34, 32, 28, 0.92) !important;
+        border-color: rgba(244, 239, 229, 0.22) !important;
+        box-shadow:
+            0 18px 55px rgba(0, 0, 0, 0.36),
+            0 0 42px rgba(255, 232, 181, 0.12) !important;
+    }
+
+    body.site-night .header.nav-open .header-menu a,
+    body.site-night .header.nav-open .header-menu a:visited,
+    body.site-night .header.nav-open .header-menu .header-menu-lang .lang-toggle,
+    body.site-night .header.nav-open .header-menu .header-menu-lang .lang-toggle:visited {
+        color: var(--night-ink) !important;
+        background: transparent !important;
+        opacity: 1 !important;
+        text-shadow: none !important;
+    }
+
+    body.site-night .header.nav-open .header-menu a::before,
+    body.site-night .header.nav-open .header-menu a::after,
+    body.site-night .header.nav-open .header-menu .header-menu-lang .lang-toggle::before,
+    body.site-night .header.nav-open .header-menu .header-menu-lang .lang-toggle::after {
+        content: none !important;
+        display: none !important;
+    }
+
+    body.site-night .header.nav-open .header-menu a:hover,
+    body.site-night .header.nav-open .header-menu a:focus-visible,
+    body.site-night .header.nav-open .header-menu a[aria-current="page"],
+    body.site-night .header.nav-open .header-menu .header-menu-lang .lang-toggle:hover,
+    body.site-night .header.nav-open .header-menu .header-menu-lang .lang-toggle:focus-visible,
+    body.site-night .header.nav-open .header-menu .header-menu-lang .lang-toggle.is-active {
+        background: rgba(244, 239, 229, 0.12) !important;
+        color: var(--night-ink) !important;
+    }
+}
