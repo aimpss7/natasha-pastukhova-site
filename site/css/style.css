@@ -20297,3 +20297,38 @@ body.site-night .onepage-main .project-detail-close:focus-visible {
         color: var(--night-ink) !important;
     }
 }
+
+/* ========== CYCLE 82: NIGHT TOP CAPSULE CONTRAST HARD LOCK ========== */
+body.site-night .header-logo,
+body.site-night .header-logo:visited,
+body.site-night .header-logo .brand-full,
+body.site-night .header-logo .brand-short,
+body.site-night .header-logo .heart,
+body.site-night .header > .header-lang,
+body.site-night .header > .header-lang .lang-toggle,
+body.site-night .header > .header-lang .lang-toggle:visited,
+body.site-night .header > .header-lang .lang-toggle.is-active,
+body.site-night .header.is-compact > .header-lang,
+body.site-night .header.is-compact > .header-lang .lang-toggle,
+body.site-night .header.is-compact > .header-lang .lang-toggle:visited,
+body.site-night .header.is-compact > .header-lang .lang-toggle.is-active {
+    color: #f4efe5 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+}
+
+body.site-night .header-logo .heart {
+    color: #fff2da !important;
+    text-shadow: 0 0 12px rgba(255, 232, 181, 0.62) !important;
+}
+
+body.site-night .header-logo,
+body.site-night .header > .header-lang,
+body.site-night .header-burger {
+    background: rgba(34, 32, 28, 0.84) !important;
+    border-color: rgba(244, 239, 229, 0.24) !important;
+}
+
+body.site-night .header-burger span {
+    background: #f4efe5 !important;
+}
