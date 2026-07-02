@@ -21262,3 +21262,131 @@ body.site-night .onepage-main #shop .shop-grid--reliefs .shop-price {
         margin-top: 14px !important;
     }
 }
+
+/* ========== CYCLE 93: HEADER CAPSULE AIR AND HEART CURSOR POLISH ========== */
+:root {
+    --heart-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 34 34'%3E%3Ctext x='17' y='24' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-size='28' font-weight='700' fill='%23000'%3E%E2%99%A5%3C/text%3E%3C/svg%3E") 17 17, auto;
+    --heart-cursor-pointer: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 34 34'%3E%3Ctext x='17' y='24' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-size='28' font-weight='700' fill='%23000'%3E%E2%99%A5%3C/text%3E%3C/svg%3E") 17 17, pointer;
+}
+
+.header-logo,
+.header.is-compact .header-logo,
+.site-home .header:not(.is-compact):not(.nav-open) .header-logo,
+.header-menu,
+.header.is-compact .header-menu,
+.site-home .header:not(.is-compact):not(.nav-open) .header-menu,
+.header > .header-lang,
+.header.is-compact > .header-lang,
+.site-home .header:not(.is-compact):not(.nav-open) > .header-lang,
+.header-burger {
+    border-color: rgba(0, 0, 0, 0.045) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.055) !important;
+}
+
+.header-logo,
+.header.is-compact .header-logo,
+.site-home .header:not(.is-compact):not(.nav-open) .header-logo {
+    gap: 0.04em !important;
+}
+
+.header-logo .heart,
+.header.is-compact .header-logo .heart,
+.site-home .header:not(.is-compact):not(.nav-open) .header-logo .heart {
+    width: 0.68em !important;
+    margin-left: -0.035em !important;
+    transform: translateY(0.025em) !important;
+}
+
+.header-menu,
+.header.is-compact .header-menu,
+.site-home .header:not(.is-compact):not(.nav-open) .header-menu {
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+}
+
+.header-menu > a,
+.header.is-compact .header-menu > a,
+.site-home .header:not(.is-compact):not(.nav-open) .header-menu > a {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+}
+
+.header > .header-lang,
+.header.is-compact > .header-lang,
+.site-home .header:not(.is-compact):not(.nav-open) > .header-lang {
+    min-width: 0 !important;
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+}
+
+.header > .header-lang .lang-toggle,
+.header.is-compact > .header-lang .lang-toggle {
+    min-width: 0 !important;
+    max-width: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.header > .header-lang .lang-toggle.is-active,
+.header.is-compact > .header-lang .lang-toggle.is-active {
+    min-width: 2.05em !important;
+    max-width: 2.05em !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+}
+
+.header > .header-lang:hover,
+.header > .header-lang:focus-within,
+.header.is-compact > .header-lang:hover,
+.header.is-compact > .header-lang:focus-within {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+}
+
+.header > .header-lang:hover .lang-toggle,
+.header > .header-lang:focus-within .lang-toggle,
+.header.is-compact > .header-lang:hover .lang-toggle,
+.header.is-compact > .header-lang:focus-within .lang-toggle {
+    min-width: 2.05em !important;
+    max-width: 2.05em !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+}
+
+.header > .header-lang:hover .lang-toggle + .lang-toggle,
+.header > .header-lang:focus-within .lang-toggle + .lang-toggle,
+.header.is-compact > .header-lang:hover .lang-toggle + .lang-toggle,
+.header.is-compact > .header-lang:focus-within .lang-toggle + .lang-toggle {
+    margin-left: 5px !important;
+}
+
+body.site-night {
+    --heart-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 34 34'%3E%3Ctext x='17' y='24' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-size='28' font-weight='700' fill='%23f4efe5'%3E%E2%99%A5%3C/text%3E%3C/svg%3E") 17 17, auto;
+    --heart-cursor-pointer: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 34 34'%3E%3Ctext x='17' y='24' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-size='28' font-weight='700' fill='%23f4efe5'%3E%E2%99%A5%3C/text%3E%3C/svg%3E") 17 17, pointer;
+}
+
+body.site-night .header-logo,
+body.site-night .header.is-compact .header-logo,
+body.site-night.site-home .header:not(.is-compact):not(.nav-open) .header-logo,
+body.site-night .header-menu,
+body.site-night .header.is-compact .header-menu,
+body.site-night.site-home .header:not(.is-compact):not(.nav-open) .header-menu,
+body.site-night .header > .header-lang,
+body.site-night .header.is-compact > .header-lang,
+body.site-night.site-home .header:not(.is-compact):not(.nav-open) > .header-lang,
+body.site-night .header-burger {
+    border-color: rgba(244, 239, 229, 0.06) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+}
+
+@media (max-width: 760px) {
+    .header .header-menu {
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+    }
+
+    .header.nav-open .header-menu > a {
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+    }
+}
