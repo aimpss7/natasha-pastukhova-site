@@ -1173,8 +1173,8 @@ if (projectsGrid) {
                 window.requestAnimationFrame(() => {
                     heroSection.classList.remove('is-switching');
                 });
-                window.setTimeout(() => crossfadeImage?.remove(), 900);
-            }, 520);
+                window.setTimeout(() => crossfadeImage?.remove(), 1700);
+            }, 1500);
         }
 
         if (heroWorks) {
@@ -1189,7 +1189,7 @@ if (projectsGrid) {
             window.setInterval(() => {
                 current = (current + 1) % items.length;
                 show(items[current], current, true);
-            }, 6000);
+            }, 7800);
         }
     }
 

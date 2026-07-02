@@ -17850,3 +17850,655 @@ body.site-home .cv-section .work-location + .work-details::before {
         width: 106px !important;
     }
 }
+
+/* ========== CYCLE 68: SINGLE FOOTER LINE, COLLAPSED LANGUAGE PILL AND NARROW SHOP ACTIONS ========== */
+.header > .header-lang,
+.header.is-compact > .header-lang {
+    gap: 0 !important;
+    min-width: 0 !important;
+    width: auto !important;
+    padding-right: 22px !important;
+    padding-left: 22px !important;
+    overflow: hidden !important;
+    transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, padding 180ms ease !important;
+}
+
+.header > .header-lang .lang-toggle,
+.header.is-compact > .header-lang .lang-toggle {
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+    width: auto !important;
+    padding: 0 !important;
+    margin-left: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    white-space: nowrap !important;
+    transition: max-width 180ms ease, min-width 180ms ease, margin-left 180ms ease, opacity 160ms ease !important;
+}
+
+.header > .header-lang .lang-toggle.is-active,
+.header.is-compact > .header-lang .lang-toggle.is-active {
+    min-width: 2.05em !important;
+    max-width: 3.2em !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+.header > .header-lang:hover .lang-toggle,
+.header > .header-lang:focus-within .lang-toggle,
+.header.is-compact > .header-lang:hover .lang-toggle,
+.header.is-compact > .header-lang:focus-within .lang-toggle {
+    min-width: 2.05em !important;
+    max-width: 3.2em !important;
+    opacity: 0.48 !important;
+    pointer-events: auto !important;
+}
+
+.header > .header-lang:hover .lang-toggle.is-active,
+.header > .header-lang:focus-within .lang-toggle.is-active,
+.header.is-compact > .header-lang:hover .lang-toggle.is-active,
+.header.is-compact > .header-lang:focus-within .lang-toggle.is-active {
+    opacity: 1 !important;
+}
+
+.header > .header-lang:hover .lang-toggle + .lang-toggle,
+.header > .header-lang:focus-within .lang-toggle + .lang-toggle,
+.header.is-compact > .header-lang:hover .lang-toggle + .lang-toggle,
+.header.is-compact > .header-lang:focus-within .lang-toggle + .lang-toggle {
+    margin-left: 12px !important;
+}
+
+.footer {
+    border-top: 0 !important;
+    box-shadow: none !important;
+}
+
+.footer::before {
+    top: clamp(34px, 4.4vw, 64px) !important;
+    z-index: 1 !important;
+}
+
+.footer::after {
+    content: none !important;
+    display: none !important;
+}
+
+.footer-content {
+    z-index: 2 !important;
+}
+
+.footer-flower {
+    z-index: 3 !important;
+    bottom: clamp(-72px, -4.8vw, -46px) !important;
+}
+
+@media (max-width: 520px) {
+    .shop-grid--reliefs .shop-buy {
+        display: inline-flex !important;
+        grid-template-columns: none !important;
+        align-items: center !important;
+        width: max-content !important;
+        max-width: 100% !important;
+        min-height: 32px !important;
+        margin-top: 9px !important;
+        padding: 0 4px 0 9px !important;
+        border-radius: 999px !important;
+        overflow: hidden !important;
+    }
+
+    .shop-grid--reliefs .shop-price,
+    .shop-grid--reliefs .shop-item .shop-order:not(.shop-order-disabled) {
+        justify-content: center !important;
+        width: auto !important;
+        min-width: 0 !important;
+        min-height: 32px !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        font-size: clamp(10px, 2.8vw, 12px) !important;
+        line-height: 1 !important;
+        white-space: nowrap !important;
+    }
+
+    .shop-grid--reliefs .shop-price {
+        padding-right: 8px !important;
+        border-right: 1px solid rgba(0, 0, 0, 0.1) !important;
+        border-bottom: 0 !important;
+    }
+
+    .shop-grid--reliefs .shop-item .shop-order:not(.shop-order-disabled) {
+        padding-right: 7px !important;
+        padding-left: 8px !important;
+        border-left: 0 !important;
+    }
+}
+
+@media (max-width: 340px) {
+    .shop-grid--reliefs {
+        grid-template-columns: minmax(0, 1fr) !important;
+        max-width: 260px !important;
+    }
+}
+
+@media (max-width: 760px) {
+    .footer::before {
+        top: 38px !important;
+    }
+
+    .footer-flower {
+        bottom: -56px !important;
+    }
+}
+
+/* ========== CYCLE 69: MEDIUM WIDTH NAV AND ARTIST SECTION FIT ========== */
+@media (min-width: 761px) and (max-width: 1320px) {
+    .header {
+        grid-template-columns: minmax(128px, 1fr) auto minmax(128px, 1fr) !important;
+        column-gap: clamp(10px, 1.4vw, 22px) !important;
+        width: calc(100% - 32px) !important;
+    }
+
+    .header-logo,
+    .header.is-compact .header-logo {
+        padding-right: 16px !important;
+        padding-left: 16px !important;
+        font-size: clamp(16px, 1.45vw, 20px) !important;
+    }
+
+    .header-menu {
+        padding-right: 10px !important;
+        padding-left: 10px !important;
+    }
+
+    .header-menu a,
+    .header.is-compact .header-menu a {
+        padding-right: clamp(10px, 1.1vw, 14px) !important;
+        padding-left: clamp(10px, 1.1vw, 14px) !important;
+        font-size: clamp(18px, 1.75vw, 22px) !important;
+    }
+
+    .header > .header-lang,
+    .header.is-compact > .header-lang {
+        padding-right: 18px !important;
+        padding-left: 18px !important;
+    }
+}
+
+@media (min-width: 921px) and (max-width: 1320px) {
+    .onepage-main #artist .two-column-layout {
+        grid-template-columns: minmax(260px, 0.32fr) minmax(540px, 0.68fr) !important;
+        gap: clamp(24px, 3vw, 42px) !important;
+    }
+
+    .onepage-main #artist .photo-column,
+    .onepage-main #artist .content-column {
+        min-width: 0 !important;
+    }
+
+    .onepage-main #artist .content-column {
+        width: 100% !important;
+        max-width: none !important;
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    .onepage-main #artist .cv-section,
+    .onepage-main #artist .cv-bio {
+        width: 100% !important;
+        max-width: 760px !important;
+    }
+}
+
+@media (max-width: 920px) {
+    .onepage-main #artist .two-column-layout {
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: clamp(22px, 4.8vw, 38px) !important;
+    }
+
+    .onepage-main #artist .photo-column {
+        width: min(100%, 560px) !important;
+        justify-self: start !important;
+    }
+
+    .onepage-main #artist .content-column {
+        width: min(100%, 720px) !important;
+        max-width: 720px !important;
+        justify-self: start !important;
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    .onepage-main #artist .cv-section,
+    .onepage-main #artist .cv-bio {
+        width: 100% !important;
+        max-width: 720px !important;
+    }
+}
+
+/* ========== CYCLE 70: LOGO HEART OPTICAL ALIGNMENT ========== */
+.header-logo .heart,
+.header.is-compact .header-logo .heart,
+.site-home .header:not(.is-compact):not(.nav-open) .header-logo .heart {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 auto !important;
+    width: 0.58em !important;
+    height: 0.9em !important;
+    margin-left: 0.02em !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 0.58em !important;
+    line-height: 1 !important;
+    color: currentColor !important;
+    transform: translateY(0.07em) !important;
+}
+
+/* ========== CYCLE 71: HERO CROSSFADE LAYERS, VERTICAL GALLERY RHYTHM AND CV SENTENCES ========== */
+.onepage-main .hero-editorial .hero-visual-link {
+    isolation: isolate !important;
+}
+
+.onepage-main .hero-editorial .hero-visual-link::after {
+    z-index: 2 !important;
+    transition: opacity 1800ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.onepage-main .hero-editorial .hero-visual-link > img:not(.hero-crossfade-image) {
+    position: relative !important;
+    z-index: 0 !important;
+}
+
+.onepage-main .hero-editorial .hero-crossfade-image {
+    z-index: 1 !important;
+    transition: opacity 1800ms cubic-bezier(0.22, 1, 0.36, 1), transform 2400ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.onepage-main .hero-editorial .hero-copy,
+.onepage-main .hero-editorial .hero-image-caption {
+    z-index: 3 !important;
+}
+
+.onepage-main .hero-editorial .hero-image-caption {
+    transition: opacity 1300ms ease !important;
+}
+
+.onepage-main .projects-layout .project-card-inline .card-img,
+.onepage-main .projects-layout .project-card-inline .story-media {
+    position: relative !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: 3 / 4 !important;
+    --project-media-pad: 133.333% !important;
+}
+
+.onepage-main .projects-layout .project-card-inline .card-img > img,
+.onepage-main .projects-layout .project-card-inline .story-media > img,
+.onepage-main .projects-layout .project-card-inline .story-media .story-photo-link,
+.onepage-main .projects-layout .project-card-inline .story-media .story-photo-link > img {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.onepage-main .projects-layout .project-card-inline .card-img::before,
+.onepage-main .projects-layout .project-card-inline .story-media::before {
+    content: "" !important;
+    display: block !important;
+    width: 100% !important;
+    padding-top: var(--project-media-pad) !important;
+}
+
+.onepage-main .projects-layout .project-card-inline:nth-child(8n + 2) .card-img,
+.onepage-main .projects-layout .project-card-inline:nth-child(8n + 2) .story-media,
+.onepage-main .projects-layout .project-card-inline:nth-child(8n + 6) .card-img,
+.onepage-main .projects-layout .project-card-inline:nth-child(8n + 6) .story-media {
+    aspect-ratio: 2 / 3 !important;
+    --project-media-pad: 150% !important;
+}
+
+.onepage-main .projects-layout .project-card-inline:nth-child(8n + 1) .card-img,
+.onepage-main .projects-layout .project-card-inline:nth-child(8n + 1) .story-media,
+.onepage-main .projects-layout .project-card-inline:nth-child(8n + 5) .card-img,
+.onepage-main .projects-layout .project-card-inline:nth-child(8n + 5) .story-media {
+    aspect-ratio: 4 / 5 !important;
+    --project-media-pad: 125% !important;
+}
+
+.onepage-main .projects-layout .project-card-inline:nth-child(8n + 4) .card-img,
+.onepage-main .projects-layout .project-card-inline:nth-child(8n + 4) .story-media {
+    aspect-ratio: 4 / 3 !important;
+    --project-media-pad: 75% !important;
+}
+
+body.site-home .cv-section .work-title,
+body.site-home .cv-section .work-location,
+body.site-home .cv-section .work-details {
+    display: inline !important;
+    margin: 0 !important;
+    max-width: none !important;
+    line-height: 1.18 !important;
+}
+
+body.site-home .cv-section .work-title + .work-location::before,
+body.site-home .cv-section .work-title + .work-details::before,
+body.site-home .cv-section .work-location + .work-details::before {
+    content: ", " !important;
+}
+
+body.site-home .cv-section .work-location,
+body.site-home .cv-section .work-details {
+    font-size: inherit !important;
+}
+
+@media (max-width: 760px) {
+    .onepage-main .projects-layout .project-card-inline .card-img,
+    .onepage-main .projects-layout .project-card-inline .story-media {
+        aspect-ratio: 3 / 4 !important;
+    }
+
+    .onepage-main .projects-layout .project-card-inline:nth-child(6n + 1) .card-img,
+    .onepage-main .projects-layout .project-card-inline:nth-child(6n + 1) .story-media,
+    .onepage-main .projects-layout .project-card-inline:nth-child(6n + 6) .card-img,
+    .onepage-main .projects-layout .project-card-inline:nth-child(6n + 6) .story-media {
+        aspect-ratio: 4 / 3 !important;
+        --project-media-pad: 75% !important;
+    }
+}
+
+.onepage-main #artist .photo-container {
+    transition: clip-path 420ms ease, border-radius 420ms ease, aspect-ratio 420ms ease, max-height 420ms ease !important;
+}
+
+@media (max-aspect-ratio: 4 / 3), (max-width: 920px) {
+    .onepage-main #artist .photo-container {
+        aspect-ratio: 16 / 11 !important;
+        max-height: clamp(300px, 46vh, 520px) !important;
+        clip-path: ellipse(50% 43% at 50% 50%) !important;
+        border-radius: 50% / 43% !important;
+    }
+
+    .onepage-main #artist .photo-container img {
+        object-position: center 38% !important;
+    }
+}
+
+@media (max-width: 620px) {
+    .onepage-main #artist .photo-container {
+        aspect-ratio: 4 / 3 !important;
+        max-height: 360px !important;
+        clip-path: ellipse(50% 45% at 50% 50%) !important;
+        border-radius: 50% / 45% !important;
+    }
+}
+
+/* ========== CYCLE 72: FINAL NAV CENTERING, ARCHIVE SENTENCES AND FOOTER LINE ========== */
+.header {
+    grid-template-columns: minmax(150px, 1fr) auto minmax(150px, 1fr) !important;
+    justify-items: stretch !important;
+}
+
+.header-logo {
+    justify-self: start !important;
+}
+
+.header-menu {
+    justify-self: center !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: max-content !important;
+    max-width: calc(100vw - 360px) !important;
+    overflow: visible !important;
+}
+
+.header-menu > a {
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+}
+
+.header > .header-lang,
+.header.is-compact > .header-lang {
+    justify-self: end !important;
+    justify-content: center !important;
+    min-width: 0 !important;
+    width: auto !important;
+    padding-right: 18px !important;
+    padding-left: 18px !important;
+}
+
+.header > .header-lang .lang-toggle.is-active,
+.header.is-compact > .header-lang .lang-toggle.is-active {
+    min-width: 0 !important;
+    max-width: 2.35em !important;
+}
+
+.header > .header-lang:hover,
+.header > .header-lang:focus-within,
+.header.is-compact > .header-lang:hover,
+.header.is-compact > .header-lang:focus-within {
+    padding-right: 20px !important;
+    padding-left: 20px !important;
+}
+
+.header-logo .heart,
+.header.is-compact .header-logo .heart,
+.site-home .header:not(.is-compact):not(.nav-open) .header-logo .heart {
+    width: 0.54em !important;
+    height: 0.82em !important;
+    margin-left: 0.03em !important;
+    font-size: 0.54em !important;
+    transform: translateY(-0.005em) !important;
+}
+
+@media (min-width: 761px) and (max-width: 1120px) {
+    .header {
+        grid-template-columns: minmax(118px, 1fr) auto minmax(118px, 1fr) !important;
+        column-gap: clamp(8px, 1.2vw, 16px) !important;
+        width: calc(100% - 28px) !important;
+    }
+
+    .header-menu {
+        max-width: calc(100vw - 300px) !important;
+        padding-right: 9px !important;
+        padding-left: 9px !important;
+    }
+
+    .header-menu a,
+    .header.is-compact .header-menu a {
+        padding-right: clamp(8px, 0.9vw, 12px) !important;
+        padding-left: clamp(8px, 0.9vw, 12px) !important;
+        font-size: clamp(17px, 2vw, 21px) !important;
+    }
+
+    .header-logo,
+    .header.is-compact .header-logo {
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+        font-size: clamp(18px, 2vw, 22px) !important;
+    }
+
+    .header > .header-lang,
+    .header.is-compact > .header-lang {
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+    }
+}
+
+@media (max-width: 760px) {
+    .header {
+        grid-template-columns: minmax(0, 1fr) auto !important;
+    }
+
+    .header .header-menu {
+        right: 0 !important;
+        left: auto !important;
+        width: min(260px, calc(100vw - 40px)) !important;
+        max-width: min(260px, calc(100vw - 40px)) !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+    }
+
+    .header.nav-open .header-menu > a {
+        display: inline-flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .header .header-menu a {
+        width: 100% !important;
+        font-size: 21px !important;
+    }
+}
+
+.onepage-main .hero-editorial .hero-summary,
+.onepage-main .hero-editorial .hero-image-caption,
+.onepage-main .hero-editorial .hero-image-caption * {
+    color: #fff !important;
+    opacity: 1 !important;
+}
+
+.onepage-main .hero-editorial.is-switching .hero-image-caption {
+    transform: none !important;
+}
+
+body.site-home .sections-container .col-location {
+    display: none !important;
+}
+
+body.site-home .sections-container table {
+    table-layout: fixed !important;
+}
+
+body.site-home .sections-container .col-year {
+    width: clamp(54px, 5vw, 78px) !important;
+    padding-right: clamp(14px, 1.8vw, 28px) !important;
+}
+
+body.site-home .sections-container .col-content {
+    padding-right: 0 !important;
+    padding-left: clamp(18px, 2.4vw, 34px) !important;
+}
+
+body.site-home .sections-container .work-title,
+body.site-home .sections-container .work-location,
+body.site-home .sections-container .work-details {
+    display: inline !important;
+    margin: 0 !important;
+    max-width: none !important;
+    line-height: 1.18 !important;
+}
+
+body.site-home .sections-container .work-location,
+body.site-home .sections-container .work-details {
+    color: rgba(0, 0, 0, 0.54) !important;
+    font-size: inherit !important;
+}
+
+body.site-home .sections-container .work-title + .work-location::before,
+body.site-home .sections-container .work-title + .work-details::before,
+body.site-home .sections-container .work-location + .work-details::before {
+    content: ", " !important;
+}
+
+#shop {
+    border-bottom: 0 !important;
+    box-shadow: none !important;
+}
+
+.footer {
+    border-top: 0 !important;
+    box-shadow: none !important;
+    min-height: clamp(138px, 12vw, 178px) !important;
+    padding-top: clamp(58px, 5.4vw, 82px) !important;
+    overflow: hidden !important;
+}
+
+.footer::before {
+    top: clamp(38px, 4vw, 58px) !important;
+    z-index: 1 !important;
+}
+
+.footer-flower {
+    z-index: 3 !important;
+    bottom: clamp(-92px, -6.2vw, -62px) !important;
+    width: clamp(132px, 11.5vw, 178px) !important;
+}
+
+@media (max-width: 760px) {
+    .footer {
+        min-height: 132px !important;
+        padding-top: 48px !important;
+    }
+
+    .footer::before {
+        top: 34px !important;
+    }
+
+    .footer-flower {
+        bottom: -74px !important;
+        width: 128px !important;
+    }
+}
+
+@media (max-width: 520px) {
+    .shop-grid--reliefs {
+        gap: 18px 10px !important;
+    }
+
+    .shop-grid--reliefs .shop-buy {
+        width: min(100%, 178px) !important;
+    }
+
+    .shop-grid--reliefs .shop-price,
+    .shop-grid--reliefs .shop-item .shop-order:not(.shop-order-disabled) {
+        font-size: clamp(10px, 2.55vw, 12px) !important;
+    }
+}
+
+@media (min-width: 900px) {
+    .onepage-main .projects-layout .project-card-inline,
+    .onepage-main .projects-layout .project-card-inline.layout-half,
+    .onepage-main .projects-layout .project-card-inline.story-card,
+    .onepage-main .projects-layout .project-card-inline:nth-child(1),
+    .onepage-main .projects-layout .project-card-inline:nth-child(4n + 4),
+    .onepage-main .projects-layout .project-card-inline:nth-child(7n + 1),
+    .onepage-main .projects-layout .project-card-inline:nth-child(7n + 2),
+    .onepage-main .projects-layout .project-card-inline:nth-child(7n + 6),
+    .onepage-main .projects-layout .project-card-inline:nth-child(7n + 7) {
+        grid-column: span 2 !important;
+    }
+
+    .onepage-main .projects-layout .project-card-inline:nth-child(6n + 3),
+    .onepage-main .projects-layout .project-card-inline:nth-child(6n + 6) {
+        grid-column: span 3 !important;
+    }
+
+    .onepage-main .projects-layout .project-card-inline .card-img,
+    .onepage-main .projects-layout .project-card-inline .story-media,
+    .onepage-main .projects-layout .project-card-inline.story-card .story-media,
+    .onepage-main .projects-layout .project-card-inline.layout-half .card-img,
+    .onepage-main .projects-layout .project-card-inline.layout-half .story-media,
+    .onepage-main .projects-layout .project-card-inline:nth-child(1) .card-img,
+    .onepage-main .projects-layout .project-card-inline:nth-child(4n + 4) .card-img {
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        aspect-ratio: 3 / 4 !important;
+        --project-media-pad: 133.333% !important;
+    }
+
+    .onepage-main .projects-layout .project-card-inline:nth-child(6n + 3) .card-img,
+    .onepage-main .projects-layout .project-card-inline:nth-child(6n + 3) .story-media,
+    .onepage-main .projects-layout .project-card-inline:nth-child(6n + 6) .card-img,
+    .onepage-main .projects-layout .project-card-inline:nth-child(6n + 6) .story-media {
+        aspect-ratio: 4 / 3 !important;
+        --project-media-pad: 75% !important;
+    }
+
+    .onepage-main .projects-layout .project-card-inline:nth-child(6n + 2) .card-img,
+    .onepage-main .projects-layout .project-card-inline:nth-child(6n + 2) .story-media {
+        aspect-ratio: 4 / 5 !important;
+        --project-media-pad: 125% !important;
+    }
+}
