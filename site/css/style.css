@@ -19648,6 +19648,118 @@ body.site-home .sections-container .work-location + .work-details::before {
     height: 0.88em !important;
 }
 
+/* ========== CYCLE 78: SHOP SLIDER CURSOR AND CARD TEXT RHYTHM DEBUG ========== */
+.shop-item-image,
+.shop-story-btn,
+.shop-story-btn:hover,
+.shop-story-btn:focus-visible {
+    cursor: pointer !important;
+}
+
+.shop-grid--reliefs .shop-story-btn,
+.shop-grid--reliefs .shop-story-btn:hover,
+.shop-grid--reliefs .shop-story-btn:focus-visible {
+    top: 0 !important;
+    bottom: 0 !important;
+    width: 32% !important;
+    height: auto !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    opacity: 0 !important;
+    transform: none !important;
+    outline: 0 !important;
+}
+
+.shop-grid--reliefs .shop-story-btn::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 50% !important;
+    width: 13px !important;
+    height: 13px !important;
+    border-top: 1.5px solid rgba(255, 255, 255, 0.9) !important;
+    border-left: 1.5px solid rgba(255, 255, 255, 0.9) !important;
+    border-right: 0 !important;
+    border-bottom: 0 !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.35)) !important;
+}
+
+.shop-grid--reliefs .shop-story-prev::before {
+    left: 12px !important;
+    transform: translateY(-50%) rotate(-45deg) !important;
+}
+
+.shop-grid--reliefs .shop-story-next::before {
+    right: 12px !important;
+    transform: translateY(-50%) rotate(135deg) !important;
+}
+
+.shop-grid--reliefs .shop-item-story:hover .shop-story-btn,
+.shop-grid--reliefs .shop-item-story:focus-within .shop-story-btn,
+.shop-grid--reliefs .shop-story-btn:hover,
+.shop-grid--reliefs .shop-story-btn:focus-visible {
+    opacity: 1 !important;
+}
+
+.shop-grid--reliefs .shop-item h4 {
+    margin-top: clamp(12px, 1vw, 18px) !important;
+    margin-bottom: 0 !important;
+    font-size: clamp(24px, 1.85vw, 38px) !important;
+    line-height: 0.98 !important;
+}
+
+.shop-grid--reliefs .shop-item-meta {
+    margin-top: clamp(6px, 0.5vw, 8px) !important;
+    font-size: clamp(16px, 1.1vw, 19px) !important;
+    line-height: 1.08 !important;
+}
+
+.shop-grid--reliefs .shop-item-note {
+    margin-top: clamp(14px, 1.1vw, 18px) !important;
+    max-width: 18em !important;
+    font-size: clamp(16px, 1.15vw, 20px) !important;
+    line-height: 1.14 !important;
+}
+
+.shop-grid--reliefs .shop-buy {
+    gap: 12px !important;
+    padding-top: clamp(18px, 1.4vw, 24px) !important;
+}
+
+@media (max-width: 520px) {
+    .shop-grid--reliefs .shop-story-btn {
+        opacity: 0 !important;
+    }
+
+    .shop-grid--reliefs .shop-item h4 {
+        margin-top: 10px !important;
+        font-size: clamp(21px, 6vw, 26px) !important;
+    }
+
+    .shop-grid--reliefs .shop-item-meta {
+        margin-top: 5px !important;
+        font-size: clamp(14px, 4vw, 17px) !important;
+    }
+
+    .shop-grid--reliefs .shop-item-note {
+        margin-top: 10px !important;
+        max-width: 14em !important;
+        font-size: clamp(13px, 3.8vw, 16px) !important;
+        line-height: 1.16 !important;
+    }
+
+    .shop-grid--reliefs .shop-buy {
+        gap: 8px !important;
+        padding-top: 14px !important;
+    }
+}
+
 /* ========== CYCLE 78: DESKTOP CARD ROW HEIGHT LOCK AFTER VERTICAL RHYTHM PASS ========== */
 @media (min-width: 900px) {
     .onepage-main .projects-layout .project-card-inline .card-img,
