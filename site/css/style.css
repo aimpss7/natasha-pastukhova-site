@@ -20332,3 +20332,73 @@ body.site-night .header-burger {
 body.site-night .header-burger span {
     background: #f4efe5 !important;
 }
+
+/* ========== CYCLE 83: HANDOFF QA ANCHORS, FILTERS, SHOP AND FOOTER ========== */
+.onepage-main #cards-start {
+    scroll-margin-top: clamp(220px, 20vh, 260px) !important;
+}
+
+.onepage-main .filter-btn span[aria-hidden="true"] {
+    display: none !important;
+}
+
+.footer-flower {
+    aspect-ratio: 2 / 3 !important;
+    height: auto !important;
+}
+
+@media (max-width: 380px) {
+    .shop-grid--reliefs {
+        grid-template-columns: 1fr !important;
+        gap: 28px !important;
+    }
+
+    .shop-grid--reliefs .shop-item {
+        width: 100% !important;
+    }
+
+    .shop-grid--reliefs .shop-item-image {
+        aspect-ratio: 1 / 1 !important;
+    }
+
+    .shop-grid--reliefs .shop-buy {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 12px !important;
+    }
+
+    .shop-grid--reliefs .shop-price,
+    .shop-grid--reliefs .shop-item .shop-order:not(.shop-order-disabled) {
+        font-size: 14px !important;
+    }
+}
+
+.onepage-main .project-inline-detail.project-inline-overlay .project-detail-card.project-detail-card--entity {
+    padding: clamp(28px, 3.2vw, 46px) !important;
+}
+
+.onepage-main .project-detail-card--entity .project-detail-copy {
+    padding-left: clamp(12px, 1.5vw, 24px) !important;
+}
+
+.onepage-main .project-detail-card--entity .project-detail-copy h3 {
+    max-width: 8.8em !important;
+    font-size: clamp(44px, 4.7vw, 72px) !important;
+    line-height: 0.94 !important;
+}
+
+@media (max-width: 760px) {
+    .onepage-main .project-inline-detail.project-inline-overlay .project-detail-card.project-detail-card--entity {
+        padding: 22px !important;
+    }
+
+    .onepage-main .project-detail-card--entity .project-detail-copy {
+        padding-left: 0 !important;
+    }
+
+    .onepage-main .project-detail-card--entity .project-detail-copy h3 {
+        font-size: clamp(34px, 10vw, 48px) !important;
+        line-height: 0.98 !important;
+    }
+}
