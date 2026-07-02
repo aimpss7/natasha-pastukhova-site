@@ -66,7 +66,7 @@ function applyEkbLightTheme(mode, source = 'clock') {
 
 function getFallbackEkbLightTheme() {
     const minutes = getEkbClockMinutes();
-    return minutes >= 7 * 60 && minutes < 21 * 60 ? 'day' : 'night';
+    return minutes >= 8 * 60 && minutes < 22 * 60 ? 'day' : 'night';
 }
 
 function applySunlightThemeFromData(data) {
@@ -1548,6 +1548,10 @@ if (projectsGrid) {
         const credits = projectCreditBlocks(project);
         const meta = renderProjectDetailMeta(project);
         const projectId = escapeHtml(project.id || '');
+        const galleryImages = images.map((src, index) => ({
+            src: escapeHtml(src),
+            alt: `${title ? `Проект ${title}` : 'Проект'} — изображение ${index + 1}`
+        }));
 
         return `
             <div class="project-detail-card project-detail-card--entity" data-project-id="${projectId}" aria-live="polite">
@@ -1575,10 +1579,41 @@ if (projectsGrid) {
                         </section>` : ''}
                 </div>
                 ${images.length ? `
-                    <div class="project-detail-gallery">
-                        ${images.map((src, index) => `<img src="${escapeHtml(src)}" alt="${title ? `Проект ${title}` : 'Проект'} — изображение ${index + 1}" loading="lazy" decoding="async">`).join('')}
+                    <div class="project-detail-gallery" data-project-gallery>
+                        <figure class="project-detail-gallery-main">
+                            <img src="${galleryImages[0].src}" alt="${galleryImages[0].alt}" loading="eager" decoding="async" data-project-gallery-main>
+                        </figure>
+                        ${galleryImages.length > 1 ? `
+                            <div class="project-detail-gallery-strip" aria-label="Фотографии проекта">
+                                ${galleryImages.map((image, index) => `
+                                    <button class="project-detail-gallery-thumb${index === 0 ? ' active' : ''}" type="button" data-project-gallery-thumb data-src="${image.src}" data-alt="${image.alt}" aria-label="Показать изображение ${index + 1}" aria-pressed="${index === 0 ? 'true' : 'false'}">
+                                        <img src="${image.src}" alt="" loading="lazy" decoding="async">
+                                    </button>`).join('')}
+                            </div>` : ''}
                     </div>` : ''}
             </div>`;
+    }
+
+    function initInlineProjectGallery(root) {
+        const gallery = root.querySelector('[data-project-gallery]');
+        if (!gallery) return;
+
+        const mainImage = gallery.querySelector('[data-project-gallery-main]');
+        const thumbs = gallery.querySelectorAll('[data-project-gallery-thumb]');
+        if (!mainImage || !thumbs.length) return;
+
+        thumbs.forEach(thumb => {
+            thumb.addEventListener('click', event => {
+                event.stopPropagation();
+                mainImage.src = thumb.dataset.src || mainImage.src;
+                mainImage.alt = thumb.dataset.alt || mainImage.alt;
+                thumbs.forEach(item => {
+                    const isActive = item === thumb;
+                    item.classList.toggle('active', isActive);
+                    item.setAttribute('aria-pressed', String(isActive));
+                });
+            });
+        });
     }
 
     function initProjectDisclosure(projects) {
@@ -1721,6 +1756,7 @@ if (projectsGrid) {
             detail.style.setProperty('--project-overlay-top', `${overlayTop}px`);
             overlayHost.appendChild(detail);
             detail.innerHTML = renderProjectInlineDetail(project);
+            initInlineProjectGallery(detail);
             initReadableTypography(detail);
             const titleElement = detail.querySelector('.project-detail-copy h3');
             detail.setAttribute('role', 'dialog');
