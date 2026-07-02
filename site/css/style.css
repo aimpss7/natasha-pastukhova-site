@@ -21016,3 +21016,266 @@ body.site-night .onepage-main #shop .shop-grid--reliefs .shop-price {
     height: 100% !important;
     object-fit: cover !important;
 }
+
+/* ========== CYCLE 89: COMPACT PROJECT DETAIL AND UNIFIED HEART ========== */
+.header-logo .heart,
+.header.is-compact .header-logo .heart,
+.site-home .header:not(.is-compact):not(.nav-open) .header-logo .heart {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 0.72em !important;
+    height: 1em !important;
+    margin-left: 0.1em !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 0.82em !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    transform: translateY(0.01em) !important;
+}
+
+.project-back,
+.onepage-main .project-detail-close,
+.onepage-main .project-inline-detail.project-inline-overlay .project-detail-card.project-detail-card--entity > .project-detail-close {
+    box-shadow: none !important;
+    filter: none !important;
+}
+
+.onepage-main .project-inline-detail.project-inline-overlay {
+    padding: clamp(28px, 3vw, 54px) clamp(26px, 3.4vw, 56px) !important;
+}
+
+.onepage-main .project-inline-detail.project-inline-overlay .project-detail-card.project-detail-card--entity {
+    grid-template-columns: minmax(300px, 0.36fr) minmax(0, 0.64fr) !important;
+    grid-template-rows: auto minmax(0, 1fr) !important;
+    gap: clamp(16px, 1.8vw, 28px) clamp(28px, 3.3vw, 58px) !important;
+    height: min(780px, calc(100dvh - 56px)) !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+}
+
+.onepage-main .project-inline-detail.project-inline-overlay .project-detail-card.project-detail-card--entity > .project-detail-close {
+    margin: 0 0 clamp(16px, 1.6vw, 24px) !important;
+}
+
+.onepage-main .project-detail-card--entity .project-detail-copy {
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+}
+
+.onepage-main .project-detail-card--entity .project-detail-copy h3 {
+    max-width: 9.5em !important;
+    margin: 0 0 clamp(14px, 1.4vw, 22px) !important;
+    font-size: clamp(34px, 3.1vw, 54px) !important;
+    font-weight: 430 !important;
+    line-height: 0.98 !important;
+}
+
+.onepage-main .project-detail-card--entity .project-detail-section {
+    margin-top: 0 !important;
+    padding-block: clamp(12px, 1.2vw, 18px) !important;
+}
+
+.onepage-main .project-detail-card--entity .project-detail-section p {
+    font-size: clamp(17px, 1.15vw, 22px) !important;
+    line-height: 1.18 !important;
+}
+
+.onepage-main .project-detail-card--entity .project-detail-facts {
+    gap: 0 clamp(14px, 1.5vw, 26px) !important;
+    margin-top: clamp(14px, 1.3vw, 20px) !important;
+}
+
+.onepage-main .project-detail-card--entity .project-detail-facts div,
+.onepage-main .project-detail-card--entity .project-detail-credits {
+    padding-block: clamp(8px, 0.8vw, 13px) !important;
+}
+
+.onepage-main .project-detail-card--entity .project-detail-facts dt,
+.onepage-main .project-detail-card--entity .project-detail-facts dd,
+.onepage-main .project-detail-card--entity .project-detail-credits p,
+.onepage-main .project-detail-card--entity .project-detail-section-label,
+.onepage-main .project-detail-card--entity .project-detail-credits-label {
+    font-size: clamp(14px, 0.92vw, 18px) !important;
+    line-height: 1.18 !important;
+}
+
+.onepage-main .project-detail-card--entity .project-detail-gallery {
+    height: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+    gap: clamp(10px, 1vw, 14px) !important;
+}
+
+.onepage-main .project-detail-gallery-main {
+    height: 100% !important;
+    min-height: 0 !important;
+    border-radius: 18px !important;
+}
+
+.onepage-main .project-detail-gallery-strip {
+    display: grid !important;
+    grid-auto-flow: row !important;
+    grid-template-columns: repeat(auto-fit, minmax(82px, 1fr)) !important;
+    grid-auto-columns: initial !important;
+    gap: 10px !important;
+    overflow: visible !important;
+    padding: 0 !important;
+}
+
+.onepage-main .project-detail-gallery-thumb {
+    height: clamp(56px, 5vw, 76px) !important;
+    border-radius: 10px !important;
+}
+
+.project-title {
+    font-size: clamp(38px, 4.2vw, 68px) !important;
+    line-height: 0.98 !important;
+}
+
+.project-description {
+    font-size: clamp(18px, 1.45vw, 26px) !important;
+    line-height: 1.2 !important;
+}
+
+.project-image-col .slider {
+    box-shadow: none !important;
+}
+
+@media (max-width: 980px) {
+    .onepage-main .project-inline-detail.project-inline-overlay {
+        padding: 74px 20px 28px !important;
+    }
+
+    .onepage-main .project-inline-detail.project-inline-overlay .project-detail-card.project-detail-card--entity {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto auto auto !important;
+        height: auto !important;
+        overflow: visible !important;
+        gap: 16px !important;
+    }
+
+    .onepage-main .project-detail-card--entity .project-detail-gallery {
+        grid-row: 2 !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .onepage-main .project-detail-card--entity .project-detail-copy {
+        grid-row: 3 !important;
+        margin-top: 36px !important;
+    }
+
+    .onepage-main .project-detail-card--entity .project-detail-copy h3 {
+        font-size: clamp(34px, 8vw, 46px) !important;
+        margin-bottom: 14px !important;
+    }
+
+    .onepage-main .project-detail-gallery-main {
+        aspect-ratio: 2 / 1 !important;
+        height: auto !important;
+    }
+
+    .onepage-main .project-detail-gallery-strip {
+        grid-template-columns: repeat(auto-fit, minmax(58px, 1fr)) !important;
+        gap: 8px !important;
+    }
+
+    .onepage-main .project-detail-gallery-thumb {
+        height: 46px !important;
+    }
+}
+
+@media (max-height: 760px) and (min-width: 981px) {
+    .onepage-main .project-detail-card--entity .project-detail-copy h3 {
+        font-size: clamp(30px, 2.7vw, 46px) !important;
+    }
+
+    .onepage-main .project-detail-card--entity .project-detail-section p {
+        font-size: clamp(16px, 1vw, 19px) !important;
+    }
+
+    .onepage-main .project-detail-gallery-thumb {
+        height: 54px !important;
+    }
+}
+
+/* ========== CYCLE 90: PROJECT DETAIL FIT AND GALLERY FLOW FIX ========== */
+.project-detail-close,
+.project-back,
+.onepage-main .project-detail-close,
+.onepage-main .project-inline-detail.project-inline-overlay .project-detail-card.project-detail-card--entity > .project-detail-close {
+    box-shadow: none !important;
+    filter: none !important;
+}
+
+.onepage-main .project-inline-detail.project-inline-overlay {
+    overflow: hidden !important;
+}
+
+.onepage-main .project-detail-card--entity .project-detail-copy h3 {
+    font-size: clamp(30px, 2.55vw, 44px) !important;
+    line-height: 0.98 !important;
+}
+
+.onepage-main .project-detail-card--entity .project-detail-section p {
+    font-size: clamp(16px, 1.05vw, 20px) !important;
+}
+
+.onepage-main .project-detail-gallery-main {
+    height: auto !important;
+}
+
+.project-title {
+    font-size: clamp(34px, 3.4vw, 56px) !important;
+}
+
+@media (max-width: 980px) {
+    .onepage-main .project-detail-card--entity .project-detail-copy h3 {
+        font-size: clamp(30px, 5vw, 36px) !important;
+    }
+
+    .onepage-main .project-detail-card--entity .project-detail-section p {
+        font-size: clamp(15px, 2.1vw, 18px) !important;
+    }
+
+    .onepage-main .project-detail-card--entity .project-detail-gallery {
+        display: block !important;
+        grid-template-rows: auto auto !important;
+        gap: 8px !important;
+        height: auto !important;
+        margin-bottom: 34px !important;
+    }
+
+    .onepage-main .project-detail-gallery-main {
+        grid-row: 1 !important;
+        height: auto !important;
+    }
+
+    .onepage-main .project-detail-gallery-strip {
+        grid-row: 2 !important;
+        margin-top: 8px !important;
+    }
+}
+
+.project-detail-close:hover,
+.project-detail-close:focus-visible,
+.project-back:hover,
+.project-back:focus-visible,
+.onepage-main .project-detail-close:hover,
+.onepage-main .project-detail-close:focus-visible,
+.onepage-main .project-inline-detail.project-inline-overlay .project-detail-card.project-detail-card--entity > .project-detail-close:hover,
+.onepage-main .project-inline-detail.project-inline-overlay .project-detail-card.project-detail-card--entity > .project-detail-close:focus-visible {
+    box-shadow: none !important;
+    filter: none !important;
+}
+
+@media (max-width: 980px) {
+    .onepage-main .project-detail-card--entity .project-detail-copy {
+        padding-top: 64px !important;
+        transform: translateY(28px) !important;
+    }
+}
