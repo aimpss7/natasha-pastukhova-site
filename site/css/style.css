@@ -19784,3 +19784,241 @@ body.site-home .sections-container .work-location + .work-details::before {
         --project-media-pad: 0 !important;
     }
 }
+
+/* ========== CYCLE 79: EKATERINBURG NIGHT THEME PROTOTYPE ========== */
+body.site-night {
+    --night-bg: #12110f;
+    --night-surface: #1b1916;
+    --night-surface-soft: rgba(246, 241, 231, 0.08);
+    --night-ink: #f4efe5;
+    --night-muted: rgba(244, 239, 229, 0.66);
+    --night-soft: rgba(244, 239, 229, 0.44);
+    --night-line: rgba(244, 239, 229, 0.16);
+    --night-glow: rgba(255, 232, 181, 0.22);
+    --heart-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E%3Ctext x='13' y='18.5' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-size='21' font-weight='700' fill='%23f4efe5'%3E%E2%99%A5%3C/text%3E%3C/svg%3E") 13 13, auto;
+    --heart-cursor-pointer: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E%3Ctext x='13' y='18.5' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-size='21' font-weight='700' fill='%23f4efe5'%3E%E2%99%A5%3C/text%3E%3C/svg%3E") 13 13, pointer;
+    background: var(--night-bg) !important;
+    color: var(--night-ink) !important;
+    color-scheme: dark;
+}
+
+body.site-night,
+body.site-night .onepage-main,
+body.site-night .onepage-section,
+body.site-night .onepage-projects,
+body.site-night .onepage-section-inner,
+body.site-night .container,
+body.site-night #artist,
+body.site-night #shop,
+body.site-night .footer {
+    background-color: var(--night-bg) !important;
+    color: var(--night-ink) !important;
+}
+
+body.site-night .hero-editorial {
+    background: var(--night-bg) !important;
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.34) !important;
+}
+
+body.site-night .hero-editorial::after {
+    background:
+        linear-gradient(90deg, rgba(18, 17, 15, 0.52) 0%, rgba(18, 17, 15, 0.18) 42%, rgba(18, 17, 15, 0.46) 100%),
+        linear-gradient(180deg, rgba(18, 17, 15, 0.10) 0%, rgba(18, 17, 15, 0.26) 60%, rgba(18, 17, 15, 0.62) 100%) !important;
+}
+
+body.site-night .header-logo,
+body.site-night .header-logo:visited,
+body.site-night .header-menu,
+body.site-night .header-lang,
+body.site-night .header-burger {
+    background: rgba(34, 32, 28, 0.82) !important;
+    border-color: rgba(244, 239, 229, 0.22) !important;
+    color: var(--night-ink) !important;
+    box-shadow:
+        0 16px 46px rgba(0, 0, 0, 0.32),
+        0 0 34px rgba(255, 232, 181, 0.08) !important;
+}
+
+body.site-night .header-menu a,
+body.site-night .header-lang a,
+body.site-night .header-logo .brand-full,
+body.site-night .header-logo .brand-short,
+body.site-night .header-logo .heart {
+    color: var(--night-ink) !important;
+}
+
+body.site-night .header-logo:hover,
+body.site-night .header-logo:focus-visible,
+body.site-night .header-menu:hover,
+body.site-night .header-lang:hover,
+body.site-night .header-burger:hover {
+    background: rgba(48, 45, 39, 0.9) !important;
+    box-shadow:
+        0 18px 48px rgba(0, 0, 0, 0.36),
+        0 0 42px rgba(255, 232, 181, 0.16) !important;
+}
+
+body.site-night .heart,
+body.site-night .header-logo .heart,
+body.site-night .site-home .header:not(.is-compact):not(.nav-open) .header-logo .heart {
+    color: #fff2da !important;
+    text-shadow: 0 0 12px rgba(255, 232, 181, 0.62) !important;
+}
+
+body.site-night .hero-title-line,
+body.site-night .hero-copy h1,
+body.site-night .shop-heading h2,
+body.site-night .artist-heading h2,
+body.site-night .project-detail-copy h3,
+body.site-night .shop-item h4,
+body.site-night .card-title {
+    color: var(--night-ink) !important;
+}
+
+body.site-night .hero-summary,
+body.site-night .hero-image-caption,
+body.site-night .hero-kicker,
+body.site-night .shop-heading p,
+body.site-night .card-meta,
+body.site-night .card-desc,
+body.site-night .shop-item-meta,
+body.site-night .shop-item-note,
+body.site-night .shop-price,
+body.site-night .footer-context,
+body.site-night .project-detail-copy p,
+body.site-night .project-detail-facts,
+body.site-night .project-detail-credits,
+body.site-night .artist-text,
+body.site-night .bio-text {
+    color: var(--night-muted) !important;
+}
+
+body.site-night .filter-btn,
+body.site-night .cv-tab,
+body.site-night .cv-subtab,
+body.site-night .footer-link,
+body.site-night .footer-privacy {
+    color: var(--night-muted) !important;
+}
+
+body.site-night .filter-btn.active,
+body.site-night .filter-btn:hover,
+body.site-night .filter-btn:focus-visible,
+body.site-night .cv-tab.active,
+body.site-night .cv-subtab.active,
+body.site-night .footer-link:hover,
+body.site-night .footer-link:focus-visible,
+body.site-night .footer-privacy:hover,
+body.site-night .footer-privacy:focus-visible {
+    color: var(--night-ink) !important;
+}
+
+body.site-night .card-img,
+body.site-night .story-media,
+body.site-night .shop-item-image,
+body.site-night .artist-photo,
+body.site-night .project-detail-media img {
+    box-shadow:
+        0 20px 70px rgba(0, 0, 0, 0.34),
+        0 0 0 1px rgba(244, 239, 229, 0.06) !important;
+}
+
+body.site-night .project-card-inline:hover .card-img,
+body.site-night .project-card-inline:hover .story-media,
+body.site-night .shop-item:hover .shop-item-image,
+body.site-night .artist-photo:hover {
+    box-shadow:
+        0 24px 78px rgba(0, 0, 0, 0.42),
+        0 0 44px rgba(255, 232, 181, 0.14) !important;
+}
+
+body.site-night .project-filters,
+body.site-night .shop-group,
+body.site-night .project-inline-detail,
+body.site-night .project-detail-card--entity,
+body.site-night .shop-order-modal-panel {
+    background-color: var(--night-bg) !important;
+    color: var(--night-ink) !important;
+}
+
+body.site-night .project-detail-card--entity .project-detail-facts div,
+body.site-night .project-detail-section,
+body.site-night .project-detail-credits,
+body.site-night .footer,
+body.site-night .footer-content {
+    border-color: var(--night-line) !important;
+}
+
+.shop-item .shop-order:not(.shop-order-disabled),
+.shop-preview .shop-order:not(.shop-order-disabled),
+.shop-item--mayak-reflect .shop-order,
+.shop-grid--reliefs .shop-item .shop-order:not(.shop-order-disabled) {
+    min-height: 42px !important;
+    padding: 0 22px !important;
+    border-radius: 999px !important;
+    background: rgba(0, 0, 0, 0.055) !important;
+    color: rgba(0, 0, 0, 0.88) !important;
+    border: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+}
+
+.shop-item .shop-order:not(.shop-order-disabled):hover,
+.shop-item .shop-order:not(.shop-order-disabled):focus-visible,
+.shop-preview .shop-order:not(.shop-order-disabled):hover,
+.shop-preview .shop-order:not(.shop-order-disabled):focus-visible {
+    background: rgba(0, 0, 0, 0.11) !important;
+}
+
+body.site-night .shop-item .shop-order:not(.shop-order-disabled),
+body.site-night .shop-preview .shop-order:not(.shop-order-disabled),
+body.site-night .shop-item--mayak-reflect .shop-order,
+body.site-night .shop-grid--reliefs .shop-item .shop-order:not(.shop-order-disabled),
+body.site-night .shop-order-modal-mail,
+body.site-night .shop-order-modal-copy,
+body.site-night .shop-order-modal-cancel {
+    background: var(--night-surface-soft) !important;
+    color: var(--night-ink) !important;
+    border-color: transparent !important;
+}
+
+body.site-night .shop-item .shop-order:not(.shop-order-disabled):hover,
+body.site-night .shop-item .shop-order:not(.shop-order-disabled):focus-visible,
+body.site-night .shop-preview .shop-order:not(.shop-order-disabled):hover,
+body.site-night .shop-preview .shop-order:not(.shop-order-disabled):focus-visible,
+body.site-night .shop-order-modal-mail:hover,
+body.site-night .shop-order-modal-mail:focus-visible,
+body.site-night .shop-order-modal-copy:hover,
+body.site-night .shop-order-modal-copy:focus-visible,
+body.site-night .shop-order-modal-cancel:hover,
+body.site-night .shop-order-modal-cancel:focus-visible {
+    background: rgba(255, 232, 181, 0.16) !important;
+    box-shadow: 0 0 34px rgba(255, 232, 181, 0.12) !important;
+}
+
+body.site-night .footer-flower {
+    opacity: 0.94 !important;
+    filter:
+        drop-shadow(0 0 18px rgba(255, 232, 181, 0.42))
+        drop-shadow(0 0 62px rgba(255, 232, 181, 0.22)) !important;
+}
+
+body.site-night .footer-icon,
+body.site-night .footer-icon-doc {
+    stroke: var(--night-ink) !important;
+}
+
+body.site-night ::selection {
+    background: rgba(255, 232, 181, 0.26);
+    color: var(--night-ink);
+}
+
+@media (max-width: 520px) {
+    .shop-grid--reliefs .shop-item .shop-order:not(.shop-order-disabled) {
+        min-height: 36px !important;
+        padding: 0 16px !important;
+    }
+}

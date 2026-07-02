@@ -17,6 +17,104 @@ function updateEkbTime() {
 updateEkbTime();
 setInterval(updateEkbTime, 1000);
 
+// ========== SHARED: EKATERINBURG LIGHT THEME ==========
+const EKB_TIME_ZONE = 'Asia/Yekaterinburg';
+
+function getEkbClockMinutes(date = new Date()) {
+    const parts = new Intl.DateTimeFormat('en-GB', {
+        timeZone: EKB_TIME_ZONE,
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    }).formatToParts(date);
+
+    const hour = Number(parts.find(part => part.type === 'hour')?.value || 0);
+    const minute = Number(parts.find(part => part.type === 'minute')?.value || 0);
+    return hour * 60 + minute;
+}
+
+function getEkbDateKey(date = new Date()) {
+    return new Intl.DateTimeFormat('en-CA', {
+        timeZone: EKB_TIME_ZONE,
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+    }).format(date);
+}
+
+function getMinutesFromIsoTime(value) {
+    const match = String(value || '').match(/T(\d{2}):(\d{2})/);
+    if (!match) return null;
+    return Number(match[1]) * 60 + Number(match[2]);
+}
+
+function getRequestedLightTheme() {
+    const value = new URLSearchParams(window.location.search).get('theme');
+    return value === 'day' || value === 'night' ? value : '';
+}
+
+function applyEkbLightTheme(mode, source = 'clock') {
+    const normalizedMode = mode === 'night' ? 'night' : 'day';
+    document.documentElement.dataset.ekbLight = normalizedMode;
+    document.documentElement.dataset.ekbLightSource = source;
+
+    if (document.body) {
+        document.body.classList.toggle('site-night', normalizedMode === 'night');
+        document.body.classList.toggle('site-day', normalizedMode === 'day');
+    }
+}
+
+function getFallbackEkbLightTheme() {
+    const minutes = getEkbClockMinutes();
+    return minutes >= 7 * 60 && minutes < 21 * 60 ? 'day' : 'night';
+}
+
+function applySunlightThemeFromData(data) {
+    const sunrise = getMinutesFromIsoTime(data?.daily?.sunrise?.[0]);
+    const sunset = getMinutesFromIsoTime(data?.daily?.sunset?.[0]);
+    if (sunrise == null || sunset == null) return false;
+
+    const now = getEkbClockMinutes();
+    applyEkbLightTheme(now >= sunrise && now < sunset ? 'day' : 'night', 'sun');
+    return true;
+}
+
+async function updateEkbLightTheme() {
+    const forcedTheme = getRequestedLightTheme();
+    if (forcedTheme) {
+        applyEkbLightTheme(forcedTheme, 'query');
+        return;
+    }
+
+    applyEkbLightTheme(getFallbackEkbLightTheme(), 'clock');
+
+    const cacheKey = 'ekbLightData';
+    const today = getEkbDateKey();
+
+    try {
+        const cachedData = JSON.parse(localStorage.getItem(cacheKey));
+        if (cachedData?.date === today && cachedData?.data && applySunlightThemeFromData(cachedData.data)) {
+            return;
+        }
+    } catch (error) {
+        console.warn('Не удалось прочитать кэш светового режима.', error);
+    }
+
+    try {
+        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=56.8389&longitude=60.6057&daily=sunrise,sunset&forecast_days=1&timezone=Asia/Yekaterinburg');
+        if (!response.ok) throw new Error(`Сетевой ответ не был успешным: ${response.statusText}`);
+
+        const data = await response.json();
+        localStorage.setItem(cacheKey, JSON.stringify({ date: today, data }));
+        applySunlightThemeFromData(data);
+    } catch (error) {
+        console.warn('Не удалось загрузить данные о световом режиме:', error);
+    }
+}
+
+updateEkbLightTheme();
+setInterval(updateEkbLightTheme, 15 * 60 * 1000);
+
 // ========== SHARED: EKATERINBURG WEATHER ==========
 async function updateEkbWeather() {
     const weatherElements = document.querySelectorAll('#weather-temp, [data-weather-temp]');
